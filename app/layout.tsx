@@ -60,68 +60,74 @@ export default function RootLayout({
 
 
         <footer
-          className="
-            bg-gray-900
-            text-white
-            p-8
-            text-center
-          "
-        >
+  className="
+    bg-gray-900
+    text-white
+    p-8
+    text-center
+  "
+>
 
-          <h3 className="text-xl font-bold">
-            ارتباط با ما
-          </h3>
-
-
-          <p className="mt-3 text-gray-300">
-            برای همکاری، پیشنهاد یا پشتیبانی با ما در تماس باشید.
-          </p>
+  <h3 className="text-xl font-bold">
+    ارتباط با ما
+  </h3>
 
 
-
-          <div
-            className="
-              mt-5
-              flex
-              justify-center
-              gap-4
-            "
-          >
+  <p className="mt-3 text-gray-300">
+    برای همکاری، پیشنهاد یا پشتیبانی با ما در تماس باشید.
+  </p>
 
 
-            <a
-              href="https://wa.me/989125011505"
-              target="_blank"
-              className="
-                bg-green-600
-                px-5
-                py-2
-                rounded-xl
-              "
-            >
-              WhatsApp
-            </a>
+  <p className="mt-3 text-gray-300">
+    ایمیل:
+    {" "}
+    <a
+      href="mailto:Ahmad.sadegh@gmail.com"
+      className="underline hover:text-white"
+    >
+      Ahmad.sadegh@gmail.com
+    </a>
+  </p>
 
 
+  <div
+    className="
+      mt-5
+      flex
+      justify-center
+      gap-4
+    "
+  >
 
-            <a
-              href="#"
-              className="
-                bg-blue-600
-                px-5
-                py-2
-                rounded-xl
-              "
-            >
-              Bale
-            </a>
+    <a
+      href="https://wa.me/989xxxxxxxxx"
+      target="_blank"
+      className="
+        bg-green-600
+        px-5
+        py-2
+        rounded-xl
+      "
+    >
+      WhatsApp
+    </a>
 
 
-          </div>
+    <a
+      href="#"
+      className="
+        bg-blue-600
+        px-5
+        py-2
+        rounded-xl
+      "
+    >
+      Bale (به‌زودی)
+    </a>
 
+  </div>
 
-        </footer>
-
+</footer>
 
 
       </body>
