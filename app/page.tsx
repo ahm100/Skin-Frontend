@@ -3,7 +3,6 @@ export default function Home() {
     <main className="min-h-screen">
 
 
-      {/* Hero */}
       <section
         className="
           min-h-screen
@@ -50,11 +49,11 @@ export default function Home() {
           شروع تحلیل رایگان
         </a>
 
+
       </section>
 
 
 
-      {/* Steps */}
       <section className="bg-gray-50 p-10">
 
 
@@ -78,6 +77,7 @@ export default function Home() {
             gap-6
           "
         >
+
 
           <div className="bg-white border rounded-xl p-6">
 
@@ -122,11 +122,11 @@ export default function Home() {
 
         </div>
 
+
       </section>
 
 
 
-      {/* Brands */}
 
       <section className="p-10 text-center">
 

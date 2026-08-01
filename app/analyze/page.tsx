@@ -16,25 +16,27 @@ export default function AnalyzePage() {
 
   function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
-  ){
+  ) {
 
     const file = e.target.files?.[0];
 
-    if(file)
+    if (file) {
       setImage(file);
+    }
 
   }
 
 
 
-  async function analyze(){
+  async function analyze() {
 
 
-    if(!image){
+    if (!image) {
 
       alert("لطفا تصویر انتخاب کنید");
 
       return;
+
     }
 
 
@@ -54,20 +56,21 @@ export default function AnalyzePage() {
     const response = await fetch(
       "https://localhost:7004/api/SkinAnalysis/analyze",
       {
-        method:"POST",
-        body:formData
+        method: "POST",
+        body: formData
       }
     );
 
 
 
-    if(!response.ok){
+    if (!response.ok) {
 
       console.log(await response.text());
 
       setLoading(false);
 
       return;
+
     }
 
 
@@ -105,15 +108,10 @@ export default function AnalyzePage() {
 
 
       <p className="mt-4 text-gray-600">
-
         تصویر پوست خود را آپلود کنید تا هوش مصنوعی آن را بررسی کند.
-
       </p>
 
 
-
-
-      {/* Upload Box */}
 
       <label
         className="
@@ -128,7 +126,6 @@ export default function AnalyzePage() {
           hover:bg-gray-50
         "
       >
-
 
         <div className="text-4xl mb-3">
           📷
@@ -147,15 +144,10 @@ export default function AnalyzePage() {
 
 
         <input
-
           type="file"
-
           accept="image/*"
-
           onChange={handleUpload}
-
           className="hidden"
-
         />
 
 
@@ -168,21 +160,18 @@ export default function AnalyzePage() {
         image &&
 
         <p className="mt-3 text-sm">
-
           فایل انتخاب شده:
           {" "}
           {image.name}
-
         </p>
+
       }
 
 
 
 
       <button
-
         onClick={analyze}
-
         className="
           mt-6
           bg-black
@@ -191,7 +180,6 @@ export default function AnalyzePage() {
           py-3
           rounded-xl
         "
-
       >
 
         {
@@ -204,7 +192,6 @@ export default function AnalyzePage() {
 
 
       </button>
-
 
 
 
@@ -222,46 +209,31 @@ export default function AnalyzePage() {
 
 
           <h2 className="text-2xl font-bold">
-
             نتیجه تحلیل
-
           </h2>
 
 
 
-          <div className="mt-4">
-
-            <p>
-
-              نوع پوست:
-              {" "}
-              {result.analysis.skin_type.label}
-
-            </p>
+          <p className="mt-4">
+            نوع پوست:
+            {" "}
+            {result.analysis.skin_type.label}
+          </p>
 
 
-            <p>
 
-              Confidence:
-              {" "}
-              {result.analysis.skin_type.confidence}
-
-            </p>
-
-
-          </div>
-
+          <p>
+            Confidence:
+            {" "}
+            {result.analysis.skin_type.confidence}
+          </p>
 
 
 
 
           <h2 className="text-2xl font-bold mt-8">
-
             محصولات پیشنهادی
-
           </h2>
-
-
 
 
 
@@ -279,29 +251,21 @@ export default function AnalyzePage() {
                   "
                 >
 
-
                   <h3 className="text-xl font-bold">
-
                     {item.name}
-
                   </h3>
 
 
                   <p>
-
                     {item.reason}
-
                   </p>
 
 
                   <p>
-
                     امتیاز:
                     {" "}
                     {item.score}
-
                   </p>
-
 
 
                 </div>
