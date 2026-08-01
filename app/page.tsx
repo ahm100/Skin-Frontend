@@ -1,30 +1,60 @@
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-10">
+    <main
+      className="
+      min-h-screen
+      flex
+      flex-col
+      items-center
+      justify-center
+      p-10
+      bg-gray-50
+      "
+    >
 
-      <h1 className="text-5xl font-bold text-center">
+      <h1
+        className="
+        text-5xl
+        font-bold
+        text-center
+        "
+      >
         تحلیل پوست با هوش مصنوعی
       </h1>
 
-      <p className="mt-6 text-xl text-gray-600 text-center max-w-2xl">
+
+      <p
+        className="
+        mt-6
+        text-xl
+        text-gray-600
+        text-center
+        max-w-2xl
+        "
+      >
         تصویر پوست خود را آپلود کنید،
-        وضعیت پوست را تحلیل کنید و
-        محصولات مناسب دریافت کنید.
+        هوش مصنوعی وضعیت پوست شما را تحلیل می‌کند
+        و محصولات مناسب را پیشنهاد می‌دهد.
       </p>
 
-      <button
+
+
+      <a
+        href="/analyze"
         className="
         mt-10
         bg-black
         text-white
-        px-8
+        px-10
         py-4
         rounded-xl
         text-lg
         "
       >
         شروع تحلیل پوست
-      </button>
+      </a>
+
+
 
     </main>
   );
