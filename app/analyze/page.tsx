@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
+import { API_BASE } from "@/lib/api";
 
 export default function AnalyzePage() {
 
@@ -53,14 +53,13 @@ export default function AnalyzePage() {
 
 
 
-    const response = await fetch(
-      "https://localhost:7004/api/SkinAnalysis/analyze",
+   const response = await fetch(
+  `${API_BASE}/api/SkinAnalysis/analyze`,
       {
         method: "POST",
         body: formData
       }
-    );
-
+  );
 
 
     if (!response.ok) {
