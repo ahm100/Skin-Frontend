@@ -1,0 +1,94 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: saimah-postgres
+    restart: always
+
+    environment:
+      POSTGRES_DB: saimah
+      POSTGRES_USER: saimah_user
+      POSTGRES_PASSWORD: saimah_password
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - saimah-network
+
+
+  ai:
+    build:
+      context: ../fastAI
+
+    image: saimah-ai
+
+    container_name: saimah-ai
+
+    restart: always
+
+    ports:
+      - "8000:8000"
+
+    networks:
+      - saimah-network
+
+
+  backend:
+    build:
+      context: ../SkinBackend/skin-backend
+
+    image: saimah-api
+
+    container_name: saimah-api
+
+    restart: always
+
+    depends_on:
+      - postgres
+      - ai
+
+    environment:
+      AI__BaseUrl: http://saimah-ai:8000
+      ConnectionStrings__SkinDb: Host=saimah-postgres;Database=saimah;Username=saimah_user;Password=saimah_password
+
+    ports:
+      - "8080:8080"
+
+    networks:
+      - saimah-network
+
+
+  frontend:
+    build:
+      context: ../SkinFrontEnd/skin-frontend
+
+    image: saimah-frontend
+
+    container_name: saimah-frontend
+
+    restart: always
+
+    depends_on:
+      - backend
+
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8080
+
+    ports:
+      - "3000:3000"
+
+    networks:
+      - saimah-network
+
+
+volumes:
+  postgres_data:
+
+networks:
+  saimah-network:
