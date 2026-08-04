@@ -111,6 +111,19 @@ export default function AnalyzePage() {
       </p>
 
 
+      <div className="rounded-xl bg-gray-50 p-4 text-right">
+        <h3 className="font-bold text-gray-800">
+          راهنمای گرفتن عکس برای تحلیل بهتر
+        </h3>
+
+        <ul className="mt-3 text-sm text-gray-600 space-y-2">
+          <li>✓ صورت کامل داخل تصویر باشد</li>
+          <li>✓ از نور طبیعی و کافی استفاده کنید</li>
+          <li>✓ عکس بدون فیلتر یا افکت دوربین باشد</li>
+          <li>✓ عینک، ماسک یا پوشش روی صورت نباشد</li>
+          <li>✓ صورت روبه‌روی دوربین قرار بگیرد</li>
+        </ul>
+      </div>
 
       <label
         className="
@@ -221,12 +234,17 @@ export default function AnalyzePage() {
 
 
 
-          <p>
-            Confidence:
+          {/* <p className="mt-2">
+            میزان اطمینان تحلیل:
             {" "}
-            {result.analysis.skin_type.confidence}
-          </p>
-
+            {
+              result.analysis.skin_type.confidence >= 0.75
+                ? "زیاد"
+                : result.analysis.skin_type.confidence >= 0.50
+                  ? "متوسط"
+                  : "کم"
+            }
+          </p> */}
 
 
 
