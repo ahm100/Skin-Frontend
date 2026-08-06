@@ -34,8 +34,8 @@ export default function RootLayout({
 
         {/* Header */}
 
-       <header
-  className="
+        <header
+          className="
     sticky
     top-0
     z-50
@@ -49,7 +49,7 @@ export default function RootLayout({
     shadow-md
     shadow-purple-200/30
   "
->
+        >
 
           <div
             className="
@@ -176,70 +176,61 @@ export default function RootLayout({
 
         <footer
           className="
-            border-t
-            border-white/50
-            bg-gradient-to-r
-            from-violet-50
-            via-pink-50
-            to-purple-50
-            backdrop-blur-xl
-            p-8
-            sm:p-10
-            text-center
-            text-gray-700
-          "
+    mt-10
+    bg-gradient-to-r
+    from-violet-200
+    via-pink-100
+    to-rose-200
+    text-gray-800
+    p-8
+    text-center
+    border-t
+    border-white/60
+    shadow-inner
+  "
         >
 
           <h3
             className="
-              text-2xl
-              font-bold
-              bg-gradient-to-r
-              from-violet-700
-              to-pink-600
-              bg-clip-text
-              text-transparent
-            "
+      text-2xl
+      font-extrabold
+      text-purple-900
+    "
           >
-            Surenmah
+            ارتباط با ما
           </h3>
 
 
           <p
             className="
-              mt-4
-              text-gray-600
-              max-w-xl
-              mx-auto
-            "
+      mt-3
+      text-gray-700
+    "
           >
-            تحلیل هوشمند پوست و پیشنهاد محصولات مناسب
-            با کمک هوش مصنوعی
+            برای همکاری، پیشنهاد یا پشتیبانی با ما در تماس باشید.
           </p>
 
 
 
           <p
             className="
-              mt-4
-              text-gray-600
-            "
+      mt-3
+      text-gray-700
+    "
           >
-
             ایمیل:
             {" "}
-
             <a
               href="mailto:Ahmad.sadegh@gmail.com"
               className="
-                text-purple-700
-                underline
-                hover:text-purple-900
-              "
+        font-medium
+        underline
+        text-purple-800
+        hover:text-purple-950
+      "
             >
-              Ahmad.sadegh@gmail.com
+              ahmad.sadegh@gmail.com
             </a>
-
           </p>
 
 
@@ -247,44 +238,49 @@ export default function RootLayout({
 
           <div
             className="
-              mt-6
-              flex
-              justify-center
-              gap-4
-            "
+      mt-5
+      flex
+      justify-center
+      gap-4
+      flex-wrap
+    "
           >
+
 
             <a
               href="https://wa.me/989xxxxxxxxx"
               target="_blank"
               className="
-                rounded-xl
-                bg-emerald-500/90
-                px-5
-                py-2
-                text-white
-                shadow-md
-                hover:bg-emerald-600
-                transition
-              "
+        bg-green-500
+        hover:bg-green-600
+        px-5
+        py-2
+        rounded-xl
+        text-white
+        font-medium
+        shadow-md
+        transition
+      "
             >
               WhatsApp
             </a>
 
 
 
+
             <a
               href="#"
               className="
-                rounded-xl
-                bg-purple-500/90
-                px-5
-                py-2
-                text-white
-                shadow-md
-                hover:bg-purple-600
-                transition
-              "
+        bg-blue-500
+        hover:bg-blue-600
+        px-5
+        py-2
+        rounded-xl
+        text-white
+        font-medium
+        shadow-md
+        transition
+      "
             >
               Bale (به‌زودی)
             </a>
@@ -293,8 +289,19 @@ export default function RootLayout({
           </div>
 
 
-        </footer>
 
+          <p
+            className="
+      mt-6
+      text-sm
+      text-gray-600
+    "
+          >
+            © {new Date().getFullYear()} Surenmah. All rights reserved.
+          </p>
+
+
+        </footer>
 
       </body>
 
