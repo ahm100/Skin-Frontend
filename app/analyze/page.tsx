@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { API_BASE } from "@/lib/api";
+import Disclaimer from "@/components/Disclaimer";
+import UploadGuide from "@/components/UploadGuide";
+import ProductCard from "@/components/ProductCard";
 
 export default function AnalyzePage() {
 
@@ -128,109 +131,7 @@ export default function AnalyzePage() {
 
 
 
-
-
-      <div
-        className="
-          mt-5
-          rounded-2xl
-          bg-gray-50
-          p-4
-          text-right
-          w-full
-          max-w-md
-          border
-        "
-      >
-
-        <h3
-          className="
-            font-bold
-            text-gray-800
-          "
-        >
-          راهنمای گرفتن عکس برای تحلیل بهتر
-        </h3>
-
-
-        <ul
-          className="
-            mt-3
-            text-sm
-            text-gray-600
-            space-y-2
-          "
-        >
-
-          <li>
-            ✓ صورت کامل داخل تصویر باشد
-          </li>
-
-          <li>
-            ✓ از نور طبیعی و کافی استفاده کنید
-          </li>
-
-          <li>
-            ✓ عکس بدون فیلتر یا افکت دوربین باشد
-          </li>
-
-          <li>
-            ✓ عینک، ماسک یا پوشش روی صورت نباشد
-          </li>
-
-          <li>
-            ✓ صورت روبه‌روی دوربین قرار بگیرد
-          </li>
-
-        </ul>
-
-
-      </div>
-
-
-{/* disclaimer */}
-<div
-  className="
-    mt-4
-    w-full
-    max-w-md
-    rounded-2xl
-    border
-    border-amber-200
-    bg-amber-50
-    p-4
-    text-right
-  "
->
-
-  <h3
-    className="
-      font-bold
-      text-amber-900
-    "
-  >
-    ⚠️ توضیحات مهم
-  </h3>
-
-
-  <p
-    className="
-      mt-2
-      text-sm
-      leading-6
-      text-amber-800
-    "
-  >
-    نتایج تحلیل توسط هوش مصنوعی تولید می‌شود و
-    صرفاً برای راهنمایی اولیه مراقبت از پوست و
-    پیشنهاد محصولات مناسب است.
-    این تحلیل جایگزین تشخیص پزشک متخصص پوست نیست.
-  </p>
-
-
-</div>
-
-
+      <UploadGuide />
 
       <label
         className="
@@ -344,7 +245,9 @@ export default function AnalyzePage() {
 
       </button>
 
+{/* disclaimer */}
 
+     <Disclaimer />
 
 
 
@@ -444,56 +347,12 @@ export default function AnalyzePage() {
       result.recommendation.map(
         (item:any,index:number)=>(
 
-          <div
+           <ProductCard
             key={index}
-            className="
-              mt-4
-              rounded-3xl
-              bg-white
-              border
-              border-pink-100
-              p-6
-              shadow-md
-              hover:shadow-xl
-              transition
-            "
-          >
-
-            <h3
-              className="
-                text-xl
-                font-extrabold
-                text-gray-900
-              "
-            >
-              {item.name}
-            </h3>
-
-
-            <p
-              className="
-                mt-3
-                text-gray-600
-              "
-            >
-              {item.reason}
-            </p>
-
-
-            <p
-              className="
-                mt-3
-                font-bold
-                text-pink-600
-              "
-            >
-              امتیاز:
-              {" "}
-              {item.score}
-            </p>
-
-
-          </div>
+            name={item.name}
+            reason={item.reason}
+            score={item.score}
+          />
 
         )
       )
