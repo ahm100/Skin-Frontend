@@ -10,6 +10,12 @@ export default function SkinAnalysisResult({
   result,
 }: SkinAnalysisResultProps) {
 
+
+  const conditions =
+    result.analysis.condition ?? [];
+
+
+
   return (
 
     <section
@@ -21,6 +27,8 @@ export default function SkinAnalysisResult({
     >
 
 
+
+      {/* AI Result Card */}
       <div
         className="
           rounded-3xl
@@ -31,6 +39,7 @@ export default function SkinAnalysisResult({
           shadow-lg
         "
       >
+
 
         <h2
           className="
@@ -44,6 +53,8 @@ export default function SkinAnalysisResult({
 
 
 
+
+        {/* Skin Type */}
         <div
           className="
             mt-5
@@ -63,6 +74,7 @@ export default function SkinAnalysisResult({
           </p>
 
 
+
           <p
             className="
               mt-2
@@ -78,10 +90,110 @@ export default function SkinAnalysisResult({
         </div>
 
 
+
+
+
+        {/* Conditions */}
+        {
+          conditions.length > 0 &&
+
+          <div
+            className="
+              mt-4
+              rounded-2xl
+              bg-pink-50
+              p-5
+            "
+          >
+
+            <p
+              className="
+                text-sm
+                text-gray-500
+              "
+            >
+              وضعیت‌های شناسایی شده
+            </p>
+
+
+
+
+            <div
+              className="
+                mt-3
+                space-y-2
+              "
+            >
+
+              {
+                conditions.map(
+                  (item:any,index:number)=>(
+
+                    <div
+                      key={index}
+                      className="
+                        flex
+                        items-center
+                        justify-between
+                        rounded-xl
+                        bg-white
+                        border
+                        px-4
+                        py-3
+                      "
+                    >
+
+
+                      <span
+                        className="
+                          font-bold
+                          text-pink-700
+                        "
+                      >
+                        {item.label}
+                      </span>
+
+
+
+                      <span
+                        className="
+                          text-sm
+                          text-gray-500
+                        "
+                      >
+                        {
+                          (item.confidence * 100)
+                          .toFixed(1)
+                        }%
+                      </span>
+
+
+
+                    </div>
+
+                  )
+                )
+
+              }
+
+
+            </div>
+
+
+          </div>
+
+        }
+
+
+
       </div>
 
 
 
+
+
+
+      {/* Products */}
 
       <h2
         className="
@@ -97,8 +209,9 @@ export default function SkinAnalysisResult({
 
 
 
+
       {
-        result.recommendation.map(
+        result.recommendation?.map(
           (item:any,index:number)=>(
 
             <ProductCard
@@ -113,7 +226,11 @@ export default function SkinAnalysisResult({
       }
 
 
+
+
+
     </section>
 
   );
+
 }
