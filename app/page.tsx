@@ -34,20 +34,25 @@ export default function Home() {
 
 
         <a
-          href="/analyze"
-          className="
-            mt-10
-            bg-black
-            text-white
-            px-10
-            py-4
-            rounded-xl
-            text-lg
-            hover:bg-gray-800
-          "
-        >
-          شروع تحلیل رایگان
-        </a>
+  href="/analyze"
+  className="
+    mt-10
+    rounded-xl
+    bg-gradient-to-r
+    from-violet-500
+    to-pink-500
+    px-10
+    py-4
+    text-lg
+    text-white
+    font-medium
+    shadow-md
+    hover:opacity-90
+    transition
+  "
+>
+  شروع تحلیل رایگان
+</a>
 
 
       </section>
