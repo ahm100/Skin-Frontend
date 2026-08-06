@@ -188,6 +188,47 @@ export default function AnalyzePage() {
       </div>
 
 
+{/* disclaimer */}
+<div
+  className="
+    mt-4
+    w-full
+    max-w-md
+    rounded-2xl
+    border
+    border-amber-200
+    bg-amber-50
+    p-4
+    text-right
+  "
+>
+
+  <h3
+    className="
+      font-bold
+      text-amber-900
+    "
+  >
+    ⚠️ توضیحات مهم
+  </h3>
+
+
+  <p
+    className="
+      mt-2
+      text-sm
+      leading-6
+      text-amber-800
+    "
+  >
+    نتایج تحلیل توسط هوش مصنوعی تولید می‌شود و
+    صرفاً برای راهنمایی اولیه مراقبت از پوست و
+    پیشنهاد محصولات مناسب است.
+    این تحلیل جایگزین تشخیص پزشک متخصص پوست نیست.
+  </p>
+
+
+</div>
 
 
 
@@ -309,103 +350,159 @@ export default function AnalyzePage() {
 
 
 
-      {
-        result &&
+     {
+  result &&
 
-        <section
+  <section
+    className="
+      mt-8
+      w-full
+      max-w-3xl
+    "
+  >
+
+
+    <div
+      className="
+        rounded-3xl
+        bg-white
+        border
+        border-purple-100
+        p-6
+        shadow-lg
+      "
+    >
+
+      <h2
+        className="
+          text-2xl
+          font-extrabold
+          text-purple-900
+        "
+      >
+        ✨ نتیجه تحلیل پوست
+      </h2>
+
+
+
+      <div
+        className="
+          mt-5
+          rounded-2xl
+          bg-purple-50
+          p-5
+        "
+      >
+
+        <p
           className="
-            mt-8
-            w-full
-            max-w-3xl
+            text-sm
+            text-gray-500
           "
         >
+          نوع پوست شناسایی شده
+        </p>
+
+
+        <p
+          className="
+            mt-2
+            text-2xl
+            font-bold
+            text-purple-700
+          "
+        >
+          {result.analysis.skin_type.label}
+        </p>
+
+
+      </div>
+
+
+    </div>
 
 
 
-          <h2
+
+
+    <h2
+      className="
+        text-2xl
+        font-extrabold
+        text-purple-900
+        mt-8
+      "
+    >
+      🧴 محصولات پیشنهادی
+    </h2>
+
+
+
+
+
+    {
+      result.recommendation.map(
+        (item:any,index:number)=>(
+
+          <div
+            key={index}
             className="
-              text-2xl
-              font-bold
+              mt-4
+              rounded-3xl
+              bg-white
+              border
+              border-pink-100
+              p-6
+              shadow-md
+              hover:shadow-xl
+              transition
             "
           >
-            نتیجه تحلیل
-          </h2>
+
+            <h3
+              className="
+                text-xl
+                font-extrabold
+                text-gray-900
+              "
+            >
+              {item.name}
+            </h3>
+
+
+            <p
+              className="
+                mt-3
+                text-gray-600
+              "
+            >
+              {item.reason}
+            </p>
+
+
+            <p
+              className="
+                mt-3
+                font-bold
+                text-pink-600
+              "
+            >
+              امتیاز:
+              {" "}
+              {item.score}
+            </p>
+
+
+          </div>
+
+        )
+      )
+    }
 
 
 
-
-          <p className="mt-4">
-
-            نوع پوست:
-            {" "}
-            {result.analysis.skin_type.label}
-
-          </p>
-
-
-
-
-
-
-
-          <h2
-            className="
-              text-2xl
-              font-bold
-              mt-6
-            "
-          >
-            محصولات پیشنهادی
-          </h2>
-
-
-
-
-
-          {
-            result.recommendation.map(
-              (item:any,index:number)=>(
-
-                <div
-                  key={index}
-                  className="
-                    border
-                    rounded-xl
-                    p-5
-                    mt-4
-                  "
-                >
-
-                  <h3 className="text-xl font-bold">
-                    {item.name}
-                  </h3>
-
-
-                  <p className="mt-2">
-                    {item.reason}
-                  </p>
-
-
-                  <p className="mt-2">
-                    امتیاز:
-                    {" "}
-                    {item.score}
-                  </p>
-
-
-                </div>
-
-              )
-            )
-          }
-
-
-
-
-
-        </section>
-
-      }
+  </section>
+}
 
 
 
