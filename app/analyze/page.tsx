@@ -53,13 +53,14 @@ export default function AnalyzePage() {
 
 
 
-   const response = await fetch(
-  `${API_BASE}/api/SkinAnalysis/analyze`,
+    const response = await fetch(
+      `${API_BASE}/api/SkinAnalysis/analyze`,
       {
         method: "POST",
         body: formData
       }
-  );
+    );
+
 
 
     if (!response.ok) {
@@ -91,8 +92,8 @@ export default function AnalyzePage() {
 
     <main
       className="
-        min-h-screen
-        p-10
+        p-6
+        sm:p-10
         flex
         flex-col
         items-center
@@ -100,48 +101,121 @@ export default function AnalyzePage() {
     >
 
 
-      <h1 className="text-4xl font-bold">
+
+      <h1
+        className="
+          text-3xl
+          sm:text-4xl
+          font-bold
+          text-gray-900
+        "
+      >
         تحلیل پوست با AI
       </h1>
 
 
 
-      <p className="mt-4 text-gray-600">
+
+      <p
+        className="
+          mt-3
+          text-gray-600
+          text-center
+        "
+      >
         تصویر پوست خود را آپلود کنید تا هوش مصنوعی آن را بررسی کند.
       </p>
 
 
-      <div className="rounded-xl bg-gray-50 p-4 text-right">
-        <h3 className="font-bold text-gray-800">
+
+
+
+      <div
+        className="
+          mt-5
+          rounded-2xl
+          bg-gray-50
+          p-4
+          text-right
+          w-full
+          max-w-md
+          border
+        "
+      >
+
+        <h3
+          className="
+            font-bold
+            text-gray-800
+          "
+        >
           راهنمای گرفتن عکس برای تحلیل بهتر
         </h3>
 
-        <ul className="mt-3 text-sm text-gray-600 space-y-2">
-          <li>✓ صورت کامل داخل تصویر باشد</li>
-          <li>✓ از نور طبیعی و کافی استفاده کنید</li>
-          <li>✓ عکس بدون فیلتر یا افکت دوربین باشد</li>
-          <li>✓ عینک، ماسک یا پوشش روی صورت نباشد</li>
-          <li>✓ صورت روبه‌روی دوربین قرار بگیرد</li>
+
+        <ul
+          className="
+            mt-3
+            text-sm
+            text-gray-600
+            space-y-2
+          "
+        >
+
+          <li>
+            ✓ صورت کامل داخل تصویر باشد
+          </li>
+
+          <li>
+            ✓ از نور طبیعی و کافی استفاده کنید
+          </li>
+
+          <li>
+            ✓ عکس بدون فیلتر یا افکت دوربین باشد
+          </li>
+
+          <li>
+            ✓ عینک، ماسک یا پوشش روی صورت نباشد
+          </li>
+
+          <li>
+            ✓ صورت روبه‌روی دوربین قرار بگیرد
+          </li>
+
         </ul>
+
+
       </div>
+
+
+
+
 
       <label
         className="
-          mt-8
+          mt-4
           cursor-pointer
           border-2
           border-dashed
-          rounded-xl
+          rounded-2xl
           p-8
           w-80
           text-center
           hover:bg-gray-50
+          transition
         "
       >
 
-        <div className="text-4xl mb-3">
+
+        <div
+          className="
+            text-4xl
+            mb-3
+          "
+        >
           📷
         </div>
+
 
 
         <div className="font-bold">
@@ -149,9 +223,17 @@ export default function AnalyzePage() {
         </div>
 
 
-        <div className="text-sm text-gray-500 mt-2">
+
+        <div
+          className="
+            text-sm
+            text-gray-500
+            mt-2
+          "
+        >
           JPG, PNG یا WEBP
         </div>
+
 
 
 
@@ -163,7 +245,9 @@ export default function AnalyzePage() {
         />
 
 
+
       </label>
+
 
 
 
@@ -171,7 +255,13 @@ export default function AnalyzePage() {
       {
         image &&
 
-        <p className="mt-3 text-sm">
+        <p
+          className="
+            mt-3
+            text-sm
+            text-gray-600
+          "
+        >
           فایل انتخاب شده:
           {" "}
           {image.name}
@@ -182,15 +272,23 @@ export default function AnalyzePage() {
 
 
 
+
+
       <button
         onClick={analyze}
         className="
-          mt-6
-          bg-black
-          text-white
+          mt-4
+          rounded-xl
+          bg-gradient-to-r
+          from-violet-500
+          to-pink-500
           px-8
           py-3
-          rounded-xl
+          text-white
+          font-medium
+          shadow-md
+          hover:opacity-90
+          transition
         "
       >
 
@@ -208,49 +306,59 @@ export default function AnalyzePage() {
 
 
 
+
+
+
       {
         result &&
 
         <section
           className="
-            mt-10
+            mt-8
             w-full
             max-w-3xl
           "
         >
 
 
-          <h2 className="text-2xl font-bold">
+
+          <h2
+            className="
+              text-2xl
+              font-bold
+            "
+          >
             نتیجه تحلیل
           </h2>
 
 
 
+
           <p className="mt-4">
+
             نوع پوست:
             {" "}
             {result.analysis.skin_type.label}
+
           </p>
 
 
 
-          {/* <p className="mt-2">
-            میزان اطمینان تحلیل:
-            {" "}
-            {
-              result.analysis.skin_type.confidence >= 0.75
-                ? "زیاد"
-                : result.analysis.skin_type.confidence >= 0.50
-                  ? "متوسط"
-                  : "کم"
-            }
-          </p> */}
 
 
 
-          <h2 className="text-2xl font-bold mt-8">
+
+          <h2
+            className="
+              text-2xl
+              font-bold
+              mt-6
+            "
+          >
             محصولات پیشنهادی
           </h2>
+
+
 
 
 
@@ -273,12 +381,12 @@ export default function AnalyzePage() {
                   </h3>
 
 
-                  <p>
+                  <p className="mt-2">
                     {item.reason}
                   </p>
 
 
-                  <p>
+                  <p className="mt-2">
                     امتیاز:
                     {" "}
                     {item.score}
@@ -293,9 +401,12 @@ export default function AnalyzePage() {
 
 
 
+
+
         </section>
 
       }
+
 
 
 

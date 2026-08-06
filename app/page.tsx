@@ -5,7 +5,7 @@ export default function Home() {
 
       <section
         className="
-          min-h-screen
+          py-20
           flex
           flex-col
           items-center
@@ -70,58 +70,182 @@ export default function Home() {
 
 
         <div
-          className="
-            mt-10
-            grid
-            md:grid-cols-3
-            gap-6
-          "
-        >
+  className="
+    mt-10
+    grid
+    gap-6
+    md:grid-cols-3
+  "
+>
 
 
-          <div className="bg-white border rounded-xl p-6">
+  <div
+    className="
+      group
+      rounded-3xl
+      border
+      border-white/60
+      bg-white/70
+      backdrop-blur-xl
+      p-6
+      shadow-md
+      shadow-purple-100
+      transition-all
+      hover:-translate-y-2
+      hover:shadow-xl
+      hover:shadow-purple-200
+    "
+  >
 
-            <h3 className="text-xl font-bold">
-              📷 آپلود تصویر
-            </h3>
-
-            <p className="mt-3 text-gray-600">
-              یک تصویر از پوست خود ارسال کنید.
-            </p>
-
-          </div>
-
-
-
-          <div className="bg-white border rounded-xl p-6">
-
-            <h3 className="text-xl font-bold">
-              🤖 تحلیل AI
-            </h3>
-
-            <p className="mt-3 text-gray-600">
-              هوش مصنوعی نوع پوست و شرایط احتمالی را بررسی می‌کند.
-            </p>
-
-          </div>
-
-
-
-          <div className="bg-white border rounded-xl p-6">
-
-            <h3 className="text-xl font-bold">
-              🧴 پیشنهاد محصول
-            </h3>
-
-            <p className="mt-3 text-gray-600">
-              محصولات مناسب پوست شما پیشنهاد می‌شود.
-            </p>
-
-          </div>
+    <div
+      className="
+        mb-4
+        flex
+        h-14
+        w-14
+        items-center
+        justify-center
+        rounded-2xl
+        bg-purple-100
+        text-3xl
+      "
+    >
+      📷
+    </div>
 
 
-        </div>
+    <h3 className="text-xl font-bold text-gray-900">
+      آپلود تصویر
+    </h3>
 
+
+    <p
+      className="
+        mt-3
+        leading-7
+        text-gray-600
+      "
+    >
+      یک تصویر مناسب از پوست خود ارسال کنید.
+    </p>
+
+
+  </div>
+
+
+
+
+  <div
+    className="
+      group
+      rounded-3xl
+      border
+      border-white/60
+      bg-white/70
+      backdrop-blur-xl
+      p-6
+      shadow-md
+      shadow-purple-100
+      transition-all
+      hover:-translate-y-2
+      hover:shadow-xl
+      hover:shadow-purple-200
+    "
+  >
+
+    <div
+      className="
+        mb-4
+        flex
+        h-14
+        w-14
+        items-center
+        justify-center
+        rounded-2xl
+        bg-pink-100
+        text-3xl
+      "
+    >
+      🤖
+    </div>
+
+
+    <h3 className="text-xl font-bold text-gray-900">
+      تحلیل AI
+    </h3>
+
+
+    <p
+      className="
+        mt-3
+        leading-7
+        text-gray-600
+      "
+    >
+      هوش مصنوعی نوع پوست و شرایط احتمالی را بررسی می‌کند.
+    </p>
+
+
+  </div>
+
+
+
+
+  <div
+    className="
+      group
+      rounded-3xl
+      border
+      border-white/60
+      bg-white/70
+      backdrop-blur-xl
+      p-6
+      shadow-md
+      shadow-purple-100
+      transition-all
+      hover:-translate-y-2
+      hover:shadow-xl
+      hover:shadow-purple-200
+    "
+  >
+
+    <div
+      className="
+        mb-4
+        flex
+        h-14
+        w-14
+        items-center
+        justify-center
+        rounded-2xl
+        bg-rose-100
+        text-3xl
+      "
+    >
+      🧴
+    </div>
+
+
+    <h3 className="text-xl font-bold text-gray-900">
+      پیشنهاد محصول
+    </h3>
+
+
+    <p
+      className="
+        mt-3
+        leading-7
+        text-gray-600
+      "
+    >
+      محصولات مناسب پوست شما پیشنهاد می‌شود.
+    </p>
+
+
+  </div>
+
+
+</div>
 
       </section>
 
