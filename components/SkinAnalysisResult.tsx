@@ -369,6 +369,7 @@ export default function SkinAnalysisResult({
               name={item.name}
               reason={item.reason}
               score={item.score}
+              offers={item.offers}
             />
 
 
