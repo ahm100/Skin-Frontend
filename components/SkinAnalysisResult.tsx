@@ -16,11 +16,8 @@ function translateSkinType(type: string) {
     combination: "مختلط",
   };
 
-
   return map[type] ?? type;
-
 }
-
 
 
 
@@ -29,15 +26,10 @@ function translateCondition(condition: string) {
   const map: any = {
 
     Acne: "جوش و آکنه",
-
     Eczema: "اگزما",
-
     Rosacea: "قرمزی پوست",
-
     Psoriasis: "پسوریازیس",
-
     Vitiligo: "ویتیلیگو",
-
     Melanoma: "ملانوما",
 
     "Atopic Dermatitis":
@@ -49,6 +41,9 @@ function translateCondition(condition: string) {
     "Seborrheic Dermatitis":
       "درماتیت سبوره‌ای",
 
+    "Unknown Normal":
+      "پوست نرمال",
+
   };
 
 
@@ -59,16 +54,30 @@ function translateCondition(condition: string) {
 
 
 
+function translateReason(reason: string) {
+
+  if (!reason)
+    return "";
+
+
+  return reason
+    .replaceAll("oily", "چرب")
+    .replaceAll("dry", "خشک")
+    .replaceAll("normal", "نرمال")
+    .replaceAll("combination", "مختلط");
+
+}
+
+
+
 
 function confidenceText(confidence: number) {
 
   if (confidence >= 0.75)
     return "زیاد";
 
-
   if (confidence >= 0.5)
     return "متوسط";
-
 
   return "کم";
 
@@ -83,13 +92,12 @@ export default function SkinAnalysisResult({
 }: SkinAnalysisResultProps) {
 
 
-  const conditions =
-    result?.analysis?.condition ?? [];
-
-
-
   const skinType =
     result?.analysis?.skin_type;
+
+
+  const conditions =
+    result?.analysis?.condition ?? [];
 
 
 
@@ -104,9 +112,7 @@ export default function SkinAnalysisResult({
     >
 
 
-
-
-      {/* AI Result Card */}
+      {/* AI Result */}
 
       <div
         className="
@@ -120,7 +126,6 @@ export default function SkinAnalysisResult({
       >
 
 
-
         <h2
           className="
             text-2xl
@@ -130,8 +135,6 @@ export default function SkinAnalysisResult({
         >
           ✨ نتیجه تحلیل پوست
         </h2>
-
-
 
 
 
@@ -147,7 +150,6 @@ export default function SkinAnalysisResult({
             "
           >
 
-
             <p
               className="
                 text-sm
@@ -156,7 +158,6 @@ export default function SkinAnalysisResult({
             >
               نوع پوست تخمینی
             </p>
-
 
 
             <p
@@ -175,35 +176,20 @@ export default function SkinAnalysisResult({
             </p>
 
 
-
-            {
-              skinType.confidence &&
-
-              <p
-                className="
-                  mt-2
-                  text-sm
-                  text-gray-600
-                "
-              >
-
-                میزان اطمینان:
-                {" "}
-                {
-                  confidenceText(
-                    skinType.confidence
-                  )
-                }
-
-              </p>
-
-            }
+            <p
+              className="
+                mt-3
+                text-xs
+                text-gray-500
+              "
+            >
+              نتیجه توسط هوش مصنوعی تخمین زده شده است.
+            </p>
 
 
           </div>
 
         }
-
 
 
 
@@ -221,8 +207,6 @@ export default function SkinAnalysisResult({
             "
           >
 
-
-
             <p
               className="
                 text-sm
@@ -234,16 +218,12 @@ export default function SkinAnalysisResult({
 
 
 
-
-
             <div
               className="
                 mt-3
-                space-y-2
+                space-y-3
               "
             >
-
-
 
               {
                 conditions
@@ -257,61 +237,44 @@ export default function SkinAnalysisResult({
                       index:number
                     ) => (
 
-
                       <div
                         key={index}
                         className="
                           rounded-xl
                           bg-white
                           border
-                          px-4
-                          py-3
+                          p-4
                         "
                       >
 
-
-
-                        <div
+                        <p
                           className="
                             font-bold
                             text-pink-700
                           "
                         >
-
-                          ✓
-                          {" "}
-                          {
-                            translateCondition(
-                              item.label
-                            )
-                          }
-
-                        </div>
+                          ✓ {translateCondition(item.label)}
+                        </p>
 
 
-
-
-                        <div
+                        <p
                           className="
                             mt-1
                             text-sm
                             text-gray-500
                           "
                         >
-
-                          اطمینان:
+                          دقت:
                           {" "}
                           {
                             confidenceText(
                               item.confidence
                             )
                           }
-
-                        </div>
+                        </p>
 
 
                       </div>
-
 
                     )
                   )
@@ -319,15 +282,12 @@ export default function SkinAnalysisResult({
               }
 
 
-
             </div>
-
 
 
           </div>
 
         }
-
 
 
       </div>
@@ -339,7 +299,6 @@ export default function SkinAnalysisResult({
 
 
       {/* Products */}
-
 
       <h2
         className="
@@ -363,21 +322,21 @@ export default function SkinAnalysisResult({
             index:number
           ) => (
 
-
             <ProductCard
               key={index}
               name={item.name}
-              reason={item.reason}
+              reason={
+                translateReason(
+                  item.reason
+                )
+              }
               score={item.score}
               offers={item.offers}
             />
 
-
           )
         )
       }
-
-
 
 
 
