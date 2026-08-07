@@ -6,6 +6,36 @@ type SkinAnalysisResultProps = {
 };
 
 
+function translateSkinType(type: string) {
+
+  const map: any = {
+    oily: "چرب",
+    dry: "خشک",
+    normal: "نرمال",
+    combination: "مختلط",
+  };
+
+  return map[type] ?? type;
+
+}
+
+
+
+function translateCondition(condition: string) {
+
+  const map: any = {
+    Acne: "جوش و آکنه",
+    Eczema: "اگزما",
+    Rosacea: "قرمزی پوست",
+    "Unknown Normal": "پوست نرمال",
+  };
+
+  return map[condition] ?? condition;
+
+}
+
+
+
 export default function SkinAnalysisResult({
   result,
 }: SkinAnalysisResultProps) {
@@ -27,8 +57,6 @@ export default function SkinAnalysisResult({
     >
 
 
-
-      {/* AI Result Card */}
       <div
         className="
           rounded-3xl
@@ -54,7 +82,6 @@ export default function SkinAnalysisResult({
 
 
 
-        {/* Skin Type */}
         <div
           className="
             mt-5
@@ -64,15 +91,9 @@ export default function SkinAnalysisResult({
           "
         >
 
-          <p
-            className="
-              text-sm
-              text-gray-500
-            "
-          >
-            نوع پوست شناسایی شده
+          <p className="text-sm text-gray-500">
+            نوع پوست
           </p>
-
 
 
           <p
@@ -83,7 +104,11 @@ export default function SkinAnalysisResult({
               text-purple-700
             "
           >
-            {result.analysis.skin_type.label}
+            {
+              translateSkinType(
+                result.analysis.skin_type.label
+              )
+            }
           </p>
 
 
@@ -92,8 +117,6 @@ export default function SkinAnalysisResult({
 
 
 
-
-        {/* Conditions */}
         {
           conditions.length > 0 &&
 
@@ -106,35 +129,26 @@ export default function SkinAnalysisResult({
             "
           >
 
-            <p
-              className="
-                text-sm
-                text-gray-500
-              "
-            >
-              وضعیت‌های شناسایی شده
+            <p className="text-sm text-gray-500">
+              موارد مشاهده شده
             </p>
 
 
+            <div className="mt-3 space-y-2">
 
-
-            <div
-              className="
-                mt-3
-                space-y-2
-              "
-            >
 
               {
-                conditions.map(
+                conditions
+                .filter(
+                  (item:any)=>
+                    item.confidence >= 0.6
+                )
+                .map(
                   (item:any,index:number)=>(
 
                     <div
                       key={index}
                       className="
-                        flex
-                        items-center
-                        justify-between
                         rounded-xl
                         bg-white
                         border
@@ -143,30 +157,14 @@ export default function SkinAnalysisResult({
                       "
                     >
 
-
                       <span
                         className="
                           font-bold
                           text-pink-700
                         "
                       >
-                        {item.label}
+                        ✓ {translateCondition(item.label)}
                       </span>
-
-
-
-                      <span
-                        className="
-                          text-sm
-                          text-gray-500
-                        "
-                      >
-                        {
-                          (item.confidence * 100)
-                          .toFixed(1)
-                        }%
-                      </span>
-
 
 
                     </div>
@@ -185,22 +183,18 @@ export default function SkinAnalysisResult({
         }
 
 
-
       </div>
 
 
 
 
 
-
-      {/* Products */}
-
       <h2
         className="
+          mt-8
           text-2xl
           font-extrabold
           text-purple-900
-          mt-8
         "
       >
         🧴 محصولات پیشنهادی
@@ -224,8 +218,6 @@ export default function SkinAnalysisResult({
           )
         )
       }
-
-
 
 
 
