@@ -23,14 +23,23 @@ function translateSkinType(type: string) {
 
 function translateCondition(condition: string) {
 
-  const map: any = {
+  const map:any = {
 
     Acne: "جوش و آکنه",
+
     Eczema: "اگزما",
-    Rosacea: "قرمزی پوست",
+
+    Rosacea: "روزاسه",
+
     Psoriasis: "پسوریازیس",
+
     Vitiligo: "ویتیلیگو",
+
     Melanoma: "ملانوما",
+
+    Bullous: "پمفیگوئید بولوز",
+
+    Lichen: "لیکن پلان",
 
     "Atopic Dermatitis":
       "درماتیت آتوپیک",
@@ -42,7 +51,7 @@ function translateCondition(condition: string) {
       "درماتیت سبوره‌ای",
 
     "Unknown Normal":
-      "پوست نرمال",
+      "پوست نرمال"
 
   };
 
@@ -50,8 +59,6 @@ function translateCondition(condition: string) {
   return map[condition] ?? condition;
 
 }
-
-
 
 
 function translateReason(reason: string) {

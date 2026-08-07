@@ -95,80 +95,116 @@ export default function Home() {
 
       {/* How it works */}
 
-      <section
+      {/* How it works */}
+
+<section
+  className="
+    bg-gray-50
+    px-6
+    py-16
+    sm:px-10
+  "
+>
+
+  <h2
+    className="
+      text-center
+      text-3xl
+      font-extrabold
+      text-gray-900
+    "
+  >
+    چگونه کار می‌کند؟
+  </h2>
+
+
+
+  <div
+    className="
+      mt-12
+      flex
+      flex-col
+      items-center
+    "
+  >
+
+
+
+    {/* Step 1 */}
+
+    <div
+      className="
+        flex
+        flex-col
+        items-center
+        text-center
+        rounded-3xl
+        bg-white
+        border
+        border-gray-100
+        p-6
+        shadow-sm
+        w-full
+        max-w-sm
+      "
+    >
+
+      <div
         className="
-          bg-gray-50
-          px-6
-          py-16
-          sm:px-10
+          flex
+          h-20
+          w-20
+          items-center
+          justify-center
+          rounded-full
+          bg-purple-100
+          text-4xl
         "
       >
-
-        <h2
-          className="
-            text-center
-            text-3xl
-            font-extrabold
-            text-gray-900
-          "
-        >
-          چگونه کار می‌کند؟
-        </h2>
+        📷
+      </div>
 
 
+      <h3
+        className="
+          mt-5
+          text-xl
+          font-bold
+          text-gray-900
+        "
+      >
+        آپلود تصویر
+      </h3>
+
+
+      <p
+        className="
+          mt-3
+          leading-7
+          text-gray-600
+        "
+      >
+        یک تصویر مناسب از پوست خود ارسال کنید.
+      </p>
+
+
+    </div>
 
 
 
-        <div
-          className="
-            mt-10
-            grid
-            gap-6
-            md:grid-cols-3
-          "
-        >
 
 
+    {/* Arrow */}
 
-          <div
-            className="
-              rounded-3xl
-              bg-white
-              border
-              border-gray-100
-              p-6
-              shadow-sm
-              hover:shadow-md
-              transition
-            "
-          >
-
-            <div
-              className="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                bg-purple-100
-                text-3xl
-              "
-            >
-              📷
-            </div>
-
-
-            <h3 className="mt-5 text-xl font-bold">
-              آپلود تصویر
-            </h3>
-
-
-            <p className="mt-3 leading-7 text-gray-600">
-              یک تصویر مناسب از پوست خود ارسال کنید.
-            </p>
-
-          </div>
+    <div
+      className="
+        my-5
+        text-4xl
+        text-purple-400
+      "
+    >
+      ↓
+    </div>
 
 
 
@@ -176,101 +212,161 @@ export default function Home() {
 
 
 
-          <div
-            className="
-              rounded-3xl
-              bg-white
-              border
-              border-gray-100
-              p-6
-              shadow-sm
-              hover:shadow-md
-              transition
-            "
-          >
+    {/* Step 2 */}
 
-            <div
-              className="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                bg-pink-100
-                text-3xl
-              "
-            >
-              🤖
-            </div>
+    <div
+      className="
+        flex
+        flex-col
+        items-center
+        text-center
+        rounded-3xl
+        bg-white
+        border
+        border-gray-100
+        p-6
+        shadow-sm
+        w-full
+        max-w-sm
+      "
+    >
 
-
-            <h3 className="mt-5 text-xl font-bold">
-              تحلیل AI
-            </h3>
-
-
-            <p className="mt-3 leading-7 text-gray-600">
-              هوش مصنوعی نوع پوست و نشانه‌های احتمالی را بررسی می‌کند.
-            </p>
-
-          </div>
+      <div
+        className="
+          flex
+          h-20
+          w-20
+          items-center
+          justify-center
+          rounded-full
+          bg-pink-100
+          text-4xl
+        "
+      >
+        🤖
+      </div>
 
 
 
+      <h3
+        className="
+          mt-5
+          text-xl
+          font-bold
+          text-gray-900
+        "
+      >
+        تحلیل AI
+      </h3>
+
+
+
+      <p
+        className="
+          mt-3
+          leading-7
+          text-gray-600
+        "
+      >
+        هوش مصنوعی تصویر پوست را بررسی می‌کند
+        و ویژگی‌های احتمالی را استخراج می‌کند.
+      </p>
+
+
+    </div>
 
 
 
 
 
-          <div
-            className="
-              rounded-3xl
-              bg-white
-              border
-              border-gray-100
-              p-6
-              shadow-sm
-              hover:shadow-md
-              transition
-            "
-          >
 
-            <div
-              className="
-                flex
-                h-14
-                w-14
-                items-center
-                justify-center
-                rounded-2xl
-                bg-rose-100
-                text-3xl
-              "
-            >
-              🧴
-            </div>
+    {/* Arrow */}
 
-
-            <h3 className="mt-5 text-xl font-bold">
-              پیشنهاد محصول
-            </h3>
-
-
-            <p className="mt-3 leading-7 text-gray-600">
-              محصولات مناسب بر اساس تحلیل پوست پیشنهاد می‌شوند.
-            </p>
-
-
-          </div>
+    <div
+      className="
+        my-5
+        text-4xl
+        text-purple-400
+      "
+    >
+      ↓
+    </div>
 
 
 
-        </div>
 
 
-      </section>
 
+
+    {/* Step 3 */}
+
+    <div
+      className="
+        flex
+        flex-col
+        items-center
+        text-center
+        rounded-3xl
+        bg-white
+        border
+        border-gray-100
+        p-6
+        shadow-sm
+        w-full
+        max-w-sm
+      "
+    >
+
+      <div
+        className="
+          flex
+          h-20
+          w-20
+          items-center
+          justify-center
+          rounded-full
+          bg-rose-100
+          text-4xl
+        "
+      >
+        🧴
+      </div>
+
+
+
+      <h3
+        className="
+          mt-5
+          text-xl
+          font-bold
+          text-gray-900
+        "
+      >
+        پیشنهاد محصول
+      </h3>
+
+
+
+      <p
+        className="
+          mt-3
+          leading-7
+          text-gray-600
+        "
+      >
+        محصولات مناسب بر اساس تحلیل پوست
+        و نیازهای احتمالی پیشنهاد می‌شوند.
+      </p>
+
+
+    </div>
+
+
+
+  </div>
+
+
+</section>
 
 
 
