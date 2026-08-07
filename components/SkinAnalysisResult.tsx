@@ -6,6 +6,7 @@ type SkinAnalysisResultProps = {
 };
 
 
+
 function translateSkinType(type: string) {
 
   const map: any = {
@@ -15,24 +16,65 @@ function translateSkinType(type: string) {
     combination: "مختلط",
   };
 
+
   return map[type] ?? type;
 
 }
 
 
 
+
 function translateCondition(condition: string) {
 
   const map: any = {
+
     Acne: "جوش و آکنه",
+
     Eczema: "اگزما",
+
     Rosacea: "قرمزی پوست",
-    "Unknown Normal": "پوست نرمال",
+
+    Psoriasis: "پسوریازیس",
+
+    Vitiligo: "ویتیلیگو",
+
+    Melanoma: "ملانوما",
+
+    "Atopic Dermatitis":
+      "درماتیت آتوپیک",
+
+    "Drug Eruption":
+      "واکنش دارویی پوست",
+
+    "Seborrheic Dermatitis":
+      "درماتیت سبوره‌ای",
+
   };
+
 
   return map[condition] ?? condition;
 
 }
+
+
+
+
+
+function confidenceText(confidence: number) {
+
+  if (confidence >= 0.75)
+    return "زیاد";
+
+
+  if (confidence >= 0.5)
+    return "متوسط";
+
+
+  return "کم";
+
+}
+
+
 
 
 
@@ -42,7 +84,12 @@ export default function SkinAnalysisResult({
 
 
   const conditions =
-    result.analysis.condition ?? [];
+    result?.analysis?.condition ?? [];
+
+
+
+  const skinType =
+    result?.analysis?.skin_type;
 
 
 
@@ -57,6 +104,10 @@ export default function SkinAnalysisResult({
     >
 
 
+
+
+      {/* AI Result Card */}
+
       <div
         className="
           rounded-3xl
@@ -67,6 +118,7 @@ export default function SkinAnalysisResult({
           shadow-lg
         "
       >
+
 
 
         <h2
@@ -82,37 +134,77 @@ export default function SkinAnalysisResult({
 
 
 
-        <div
-          className="
-            mt-5
-            rounded-2xl
-            bg-purple-50
-            p-5
-          "
-        >
 
-          <p className="text-sm text-gray-500">
-            نوع پوست
-          </p>
+        {
+          skinType &&
 
-
-          <p
+          <div
             className="
-              mt-2
-              text-2xl
-              font-bold
-              text-purple-700
+              mt-5
+              rounded-2xl
+              bg-purple-50
+              p-5
             "
           >
+
+
+            <p
+              className="
+                text-sm
+                text-gray-500
+              "
+            >
+              نوع پوست تخمینی
+            </p>
+
+
+
+            <p
+              className="
+                mt-2
+                text-2xl
+                font-bold
+                text-purple-700
+              "
+            >
+              {
+                translateSkinType(
+                  skinType.label
+                )
+              }
+            </p>
+
+
+
             {
-              translateSkinType(
-                result.analysis.skin_type.label
-              )
+              skinType.confidence &&
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  text-gray-600
+                "
+              >
+
+                میزان اطمینان:
+                {" "}
+                {
+                  confidenceText(
+                    skinType.confidence
+                  )
+                }
+
+              </p>
+
             }
-          </p>
 
 
-        </div>
+          </div>
+
+        }
+
+
 
 
 
@@ -122,60 +214,114 @@ export default function SkinAnalysisResult({
 
           <div
             className="
-              mt-4
+              mt-5
               rounded-2xl
               bg-pink-50
               p-5
             "
           >
 
-            <p className="text-sm text-gray-500">
-              موارد مشاهده شده
+
+
+            <p
+              className="
+                text-sm
+                text-gray-500
+              "
+            >
+              نشانه‌های احتمالی مشاهده شده
             </p>
 
 
-            <div className="mt-3 space-y-2">
+
+
+
+            <div
+              className="
+                mt-3
+                space-y-2
+              "
+            >
+
 
 
               {
                 conditions
-                .filter(
-                  (item:any)=>
-                    item.confidence >= 0.6
-                )
-                .map(
-                  (item:any,index:number)=>(
+                  .filter(
+                    (item:any)=>
+                      item.confidence >= 0.5
+                  )
+                  .map(
+                    (
+                      item:any,
+                      index:number
+                    ) => (
 
-                    <div
-                      key={index}
-                      className="
-                        rounded-xl
-                        bg-white
-                        border
-                        px-4
-                        py-3
-                      "
-                    >
 
-                      <span
+                      <div
+                        key={index}
                         className="
-                          font-bold
-                          text-pink-700
+                          rounded-xl
+                          bg-white
+                          border
+                          px-4
+                          py-3
                         "
                       >
-                        ✓ {translateCondition(item.label)}
-                      </span>
 
 
-                    </div>
 
+                        <div
+                          className="
+                            font-bold
+                            text-pink-700
+                          "
+                        >
+
+                          ✓
+                          {" "}
+                          {
+                            translateCondition(
+                              item.label
+                            )
+                          }
+
+                        </div>
+
+
+
+
+                        <div
+                          className="
+                            mt-1
+                            text-sm
+                            text-gray-500
+                          "
+                        >
+
+                          اطمینان:
+                          {" "}
+                          {
+                            confidenceText(
+                              item.confidence
+                            )
+                          }
+
+                        </div>
+
+
+                      </div>
+
+
+                    )
                   )
-                )
 
               }
 
 
+
             </div>
+
 
 
           </div>
@@ -183,10 +329,16 @@ export default function SkinAnalysisResult({
         }
 
 
+
       </div>
 
 
 
+
+
+
+
+      {/* Products */}
 
 
       <h2
@@ -205,8 +357,12 @@ export default function SkinAnalysisResult({
 
 
       {
-        result.recommendation?.map(
-          (item:any,index:number)=>(
+        result?.recommendation?.map(
+          (
+            item:any,
+            index:number
+          ) => (
+
 
             <ProductCard
               key={index}
@@ -215,9 +371,12 @@ export default function SkinAnalysisResult({
               score={item.score}
             />
 
+
           )
         )
       }
+
+
 
 
 
