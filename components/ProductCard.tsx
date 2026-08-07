@@ -40,6 +40,7 @@ export default function ProductCard({
     >
 
 
+
       <h3
         className="
           text-xl
@@ -52,6 +53,7 @@ export default function ProductCard({
 
 
 
+
       <p
         className="
           mt-3
@@ -60,6 +62,7 @@ export default function ProductCard({
       >
         {reason}
       </p>
+
 
 
 
@@ -78,16 +81,19 @@ export default function ProductCard({
 
 
 
+
+
       {
         offers.length > 0 &&
 
         <div
           className="
-            mt-5
+            mt-6
             border-t
-            pt-4
+            pt-5
           "
         >
+
 
           <h4
             className="
@@ -95,8 +101,10 @@ export default function ProductCard({
               text-gray-800
             "
           >
-            خرید از فروشگاه‌ها
+            🛒 فروشگاه‌ها
           </h4>
+
+
 
 
 
@@ -108,9 +116,14 @@ export default function ProductCard({
           >
 
 
+
             {
               offers.map(
-                (offer,index)=>(
+                (
+                  offer,
+                  index
+                ) => (
+
 
                   <div
                     key={index}
@@ -118,59 +131,85 @@ export default function ProductCard({
                       flex
                       items-center
                       justify-between
-                      rounded-xl
+                      rounded-2xl
                       bg-gray-50
-                      p-3
+                      p-4
                     "
                   >
 
-                    <div>
+
+
+                    <div
+                      className="
+                        text-right
+                      "
+                    >
+
 
                       <div
                         className="
                           font-bold
+                          text-gray-900
                         "
                       >
+
                         {offer.sellerName}
+
 
                         {
                           offer.isSponsored &&
+
                           <span
                             className="
-                              ml-2
-                              text-xs
+                              mr-2
                               rounded-full
                               bg-pink-100
                               px-2
                               py-1
+                              text-xs
                               text-pink-700
                             "
                           >
-                            اسپانسری
+                            ⭐ اسپانسری
                           </span>
+
                         }
 
+
                       </div>
+
+
 
 
                       <div
                         className="
+                          mt-1
                           text-sm
                           text-gray-600
                         "
                       >
-                        {offer.price.toLocaleString()}
+
+                        {
+                          offer.price.toLocaleString("fa-IR")
+                        }
+
                         {" "}
                         تومان
+
                       </div>
 
+
+
                     </div>
+
+
 
 
 
                     <a
                       href={offer.buyUrl}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="
                         rounded-xl
                         bg-gradient-to-r
@@ -178,20 +217,25 @@ export default function ProductCard({
                         to-pink-500
                         px-4
                         py-2
-                        text-white
                         text-sm
                         font-bold
+                        text-white
+                        hover:opacity-90
+                        transition
                       "
                     >
                       خرید
                     </a>
 
 
+
                   </div>
+
 
                 )
               )
             }
+
 
 
           </div>
@@ -200,6 +244,9 @@ export default function ProductCard({
         </div>
 
       }
+
+
+
 
 
     </div>
