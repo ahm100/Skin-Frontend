@@ -224,7 +224,8 @@ export default function AnalyzePage() {
           rounded-xl
           bg-gradient-to-r
           from-violet-500
-          to-pink-500
+          via-purple-400
+          to-pink-400
           px-8
           py-3
           text-gray-800

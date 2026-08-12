@@ -55,7 +55,8 @@ export default function Home() {
             rounded-xl
             bg-gradient-to-r
             from-violet-500
-            to-pink-500
+            via-purple-400
+            to-pink-400
             px-10
             py-4
             text-lg

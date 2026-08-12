@@ -106,9 +106,10 @@ export default function RootLayout({
                 className="
                   rounded-xl
                   bg-gradient-to-r
-                  from-violet-500/90
-                  via-purple-500/90
-                  to-pink-500/90
+                  from-purple-500/90
+                  from-violet-500
+                  via-purple-400
+                  to-pink-400
                   px-3
                   py-2
                   sm:px-5
@@ -144,9 +145,9 @@ export default function RootLayout({
                 font-extrabold
                 tracking-wide
                 bg-gradient-to-r
-                from-violet-700
-                via-purple-600
-                to-pink-600
+                from-violet-500
+                via-purple-400
+                to-pink-400
                 bg-clip-text
                 text-transparent
               "
@@ -178,7 +179,7 @@ export default function RootLayout({
           className="
     mt-10
     bg-gradient-to-r
-    from-violet-200
+    from-purple-200
     via-pink-100
     to-rose-200
     text-gray-800
