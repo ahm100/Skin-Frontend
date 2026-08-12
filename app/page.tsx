@@ -60,7 +60,7 @@ export default function Home() {
             py-4
             text-lg
             font-medium
-            text-white
+            text-gray-800
             shadow-md
             hover:opacity-90
             transition

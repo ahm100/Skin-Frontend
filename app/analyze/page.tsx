@@ -227,7 +227,7 @@ export default function AnalyzePage() {
           to-pink-500
           px-8
           py-3
-          text-white
+          text-gray-800
           font-medium
           shadow-md
           hover:opacity-90

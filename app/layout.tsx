@@ -115,7 +115,7 @@ export default function RootLayout({
                   sm:py-2.5
                   text-sm
                   sm:text-base
-                  text-white
+                  text-gray-800
                   font-medium
                   shadow-md
                   shadow-purple-200/50
@@ -256,7 +256,7 @@ export default function RootLayout({
         px-5
         py-2
         rounded-xl
-        text-white
+        text-gray-800
         font-medium
         shadow-md
         transition
@@ -276,7 +276,7 @@ export default function RootLayout({
         px-5
         py-2
         rounded-xl
-        text-white
+        text-gray-800
         font-medium
         shadow-md
         transition
