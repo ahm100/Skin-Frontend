@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { API_BASE } from "@/lib/api";
 import Disclaimer from "@/components/Disclaimer";
 import UploadGuide from "@/components/UploadGuide";
@@ -11,6 +11,7 @@ export default function AnalyzePage() {
   const [imageError, setImageError] = useState("");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const resultRef = useRef<HTMLDivElement>(null);
 
   function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
@@ -50,6 +51,15 @@ export default function AnalyzePage() {
 
     setImage(file);
   }
+
+  useEffect(() => {
+    if (result) {
+      resultRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [result]);
 
   async function analyze() {
     if (!image) {
@@ -237,11 +247,19 @@ export default function AnalyzePage() {
           : "شروع تحلیل"}
       </button>
 
-      <Disclaimer />
 
       {result && (
-        <SkinAnalysisResult result={result} />
+        <div
+          ref={resultRef}
+          className="w-full max-w-4xl mt-10 scroll-mt-24"
+        >
+          <SkinAnalysisResult result={result} />
+        </div>
       )}
+
+      <Disclaimer />
+
+
     </main>
   );
 }
