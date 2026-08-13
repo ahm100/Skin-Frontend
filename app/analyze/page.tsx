@@ -14,19 +14,31 @@ export default function AnalyzePage() {
 
   const resultRef = useRef<HTMLDivElement>(null);
 
+  // =========================
+  // File Upload
+  // =========================
+
   function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
+    console.log("FILE INPUT CHANGED");
+
+    const file = e.target.files?.[0];
+
+    console.log("SELECTED FILE:", file);
+
     setImageError("");
     setImage(null);
     setResult(null);
-
-    const file = e.target.files?.[0];
 
     if (!file) {
       setImageError("تصویری انتخاب نشد.");
       return;
     }
+
+    // =========================
+    // Allowed formats
+    // =========================
 
     const allowedTypes = [
       "image/jpeg",
@@ -35,23 +47,51 @@ export default function AnalyzePage() {
     ];
 
     if (!allowedTypes.includes(file.type)) {
+      console.log("INVALID FILE TYPE:", file.type);
+
       setImageError(
         "فرمت تصویر باید JPG، PNG یا WEBP باشد."
       );
+
+      e.target.value = "";
+
       return;
     }
+
+    // =========================
+    // Max file size
+    // =========================
 
     const maxSize = 5 * 1024 * 1024;
 
     if (file.size > maxSize) {
+      console.log("FILE TOO LARGE:", file.size);
+
       setImageError(
         "حجم تصویر نباید بیشتر از 5 مگابایت باشد."
       );
+
+      e.target.value = "";
+
       return;
     }
 
+    // =========================
+    // Valid image
+    // =========================
+
+    console.log("VALID IMAGE:", {
+      name: file.name,
+      type: file.type,
+      size: file.size,
+    });
+
     setImage(file);
   }
+
+  // =========================
+  // Scroll to result
+  // =========================
 
   useEffect(() => {
     if (result) {
@@ -62,11 +102,16 @@ export default function AnalyzePage() {
     }
   }, [result]);
 
+  // =========================
+  // Analyze
+  // =========================
+
   async function analyze() {
     if (!image) {
       setImageError(
         "لطفاً ابتدا یک تصویر انتخاب کنید."
       );
+
       return;
     }
 
@@ -79,6 +124,12 @@ export default function AnalyzePage() {
 
       formData.append("image", image);
 
+      console.log("Sending image:", {
+        name: image.name,
+        type: image.type,
+        size: image.size,
+      });
+
       const response = await fetch(
         `${API_BASE}/api/SkinAnalysis/analyze`,
         {
@@ -90,7 +141,7 @@ export default function AnalyzePage() {
       if (!response.ok) {
         const errorText = await response.text();
 
-        console.log(
+        console.error(
           "Analyze API Error:",
           errorText
         );
@@ -103,6 +154,8 @@ export default function AnalyzePage() {
       }
 
       const data = await response.json();
+
+      console.log("Analyze result:", data);
 
       setResult(data);
     } catch (error) {
@@ -118,6 +171,10 @@ export default function AnalyzePage() {
       setLoading(false);
     }
   }
+
+  // =========================
+  // UI
+  // =========================
 
   return (
     <main
@@ -146,11 +203,16 @@ export default function AnalyzePage() {
         تحلیل پوست با AI
       </h1>
 
+      {/* ========================= */}
+      {/* Description */}
+      {/* ========================= */}
+
       <p
         className="
           mt-3
           text-gray-600
           text-center
+          max-w-xl
         "
       >
         تصویر پوست خود را آپلود کنید تا هوش مصنوعی
@@ -164,11 +226,12 @@ export default function AnalyzePage() {
       <UploadGuide />
 
       {/* ========================= */}
-      {/* Upload */}
+      {/* Upload Box */}
       {/* ========================= */}
 
       <label
         className="
+          relative
           mt-4
           cursor-pointer
           border-2
@@ -176,11 +239,14 @@ export default function AnalyzePage() {
           rounded-2xl
           p-8
           w-80
+          max-w-full
           text-center
           hover:bg-gray-50
           transition
         "
       >
+        {/* Camera icon */}
+
         <div
           className="
             text-4xl
@@ -190,9 +256,18 @@ export default function AnalyzePage() {
           📷
         </div>
 
-        <div className="font-bold">
-          آپلود تصویر پوست
+        {/* Title */}
+
+        <div
+          className="
+            font-bold
+            text-gray-800
+          "
+        >
+          انتخاب تصویر پوست
         </div>
+
+        {/* Formats */}
 
         <div
           className="
@@ -204,11 +279,27 @@ export default function AnalyzePage() {
           JPG، PNG یا WEBP
         </div>
 
+        {/* Native file input */}
+
         <input
           type="file"
-          accept="image/jpeg,image/png,image/webp"
+          accept="
+            .jpg,
+            .jpeg,
+            .png,
+            .webp,
+            image/jpeg,
+            image/png,
+            image/webp
+          "
           onChange={handleUpload}
-          className="hidden"
+          style={{
+            position: "absolute",
+            width: "1px",
+            height: "1px",
+            opacity: 0,
+            overflow: "hidden",
+          }}
         />
       </label>
 
@@ -235,20 +326,41 @@ export default function AnalyzePage() {
       {/* ========================= */}
 
       {image && (
-        <p
+        <div
           className="
             mt-3
-            text-sm
-            text-gray-600
-            text-center
+            w-full
             max-w-sm
-            break-all
+            rounded-xl
+            bg-gray-50
+            border
+            border-gray-200
+            px-4
+            py-3
+            text-center
           "
         >
-          فایل انتخاب شده:
-          {" "}
-          {image.name}
-        </p>
+          <p
+            className="
+              text-sm
+              text-gray-600
+            "
+          >
+            فایل انتخاب شده:
+          </p>
+
+          <p
+            className="
+              mt-1
+              text-sm
+              font-medium
+              text-gray-800
+              break-all
+            "
+          >
+            {image.name}
+          </p>
+        </div>
       )}
 
       {/* ========================= */}
@@ -271,12 +383,13 @@ export default function AnalyzePage() {
           text-gray-800
           font-medium
           shadow-md
-          hover:opacity-90
           transition
 
           disabled:opacity-40
           disabled:cursor-not-allowed
           disabled:hover:opacity-40
+
+          hover:opacity-90
         "
       >
         {loading
