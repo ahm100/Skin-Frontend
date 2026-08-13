@@ -12,7 +12,6 @@ export default function UploadGuide() {
         border
       "
     >
-
       <h3
         className="
           font-bold
@@ -22,7 +21,6 @@ export default function UploadGuide() {
         راهنمای گرفتن عکس برای تحلیل بهتر
       </h3>
 
-
       <ul
         className="
           mt-3
@@ -31,9 +29,16 @@ export default function UploadGuide() {
           space-y-2
         "
       >
+        <li>
+          ✓ فقط از یک تکه از پوست خود عکس بگیرید و آن را آپلود کنید
+        </li>
 
         <li>
-          ✓ صورت کامل داخل تصویر باشد
+          ✓ فرمت‌های قابل قبول: JPG، JPEG، PNG و WEBP
+        </li>
+
+        <li>
+          ✓ حجم عکس حداکثر ۵ مگابایت باشد
         </li>
 
         <li>
@@ -45,15 +50,13 @@ export default function UploadGuide() {
         </li>
 
         <li>
-          ✓ عینک، ماسک یا پوشش روی صورت نباشد
+          ✓ عینک، ماسک یا پوشش روی قسمت موردنظر نباشد
         </li>
 
         <li>
-          ✓ صورت روبه‌روی دوربین قرار بگیرد
+          ✓ در صورت استفاده از VPN، هنگام آپلود آن را خاموش کنید
         </li>
-
       </ul>
-
     </div>
   );
 }
