@@ -277,6 +277,14 @@ export default function AnalyzePage() {
         {/* ========================= */}
 
         <button
+  type="button"
+  onClick={() => alert("JS IS WORKING")}
+  className="mt-4 rounded-xl bg-red-500 px-6 py-3 text-white"
+>
+  TEST JAVASCRIPT
+</button>
+
+        <button
           type="button"
           onClick={openFilePicker}
           className="
