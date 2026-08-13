@@ -11,6 +11,7 @@ export default function AnalyzePage() {
   const [imageError, setImageError] = useState("");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+
   const resultRef = useRef<HTMLDivElement>(null);
 
   function handleUpload(
@@ -63,7 +64,9 @@ export default function AnalyzePage() {
 
   async function analyze() {
     if (!image) {
-      setImageError("لطفاً ابتدا یک تصویر انتخاب کنید.");
+      setImageError(
+        "لطفاً ابتدا یک تصویر انتخاب کنید."
+      );
       return;
     }
 
@@ -87,7 +90,10 @@ export default function AnalyzePage() {
       if (!response.ok) {
         const errorText = await response.text();
 
-        console.log("Analyze API Error:", errorText);
+        console.log(
+          "Analyze API Error:",
+          errorText
+        );
 
         setImageError(
           "در تحلیل تصویر مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
@@ -100,7 +106,10 @@ export default function AnalyzePage() {
 
       setResult(data);
     } catch (error) {
-      console.error("Analyze request failed:", error);
+      console.error(
+        "Analyze request failed:",
+        error
+      );
 
       setImageError(
         "ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت را بررسی کنید."
@@ -121,12 +130,17 @@ export default function AnalyzePage() {
         items-center
       "
     >
+      {/* ========================= */}
+      {/* Title */}
+      {/* ========================= */}
+
       <h1
         className="
           text-3xl
           sm:text-4xl
           font-bold
           text-gray-900
+          text-center
         "
       >
         تحلیل پوست با AI
@@ -139,10 +153,19 @@ export default function AnalyzePage() {
           text-center
         "
       >
-        تصویر پوست خود را آپلود کنید تا هوش مصنوعی آن را بررسی کند.
+        تصویر پوست خود را آپلود کنید تا هوش مصنوعی
+        آن را بررسی کند.
       </p>
 
+      {/* ========================= */}
+      {/* Upload Guide */}
+      {/* ========================= */}
+
       <UploadGuide />
+
+      {/* ========================= */}
+      {/* Upload */}
+      {/* ========================= */}
 
       <label
         className="
@@ -178,7 +201,7 @@ export default function AnalyzePage() {
             mt-2
           "
         >
-          JPG, PNG یا WEBP
+          JPG، PNG یا WEBP
         </div>
 
         <input
@@ -188,6 +211,10 @@ export default function AnalyzePage() {
           className="hidden"
         />
       </label>
+
+      {/* ========================= */}
+      {/* Error */}
+      {/* ========================= */}
 
       {imageError && (
         <p
@@ -202,6 +229,10 @@ export default function AnalyzePage() {
           {imageError}
         </p>
       )}
+
+      {/* ========================= */}
+      {/* Selected File */}
+      {/* ========================= */}
 
       {image && (
         <p
@@ -220,10 +251,14 @@ export default function AnalyzePage() {
         </p>
       )}
 
+      {/* ========================= */}
+      {/* Analyze Button */}
+      {/* ========================= */}
+
       <button
         type="button"
         onClick={analyze}
-        disabled={loading}
+        disabled={!image || loading}
         className="
           mt-4
           rounded-xl
@@ -238,8 +273,10 @@ export default function AnalyzePage() {
           shadow-md
           hover:opacity-90
           transition
-          disabled:opacity-50
+
+          disabled:opacity-40
           disabled:cursor-not-allowed
+          disabled:hover:opacity-40
         "
       >
         {loading
@@ -247,19 +284,29 @@ export default function AnalyzePage() {
           : "شروع تحلیل"}
       </button>
 
+      {/* ========================= */}
+      {/* Result */}
+      {/* ========================= */}
 
       {result && (
         <div
           ref={resultRef}
-          className="w-full max-w-4xl mt-10 scroll-mt-24"
+          className="
+            w-full
+            max-w-4xl
+            mt-10
+            scroll-mt-24
+          "
         >
           <SkinAnalysisResult result={result} />
         </div>
       )}
 
+      {/* ========================= */}
+      {/* Disclaimer */}
+      {/* ========================= */}
+
       <Disclaimer />
-
-
     </main>
   );
 }
