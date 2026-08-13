@@ -13,6 +13,7 @@ export default function AnalyzePage() {
   const [loading, setLoading] = useState(false);
 
   const resultRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // =========================
   // File Upload
@@ -37,7 +38,7 @@ export default function AnalyzePage() {
     }
 
     // =========================
-    // Allowed formats
+    // Allowed image types
     // =========================
 
     const allowedTypes = [
@@ -47,7 +48,10 @@ export default function AnalyzePage() {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-      console.log("INVALID FILE TYPE:", file.type);
+      console.log(
+        "INVALID FILE TYPE:",
+        file.type
+      );
 
       setImageError(
         "فرمت تصویر باید JPG، PNG یا WEBP باشد."
@@ -65,7 +69,10 @@ export default function AnalyzePage() {
     const maxSize = 5 * 1024 * 1024;
 
     if (file.size > maxSize) {
-      console.log("FILE TOO LARGE:", file.size);
+      console.log(
+        "FILE TOO LARGE:",
+        file.size
+      );
 
       setImageError(
         "حجم تصویر نباید بیشتر از 5 مگابایت باشد."
@@ -155,7 +162,10 @@ export default function AnalyzePage() {
 
       const data = await response.json();
 
-      console.log("Analyze result:", data);
+      console.log(
+        "Analyze result:",
+        data
+      );
 
       setResult(data);
     } catch (error) {
@@ -170,6 +180,16 @@ export default function AnalyzePage() {
     } finally {
       setLoading(false);
     }
+  }
+
+  // =========================
+  // Open File Picker
+  // =========================
+
+  function openFilePicker() {
+    console.log("OPEN FILE PICKER");
+
+    fileInputRef.current?.click();
   }
 
   // =========================
@@ -226,62 +246,18 @@ export default function AnalyzePage() {
       <UploadGuide />
 
       {/* ========================= */}
-      {/* Upload Box */}
+      {/* File Input */}
       {/* ========================= */}
 
-      <label
+      <div
         className="
-          relative
           mt-4
-          cursor-pointer
-          border-2
-          border-dashed
-          rounded-2xl
-          p-8
           w-80
           max-w-full
-          text-center
-          hover:bg-gray-50
-          transition
         "
       >
-        {/* Camera icon */}
-
-        <div
-          className="
-            text-4xl
-            mb-3
-          "
-        >
-          📷
-        </div>
-
-        {/* Title */}
-
-        <div
-          className="
-            font-bold
-            text-gray-800
-          "
-        >
-          انتخاب تصویر پوست
-        </div>
-
-        {/* Formats */}
-
-        <div
-          className="
-            text-sm
-            text-gray-500
-            mt-2
-          "
-        >
-          JPG، PNG یا WEBP
-        </div>
-
-        {/* Native file input */}
-
         <input
+          ref={fileInputRef}
           type="file"
           accept="
             .jpg,
@@ -293,15 +269,60 @@ export default function AnalyzePage() {
             image/webp
           "
           onChange={handleUpload}
-          style={{
-            position: "absolute",
-            width: "1px",
-            height: "1px",
-            opacity: 0,
-            overflow: "hidden",
-          }}
+          className="sr-only"
         />
-      </label>
+
+        {/* ========================= */}
+        {/* Upload Button */}
+        {/* ========================= */}
+
+        <button
+          type="button"
+          onClick={openFilePicker}
+          className="
+            w-full
+            cursor-pointer
+            rounded-2xl
+            border-2
+            border-dashed
+            border-gray-300
+            bg-white
+            p-8
+            text-center
+            transition
+            hover:bg-gray-50
+            active:bg-gray-100
+          "
+        >
+          <div
+            className="
+              text-4xl
+              mb-3
+            "
+          >
+            📷
+          </div>
+
+          <div
+            className="
+              font-bold
+              text-gray-800
+            "
+          >
+            انتخاب تصویر پوست
+          </div>
+
+          <div
+            className="
+              mt-2
+              text-sm
+              text-gray-500
+            "
+          >
+            JPG، PNG یا WEBP
+          </div>
+        </button>
+      </div>
 
       {/* ========================= */}
       {/* Error */}
@@ -411,7 +432,9 @@ export default function AnalyzePage() {
             scroll-mt-24
           "
         >
-          <SkinAnalysisResult result={result} />
+          <SkinAnalysisResult
+            result={result}
+          />
         </div>
       )}
 
