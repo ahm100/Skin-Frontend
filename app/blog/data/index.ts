@@ -29,6 +29,7 @@ import { latexAllergy } from "./latex-allergy";
 import { psoriasis } from "./psoriasis";
 import { shingles } from "./shingles";
 import { eczema } from "./eczema";
+import { boil } from "./boil";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
@@ -44,4 +45,5 @@ export const blogArticles: BlogArticle[] = [
   psoriasis,
   shingles,
   eczema,
+  boil,
 ];
