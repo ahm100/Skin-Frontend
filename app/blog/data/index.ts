@@ -22,6 +22,7 @@ import { drySkin } from "./dry-skin";
 import { wart } from "./wart";
 import { dermatitis } from "./dermatitis";
 import { fungus } from "./fungus";
+import { hives } from "./hives";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
@@ -30,4 +31,5 @@ export const blogArticles: BlogArticle[] = [
   wart,
   dermatitis,
   fungus,
+  hives,
 ];
