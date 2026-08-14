@@ -6,7 +6,57 @@ type SkinAnalysisResultProps = {
   result: any;
 };
 
-function translateSkinType(type: string) {
+
+/*
+ * Conditionهایی که برایشان نباید محصول پیشنهاد شود.
+ *
+ * این لیست را می‌توانیم بعداً بر اساس Business Rule تغییر دهیم.
+ *
+ * توجه:
+ * Acne در این لیست نیست
+ * بنابراین برای Acne محصول نمایش داده می‌شود.
+ */
+const noProductConditions = [
+  "melanoma",
+  "skin cancer",
+  "cancer",
+
+  "bullous",
+  "lichen",
+  "drug eruption",
+];
+
+
+function normalizeCondition(
+  label?: string | null
+) {
+  if (!label) {
+    return "";
+  }
+
+  return label
+    .trim()
+    .toLowerCase();
+}
+
+
+function shouldHideProducts(
+  conditions: any[]
+) {
+  return conditions.some(
+    (item: any) =>
+      noProductConditions.includes(
+        normalizeCondition(
+          item?.label
+        )
+      )
+  );
+}
+
+
+function translateSkinType(
+  type: string
+) {
   const map: Record<string, string> = {
     oily: "چرب",
     dry: "خشک",
@@ -17,23 +67,35 @@ function translateSkinType(type: string) {
   return map[type] ?? type;
 }
 
-function translateCondition(condition: string) {
+
+function translateCondition(
+  condition: string
+) {
   const map: Record<string, string> = {
-    Acne: "جوش و آکنه",
 
-    Eczema: "اگزما",
+    Acne:
+      "جوش و آکنه",
 
-    Rosacea: "روزاسه",
+    Eczema:
+      "اگزما",
 
-    Psoriasis: "پسوریازیس",
+    Rosacea:
+      "روزاسه",
 
-    Vitiligo: "ویتیلیگو",
+    Psoriasis:
+      "پسوریازیس",
 
-    Melanoma: "ملانوما",
+    Vitiligo:
+      "ویتیلیگو",
 
-    Bullous: "پمفیگوئید بولوز",
+    Melanoma:
+      "ملانوما",
 
-    Lichen: "لیکن پلان",
+    Bullous:
+      "پمفیگوئید بولوز",
+
+    Lichen:
+      "لیکن پلان",
 
     "Atopic Dermatitis":
       "درماتیت آتوپیک",
@@ -48,22 +110,44 @@ function translateCondition(condition: string) {
       "پوست نرمال",
   };
 
-  return map[condition] ?? condition;
+
+  return (
+    map[condition] ??
+    condition
+  );
 }
 
-function translateReason(reason: string) {
+
+function translateReason(
+  reason: string
+) {
   if (!reason) {
     return "";
   }
 
   return reason
-    .replaceAll("oily", "چرب")
-    .replaceAll("dry", "خشک")
-    .replaceAll("normal", "نرمال")
-    .replaceAll("combination", "مختلط");
+    .replaceAll(
+      "oily",
+      "چرب"
+    )
+    .replaceAll(
+      "dry",
+      "خشک"
+    )
+    .replaceAll(
+      "normal",
+      "نرمال"
+    )
+    .replaceAll(
+      "combination",
+      "مختلط"
+    );
 }
 
-function confidenceText(confidence: number) {
+
+function confidenceText(
+  confidence: number
+) {
   if (confidence >= 0.75) {
     return "زیاد";
   }
@@ -75,20 +159,40 @@ function confidenceText(confidence: number) {
   return "کم";
 }
 
+
 export default function SkinAnalysisResult({
   result,
 }: SkinAnalysisResultProps) {
+
   const skinType =
     result?.analysis?.skin_type;
 
-  const conditions =
-    result?.analysis?.condition ?? [];
 
+  const conditions =
+    result?.analysis?.condition ??
+    [];
+
+
+  /*
+   * فقط conditionهایی که confidence
+   * آنها حداقل 50 درصد است نمایش داده می‌شوند.
+   */
   const visibleConditions =
     conditions.filter(
       (item: any) =>
         item?.confidence >= 0.5
     );
+
+
+  /*
+   * آیا حداقل یک condition داریم
+   * که نباید برای آن محصول پیشنهاد شود؟
+   */
+  const hideProducts =
+    shouldHideProducts(
+      visibleConditions
+    );
+
 
   return (
     <section
@@ -100,9 +204,9 @@ export default function SkinAnalysisResult({
       "
     >
 
-      {/* ========================= */}
+      {/* ================================= */}
       {/* AI Result */}
-      {/* ========================= */}
+      {/* ================================= */}
 
       <div
         className="
@@ -127,9 +231,80 @@ export default function SkinAnalysisResult({
         </h2>
 
 
-        {/* ========================= */}
+        {/* ================================= */}
+        {/* General AI Disclaimer */}
+        {/* ================================= */}
+
+        <div
+          className="
+            mt-5
+            rounded-2xl
+            bg-amber-50
+            border
+            border-amber-200
+            p-4
+          "
+        >
+
+          <p
+            className="
+              text-sm
+              font-bold
+              text-amber-800
+            "
+          >
+            ⚠️ توجه
+          </p>
+
+
+          <p
+            className="
+              mt-2
+              text-sm
+              leading-7
+              text-gray-700
+            "
+          >
+            نتایج این بخش توسط هوش مصنوعی
+            و بر اساس تصویر ارسالی تخمین زده
+            شده‌اند و تشخیص قطعی پزشکی محسوب
+            نمی‌شوند.
+          </p>
+
+
+          <p
+            className="
+              mt-1
+              text-sm
+              leading-7
+              text-gray-700
+            "
+          >
+            کیفیت تصویر، نور، زاویه عکس و
+            شباهت ظاهری بیماری‌های مختلف
+            می‌تواند روی نتیجه تأثیر بگذارد.
+          </p>
+
+
+          <p
+            className="
+              mt-1
+              text-sm
+              leading-7
+              text-gray-700
+            "
+          >
+            در صورت نگرانی یا مشاهده تغییرات
+            قابل توجه در پوست، برای بررسی
+            دقیق‌تر به متخصص پوست مراجعه کنید.
+          </p>
+
+        </div>
+
+
+        {/* ================================= */}
         {/* Skin Type */}
-        {/* ========================= */}
+        {/* ================================= */}
 
         {skinType && (
           <div
@@ -172,16 +347,16 @@ export default function SkinAnalysisResult({
                 text-gray-500
               "
             >
-              نتیجه توسط هوش مصنوعی تخمین زده شده است.
+              این نتیجه یک تخمین مبتنی بر تصویر است.
             </p>
 
           </div>
         )}
 
 
-        {/* ========================= */}
+        {/* ================================= */}
         {/* Conditions */}
-        {/* ========================= */}
+        {/* ================================= */}
 
         {visibleConditions.length > 0 && (
           <div
@@ -215,19 +390,47 @@ export default function SkinAnalysisResult({
                   item: any,
                   index: number
                 ) => {
-                  const blogUrl =
-                    getConditionBlogUrl(
-                      item?.label
-                    );
 
                   const conditionTitle =
                     translateCondition(
                       item?.label
                     );
 
+
+                  /*
+                   * Cancer / Melanoma
+                   * مقاله ندارد.
+                   */
+                  const isCancer =
+                    [
+                      "melanoma",
+                      "skin cancer",
+                      "cancer",
+                    ].includes(
+                      normalizeCondition(
+                        item?.label
+                      )
+                    );
+
+
+                  /*
+                   * بقیه conditionها
+                   * اگر مقاله داشته باشند،
+                   * لینک مقاله نمایش داده می‌شود.
+                   */
+                  const blogUrl =
+                    isCancer
+                      ? null
+                      : getConditionBlogUrl(
+                          item?.label
+                        );
+
+
                   return (
                     <div
-                      key={`${item?.label}-${index}`}
+                      key={
+                        `${item?.label}-${index}`
+                      }
                       className="
                         rounded-xl
                         bg-white
@@ -237,7 +440,7 @@ export default function SkinAnalysisResult({
                       "
                     >
 
-                      {/* Condition name */}
+                      {/* Condition */}
 
                       <p
                         className="
@@ -266,7 +469,7 @@ export default function SkinAnalysisResult({
                       </p>
 
 
-                      {/* Blog link */}
+                      {/* Article */}
 
                       {blogUrl && (
                         <Link
@@ -286,8 +489,15 @@ export default function SkinAnalysisResult({
                             transition
                           "
                         >
-                          درباره {conditionTitle} بیشتر بخوانید
-                          <span className="mr-2">
+                          درباره{" "}
+                          {conditionTitle}{" "}
+                          بیشتر بخوانید
+
+                          <span
+                            className="
+                              mr-2
+                            "
+                          >
                             ←
                           </span>
                         </Link>
@@ -306,51 +516,68 @@ export default function SkinAnalysisResult({
       </div>
 
 
-      {/* ========================= */}
+      {/* ================================= */}
       {/* Products */}
-      {/* ========================= */}
+      {/* ================================= */}
 
-      {result?.recommendation?.length > 0 && (
-        <>
-          <h2
-            className="
-              mt-8
-              text-2xl
-              font-extrabold
-              text-purple-900
-            "
-          >
-            🧴 محصولات پیشنهادی
-          </h2>
+      {!hideProducts &&
+        result?.recommendation?.length > 0 && (
+          <>
+
+            <h2
+              className="
+                mt-8
+                text-2xl
+                font-extrabold
+                text-purple-900
+              "
+            >
+              🧴 محصولات پیشنهادی
+            </h2>
 
 
-          <div
-            className="
-              mt-4
-              space-y-4
-            "
-          >
+            <div
+              className="
+                mt-4
+                space-y-4
+              "
+            >
 
-            {result.recommendation.map(
-              (
-                item: any,
-                index: number
-              ) => (
-                <ProductCard
-                  key={index}
-                  name={item.name}
-                  reason={translateReason(
-                    item.reason
-                  )}
-                  score={item.score}
-                  offers={item.offers}
-                />
-              )
-            )}
+              {result.recommendation.map(
+                (
+                  item: any,
+                  index: number
+                ) => (
 
-          </div>
-        </>
-      )}
+                  <ProductCard
+                    key={index}
+
+                    name={
+                      item.name
+                    }
+
+                    reason={
+                      translateReason(
+                        item.reason
+                      )
+                    }
+
+                    score={
+                      item.score
+                    }
+
+                    offers={
+                      item.offers
+                    }
+                  />
+
+                )
+              )}
+
+            </div>
+
+          </>
+        )}
 
     </section>
   );
