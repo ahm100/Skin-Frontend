@@ -24,6 +24,7 @@ import { dermatitis } from "./dermatitis";
 import { fungus } from "./fungus";
 import { hives } from "./hives";
 import { impetigo } from "./impetigo";
+import { latexAllergy } from "./latex-allergy";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
@@ -34,4 +35,5 @@ export const blogArticles: BlogArticle[] = [
   fungus,
   hives,
   impetigo,
+  latexAllergy,
 ];
