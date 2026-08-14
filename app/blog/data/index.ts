@@ -20,10 +20,12 @@ import { vitiligo } from "./vitiligo";
 import { acne } from "./acne";
 import { drySkin } from "./dry-skin";
 import { wart } from "./wart";
+import { dermatitis } from "./dermatitis";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
   acne,
   drySkin,
   wart,
+  dermatitis
 ];
