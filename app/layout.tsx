@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
-import { Home } from "lucide-react";
-
+import { Home, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Surenmah | تحلیل پوست با هوش مصنوعی",
@@ -9,20 +9,16 @@ export const metadata: Metadata = {
     "تحلیل پوست با AI و پیشنهاد محصولات مناسب",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
-
     <html
       lang="fa"
       dir="rtl"
     >
-
       <body
         className="
           min-h-screen
@@ -31,26 +27,24 @@ export default function RootLayout({
         "
       >
 
-
         {/* Header */}
 
         <header
           className="
-    sticky
-    top-0
-    z-50
-    border-b
-    border-purple-200/40
-    bg-gradient-to-r
-    from-violet-200/80
-    via-pink-100/80
-    to-rose-200/80
-    backdrop-blur-xl
-    shadow-md
-    shadow-purple-200/30
-  "
+            sticky
+            top-0
+            z-50
+            border-b
+            border-purple-200/40
+            bg-gradient-to-r
+            from-violet-200/80
+            via-pink-100/80
+            to-rose-200/80
+            backdrop-blur-xl
+            shadow-md
+            shadow-purple-200/30
+          "
         >
-
           <div
             className="
               max-w-6xl
@@ -64,20 +58,21 @@ export default function RootLayout({
             "
           >
 
-
             {/* Right menu */}
 
             <nav
               className="
                 flex
                 items-center
-                gap-4
+                gap-3
                 sm:gap-6
                 text-gray-700
               "
             >
 
-              <a
+              {/* Home */}
+
+              <Link
                 href="/"
                 className="
                   flex
@@ -85,9 +80,9 @@ export default function RootLayout({
                   gap-2
                   hover:text-purple-700
                   transition
+                  whitespace-nowrap
                 "
               >
-
                 <Home
                   size={20}
                   strokeWidth={1.8}
@@ -96,17 +91,40 @@ export default function RootLayout({
                 <span>
                   خانه
                 </span>
-
-              </a>
-
+              </Link>
 
 
-              <a
+              {/* Blog */}
+
+              <Link
+                href="/blog"
+                className="
+                  flex
+                  items-center
+                  gap-2
+                  hover:text-purple-700
+                  transition
+                  whitespace-nowrap
+                "
+              >
+                <BookOpen
+                  size={20}
+                  strokeWidth={1.8}
+                />
+
+                <span>
+                  مقالات
+                </span>
+              </Link>
+
+
+              {/* Analyze */}
+
+              <Link
                 href="/analyze"
                 className="
                   rounded-xl
                   bg-gradient-to-r
-                  from-purple-500/90
                   from-violet-500
                   via-purple-400
                   to-pink-400
@@ -126,17 +144,14 @@ export default function RootLayout({
                 "
               >
                 تحلیل پوست
-              </a>
-
+              </Link>
 
             </nav>
 
 
-
-
             {/* Logo */}
 
-            <a
+            <Link
               href="/"
               dir="ltr"
               className="
@@ -153,14 +168,10 @@ export default function RootLayout({
               "
             >
               Surenmah
-            </a>
-
+            </Link>
 
           </div>
-
         </header>
-
-
 
 
         {/* Page */}
@@ -170,33 +181,30 @@ export default function RootLayout({
         </main>
 
 
-
-
-
         {/* Footer */}
 
         <footer
           className="
-    mt-10
-    bg-gradient-to-r
-    from-purple-200
-    via-pink-100
-    to-rose-200
-    text-gray-800
-    p-8
-    text-center
-    border-t
-    border-white/60
-    shadow-inner
-  "
+            mt-10
+            bg-gradient-to-r
+            from-purple-200
+            via-pink-100
+            to-rose-200
+            text-gray-800
+            p-8
+            text-center
+            border-t
+            border-white/60
+            shadow-inner
+          "
         >
 
           <h3
             className="
-      text-2xl
-      font-extrabold
-      text-purple-900
-    "
+              text-2xl
+              font-extrabold
+              text-purple-900
+            "
           >
             ارتباط با ما
           </h3>
@@ -204,109 +212,101 @@ export default function RootLayout({
 
           <p
             className="
-      mt-3
-      text-gray-700
-    "
+              mt-3
+              text-gray-700
+            "
           >
             برای همکاری، پیشنهاد یا پشتیبانی با ما در تماس باشید.
           </p>
 
 
-
           <p
             className="
-      mt-3
-      text-gray-700
-    "
+              mt-3
+              text-gray-700
+            "
           >
             ایمیل:
             {" "}
+
             <a
               href="mailto:Ahmad.sadegh@gmail.com"
               className="
-        font-medium
-        underline
-        text-purple-800
-        hover:text-purple-950
-      "
+                font-medium
+                underline
+                text-purple-800
+                hover:text-purple-950
+              "
             >
               ahmad.sadegh@gmail.com
             </a>
           </p>
 
 
-
-
           <div
             className="
-      mt-5
-      flex
-      justify-center
-      gap-4
-      flex-wrap
-    "
+              mt-5
+              flex
+              justify-center
+              gap-4
+              flex-wrap
+            "
           >
-
 
             <a
               href="https://wa.me/989xxxxxxxxx"
               target="_blank"
+              rel="noopener noreferrer"
               className="
-        bg-green-500
-        hover:bg-green-600
-        px-5
-        py-2
-        rounded-xl
-        text-gray-800
-        font-medium
-        shadow-md
-        transition
-      "
+                bg-green-500
+                hover:bg-green-600
+                px-5
+                py-2
+                rounded-xl
+                text-gray-800
+                font-medium
+                shadow-md
+                transition
+              "
             >
               WhatsApp
             </a>
 
 
-
-
             <a
               href="#"
               className="
-        bg-blue-500
-        hover:bg-blue-600
-        px-5
-        py-2
-        rounded-xl
-        text-gray-800
-        font-medium
-        shadow-md
-        transition
-      "
+                bg-blue-500
+                hover:bg-blue-600
+                px-5
+                py-2
+                rounded-xl
+                text-gray-800
+                font-medium
+                shadow-md
+                transition
+              "
             >
               Bale (به‌زودی)
             </a>
 
-
           </div>
-
 
 
           <p
             className="
-      mt-6
-      text-sm
-      text-gray-600
-    "
+              mt-6
+              text-sm
+              text-gray-600
+            "
           >
-            © {new Date().getFullYear()} Surenmah. All rights reserved.
+            © {new Date().getFullYear()} Surenmah.
+            All rights reserved.
           </p>
-
 
         </footer>
 
       </body>
-
     </html>
-
   );
 }
