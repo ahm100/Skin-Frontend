@@ -28,6 +28,7 @@ import { melasma } from "./melasma";
 import { latexAllergy } from "./latex-allergy";
 import { psoriasis } from "./psoriasis";
 import { shingles } from "./shingles";
+import { eczema } from "./eczema";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
@@ -42,4 +43,5 @@ export const blogArticles: BlogArticle[] = [
   melasma,
   psoriasis,
   shingles,
+  eczema,
 ];
