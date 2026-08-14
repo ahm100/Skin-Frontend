@@ -23,6 +23,7 @@ import { wart } from "./wart";
 import { dermatitis } from "./dermatitis";
 import { fungus } from "./fungus";
 import { hives } from "./hives";
+import { impetigo } from "./impetigo";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
@@ -32,4 +33,5 @@ export const blogArticles: BlogArticle[] = [
   dermatitis,
   fungus,
   hives,
+  impetigo,
 ];
