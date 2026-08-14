@@ -1,4 +1,4 @@
-import { BlogArticle } from ".";
+import type { BlogArticle } from "./index";
 
 export const vitiligo: BlogArticle = {
   slug: "vitiligo",
