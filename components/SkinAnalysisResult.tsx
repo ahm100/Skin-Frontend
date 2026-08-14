@@ -1,15 +1,13 @@
+import Link from "next/link";
 import ProductCard from "./ProductCard";
-
+import { getConditionBlogUrl } from "@/app/blog/mapping";
 
 type SkinAnalysisResultProps = {
   result: any;
 };
 
-
-
 function translateSkinType(type: string) {
-
-  const map: any = {
+  const map: Record<string, string> = {
     oily: "چرب",
     dry: "خشک",
     normal: "نرمال",
@@ -19,12 +17,8 @@ function translateSkinType(type: string) {
   return map[type] ?? type;
 }
 
-
-
 function translateCondition(condition: string) {
-
-  const map:any = {
-
+  const map: Record<string, string> = {
     Acne: "جوش و آکنه",
 
     Eczema: "اگزما",
@@ -51,75 +45,64 @@ function translateCondition(condition: string) {
       "درماتیت سبوره‌ای",
 
     "Unknown Normal":
-      "پوست نرمال"
-
+      "پوست نرمال",
   };
 
-
   return map[condition] ?? condition;
-
 }
 
-
 function translateReason(reason: string) {
-
-  if (!reason)
+  if (!reason) {
     return "";
-
+  }
 
   return reason
     .replaceAll("oily", "چرب")
     .replaceAll("dry", "خشک")
     .replaceAll("normal", "نرمال")
     .replaceAll("combination", "مختلط");
-
 }
-
-
-
 
 function confidenceText(confidence: number) {
-
-  if (confidence >= 0.75)
+  if (confidence >= 0.75) {
     return "زیاد";
+  }
 
-  if (confidence >= 0.5)
+  if (confidence >= 0.5) {
     return "متوسط";
+  }
 
   return "کم";
-
 }
-
-
-
-
 
 export default function SkinAnalysisResult({
   result,
 }: SkinAnalysisResultProps) {
-
-
   const skinType =
     result?.analysis?.skin_type;
-
 
   const conditions =
     result?.analysis?.condition ?? [];
 
-
+  const visibleConditions =
+    conditions.filter(
+      (item: any) =>
+        item?.confidence >= 0.5
+    );
 
   return (
-
     <section
       className="
         mt-8
         w-full
         max-w-3xl
+        mx-auto
       "
     >
 
-
+      {/* ========================= */}
       {/* AI Result */}
+      {/* ========================= */}
 
       <div
         className="
@@ -127,11 +110,11 @@ export default function SkinAnalysisResult({
           bg-white
           border
           border-purple-100
-          p-6
+          p-5
+          sm:p-6
           shadow-lg
         "
       >
-
 
         <h2
           className="
@@ -144,10 +127,11 @@ export default function SkinAnalysisResult({
         </h2>
 
 
+        {/* ========================= */}
+        {/* Skin Type */}
+        {/* ========================= */}
 
-        {
-          skinType &&
-
+        {skinType && (
           <div
             className="
               mt-5
@@ -175,11 +159,9 @@ export default function SkinAnalysisResult({
                 text-purple-700
               "
             >
-              {
-                translateSkinType(
-                  skinType.label
-                )
-              }
+              {translateSkinType(
+                skinType.label
+              )}
             </p>
 
 
@@ -193,18 +175,15 @@ export default function SkinAnalysisResult({
               نتیجه توسط هوش مصنوعی تخمین زده شده است.
             </p>
 
-
           </div>
-
-        }
-
+        )}
 
 
+        {/* ========================= */}
+        {/* Conditions */}
+        {/* ========================= */}
 
-
-        {
-          conditions.length > 0 &&
-
+        {visibleConditions.length > 0 && (
           <div
             className="
               mt-5
@@ -224,7 +203,6 @@ export default function SkinAnalysisResult({
             </p>
 
 
-
             <div
               className="
                 mt-3
@@ -232,123 +210,148 @@ export default function SkinAnalysisResult({
               "
             >
 
-              {
-                conditions
-                  .filter(
-                    (item:any)=>
-                      item.confidence >= 0.5
-                  )
-                  .map(
-                    (
-                      item:any,
-                      index:number
-                    ) => (
+              {visibleConditions.map(
+                (
+                  item: any,
+                  index: number
+                ) => {
+                  const blogUrl =
+                    getConditionBlogUrl(
+                      item?.label
+                    );
 
-                      <div
-                        key={index}
+                  const conditionTitle =
+                    translateCondition(
+                      item?.label
+                    );
+
+                  return (
+                    <div
+                      key={`${item?.label}-${index}`}
+                      className="
+                        rounded-xl
+                        bg-white
+                        border
+                        border-pink-100
+                        p-4
+                      "
+                    >
+
+                      {/* Condition name */}
+
+                      <p
                         className="
-                          rounded-xl
-                          bg-white
-                          border
-                          p-4
+                          font-bold
+                          text-pink-700
                         "
                       >
+                        ✓ {conditionTitle}
+                      </p>
 
-                        <p
+
+                      {/* Confidence */}
+
+                      <p
+                        className="
+                          mt-1
+                          text-sm
+                          text-gray-500
+                        "
+                      >
+                        اطمینان تحلیل:
+                        {" "}
+                        {confidenceText(
+                          item?.confidence
+                        )}
+                      </p>
+
+
+                      {/* Blog link */}
+
+                      {blogUrl && (
+                        <Link
+                          href={blogUrl}
                           className="
-                            font-bold
-                            text-pink-700
-                          "
-                        >
-                          ✓ {translateCondition(item.label)}
-                        </p>
-
-
-                        <p
-                          className="
-                            mt-1
+                            inline-flex
+                            items-center
+                            mt-3
+                            rounded-xl
+                            bg-purple-100
+                            px-4
+                            py-2
                             text-sm
-                            text-gray-500
+                            font-medium
+                            text-purple-800
+                            hover:bg-purple-200
+                            transition
                           "
                         >
-                          دقت:
-                          {" "}
-                          {
-                            confidenceText(
-                              item.confidence
-                            )
-                          }
-                        </p>
+                          درباره {conditionTitle} بیشتر بخوانید
+                          <span className="mr-2">
+                            ←
+                          </span>
+                        </Link>
+                      )}
 
-
-                      </div>
-
-                    )
-                  )
-
-              }
-
+                    </div>
+                  );
+                }
+              )}
 
             </div>
 
-
           </div>
-
-        }
-
+        )}
 
       </div>
 
 
-
-
-
-
-
+      {/* ========================= */}
       {/* Products */}
+      {/* ========================= */}
 
-      <h2
-        className="
-          mt-8
-          text-2xl
-          font-extrabold
-          text-purple-900
-        "
-      >
-        🧴 محصولات پیشنهادی
-      </h2>
-
-
-
-
-
-      {
-        result?.recommendation?.map(
-          (
-            item:any,
-            index:number
-          ) => (
-
-            <ProductCard
-              key={index}
-              name={item.name}
-              reason={
-                translateReason(
-                  item.reason
-                )
-              }
-              score={item.score}
-              offers={item.offers}
-            />
-
-          )
-        )
-      }
+      {result?.recommendation?.length > 0 && (
+        <>
+          <h2
+            className="
+              mt-8
+              text-2xl
+              font-extrabold
+              text-purple-900
+            "
+          >
+            🧴 محصولات پیشنهادی
+          </h2>
 
 
+          <div
+            className="
+              mt-4
+              space-y-4
+            "
+          >
+
+            {result.recommendation.map(
+              (
+                item: any,
+                index: number
+              ) => (
+                <ProductCard
+                  key={index}
+                  name={item.name}
+                  reason={translateReason(
+                    item.reason
+                  )}
+                  score={item.score}
+                  offers={item.offers}
+                />
+              )
+            )}
+
+          </div>
+        </>
+      )}
 
     </section>
-
   );
-
 }
