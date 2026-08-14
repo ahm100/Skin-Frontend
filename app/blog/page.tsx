@@ -2,9 +2,9 @@ import Link from "next/link";
 import { blogArticles } from "./data";
 
 export const metadata = {
-  title: "مقالات مراقبت و سلامت پوست | سورنمه",
+  title: "مقالات مراقبت و سلامت پوست | سورنماه",
   description:
-    "مقالات آموزشی سورنمه درباره بیماری‌های پوستی، علائم، تشخیص، درمان و مراقبت از پوست.",
+    "مقالات آموزشی سورنماه درباره بیماری‌های پوستی، علائم، تشخیص، درمان و مراقبت از پوست.",
 };
 
 export default function BlogPage() {
