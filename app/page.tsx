@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Surenmah | تحلیل پوست با هوش مصنوعی",
+  description:
+    "Surenmah یک سرویس تحلیل پوست با هوش مصنوعی است. تصویر پوست خود را بررسی کنید، نوع پوست و نشانه‌های احتمالی مشکلات پوستی را بشناسید و پیشنهادهای مناسب دریافت کنید.",
+  alternates: {
+    canonical: "https://www.surenmah.ir/",
+  },
+};
+
 export default function Home() {
   return (
     <main className="min-h-screen">
-
 
       {/* Hero */}
 
@@ -26,10 +36,8 @@ export default function Home() {
             text-gray-900
           "
         >
-          پوست خود را با هوش مصنوعی بشناس
+          تحلیل پوست با هوش مصنوعی
         </h1>
-
-
 
         <p
           className="
@@ -41,12 +49,10 @@ export default function Home() {
             text-gray-600
           "
         >
-          با یک تصویر ساده، نوع پوست و نشانه‌های احتمالی
-          پوست خود را تحلیل کنید و پیشنهادهای مناسب دریافت کنید.
+          با استفاده از هوش مصنوعی، تصویر پوست خود را تحلیل کنید،
+          نوع پوست و نشانه‌های احتمالی مشکلات پوستی را بررسی کنید
+          و بر اساس نتیجه تحلیل، پیشنهادهای مناسب دریافت کنید.
         </p>
-
-
-
 
         <a
           href="/analyze"
@@ -70,9 +76,6 @@ export default function Home() {
           شروع تحلیل رایگان
         </a>
 
-
-
-
         <p
           className="
             mt-6
@@ -82,301 +85,251 @@ export default function Home() {
           "
         >
           ⚠️ این تحلیل تشخیص پزشکی نیست.
-          نتایج توسط هوش مصنوعی تخمین زده می‌شود.
+          نتایج توسط هوش مصنوعی تخمین زده می‌شوند.
         </p>
-
 
       </section>
 
 
-
-
-
-
-
       {/* How it works */}
 
-      {/* How it works */}
-
-<section
-  className="
-    bg-gray-50
-    px-6
-    py-16
-    sm:px-10
-  "
->
-
-  <h2
-    className="
-      text-center
-      text-3xl
-      font-extrabold
-      text-gray-900
-    "
-  >
-    چگونه کار می‌کند؟
-  </h2>
-
-
-
-  <div
-    className="
-      mt-12
-      flex
-      flex-col
-      items-center
-    "
-  >
-
-
-
-    {/* Step 1 */}
-
-    <div
-      className="
-        flex
-        flex-col
-        items-center
-        text-center
-        rounded-3xl
-        bg-white
-        border
-        border-gray-100
-        p-6
-        shadow-sm
-        w-full
-        max-w-sm
-      "
-    >
-
-      <div
+      <section
         className="
-          flex
-          h-20
-          w-20
-          items-center
-          justify-center
-          rounded-full
-          bg-purple-100
-          text-4xl
+          bg-gray-50
+          px-6
+          py-16
+          sm:px-10
         "
       >
-        📷
-      </div>
 
-
-      <h3
-        className="
-          mt-5
-          text-xl
-          font-bold
-          text-gray-900
-        "
-      >
-        آپلود تصویر
-      </h3>
-
-
-      <p
-        className="
-          mt-3
-          leading-7
-          text-gray-600
-        "
-      >
-        یک تصویر مناسب از پوست خود ارسال کنید.
-      </p>
-
-
-    </div>
-
-
-
-
-
-    {/* Arrow */}
-
-    <div
-      className="
-        my-5
-        text-4xl
-        text-purple-400
-      "
-    >
-      ↓
-    </div>
-
-
-
-
-
-
-
-    {/* Step 2 */}
-
-    <div
-      className="
-        flex
-        flex-col
-        items-center
-        text-center
-        rounded-3xl
-        bg-white
-        border
-        border-gray-100
-        p-6
-        shadow-sm
-        w-full
-        max-w-sm
-      "
-    >
-
-      <div
-        className="
-          flex
-          h-20
-          w-20
-          items-center
-          justify-center
-          rounded-full
-          bg-pink-100
-          text-4xl
-        "
-      >
-        🤖
-      </div>
-
-
-
-      <h3
-        className="
-          mt-5
-          text-xl
-          font-bold
-          text-gray-900
-        "
-      >
-        تحلیل AI
-      </h3>
-
-
-
-      <p
-        className="
-          mt-3
-          leading-7
-          text-gray-600
-        "
-      >
-        هوش مصنوعی تصویر پوست را بررسی می‌کند
-        و ویژگی‌های احتمالی را استخراج می‌کند.
-      </p>
-
-
-    </div>
-
-
-
-
-
-
-    {/* Arrow */}
-
-    <div
-      className="
-        my-5
-        text-4xl
-        text-purple-400
-      "
-    >
-      ↓
-    </div>
-
-
-
-
-
-
-
-    {/* Step 3 */}
-
-    <div
-      className="
-        flex
-        flex-col
-        items-center
-        text-center
-        rounded-3xl
-        bg-white
-        border
-        border-gray-100
-        p-6
-        shadow-sm
-        w-full
-        max-w-sm
-      "
-    >
-
-      <div
-        className="
-          flex
-          h-20
-          w-20
-          items-center
-          justify-center
-          rounded-full
-          bg-rose-100
-          text-4xl
-        "
-      >
-        🧴
-      </div>
-
-
-
-      <h3
-        className="
-          mt-5
-          text-xl
-          font-bold
-          text-gray-900
-        "
-      >
-        پیشنهاد محصول
-      </h3>
-
-
-
-      <p
-        className="
-          mt-3
-          leading-7
-          text-gray-600
-        "
-      >
-        محصولات مناسب بر اساس تحلیل پوست
-        و نیازهای احتمالی پیشنهاد می‌شوند.
-      </p>
-
-
-    </div>
-
-
-
-  </div>
-
-
-</section>
-
-
-
-
-
-
-
-
-      {/* Why Skin AI */}
+        <h2
+          className="
+            text-center
+            text-3xl
+            font-extrabold
+            text-gray-900
+          "
+        >
+          تحلیل پوست با هوش مصنوعی چگونه کار می‌کند؟
+        </h2>
+
+        <div
+          className="
+            mt-12
+            flex
+            flex-col
+            items-center
+          "
+        >
+
+          {/* Step 1 */}
+
+          <div
+            className="
+              flex
+              flex-col
+              items-center
+              text-center
+              rounded-3xl
+              bg-white
+              border
+              border-gray-100
+              p-6
+              shadow-sm
+              w-full
+              max-w-sm
+            "
+          >
+
+            <div
+              className="
+                flex
+                h-20
+                w-20
+                items-center
+                justify-center
+                rounded-full
+                bg-purple-100
+                text-4xl
+              "
+            >
+              📷
+            </div>
+
+            <h3
+              className="
+                mt-5
+                text-xl
+                font-bold
+                text-gray-900
+              "
+            >
+              آپلود تصویر پوست
+            </h3>
+
+            <p
+              className="
+                mt-3
+                leading-7
+                text-gray-600
+              "
+            >
+              یک تصویر مناسب از پوست خود ارسال کنید تا
+              فرآیند تحلیل پوست آغاز شود.
+            </p>
+
+          </div>
+
+
+          {/* Arrow */}
+
+          <div
+            className="
+              my-5
+              text-4xl
+              text-purple-400
+            "
+          >
+            ↓
+          </div>
+
+
+          {/* Step 2 */}
+
+          <div
+            className="
+              flex
+              flex-col
+              items-center
+              text-center
+              rounded-3xl
+              bg-white
+              border
+              border-gray-100
+              p-6
+              shadow-sm
+              w-full
+              max-w-sm
+            "
+          >
+
+            <div
+              className="
+                flex
+                h-20
+                w-20
+                items-center
+                justify-center
+                rounded-full
+                bg-pink-100
+                text-4xl
+              "
+            >
+              🤖
+            </div>
+
+            <h3
+              className="
+                mt-5
+                text-xl
+                font-bold
+                text-gray-900
+              "
+            >
+              تحلیل هوشمند پوست
+            </h3>
+
+            <p
+              className="
+                mt-3
+                leading-7
+                text-gray-600
+              "
+            >
+              مدل‌های هوش مصنوعی تصویر پوست را بررسی می‌کنند
+              و ویژگی‌ها و نشانه‌های احتمالی را استخراج می‌کنند.
+            </p>
+
+          </div>
+
+
+          {/* Arrow */}
+
+          <div
+            className="
+              my-5
+              text-4xl
+              text-purple-400
+            "
+          >
+            ↓
+          </div>
+
+
+          {/* Step 3 */}
+
+          <div
+            className="
+              flex
+              flex-col
+              items-center
+              text-center
+              rounded-3xl
+              bg-white
+              border
+              border-gray-100
+              p-6
+              shadow-sm
+              w-full
+              max-w-sm
+            "
+          >
+
+            <div
+              className="
+                flex
+                h-20
+                w-20
+                items-center
+                justify-center
+                rounded-full
+                bg-rose-100
+                text-4xl
+              "
+            >
+              🧴
+            </div>
+
+            <h3
+              className="
+                mt-5
+                text-xl
+                font-bold
+                text-gray-900
+              "
+            >
+              پیشنهاد محصولات مناسب
+            </h3>
+
+            <p
+              className="
+                mt-3
+                leading-7
+                text-gray-600
+              "
+            >
+              در مواردی که تحلیل برای پیشنهاد محصول مناسب باشد،
+              محصولات مرتبط بر اساس نتیجه تحلیل پیشنهاد می‌شوند.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      {/* Why Surenmah */}
 
       <section
         className="
@@ -387,7 +340,6 @@ export default function Home() {
         "
       >
 
-
         <h2
           className="
             text-3xl
@@ -395,12 +347,8 @@ export default function Home() {
             text-gray-900
           "
         >
-          چرا Skin AI؟
+          چرا Surenmah؟
         </h2>
-
-
-
-
 
         <div
           className="
@@ -411,6 +359,7 @@ export default function Home() {
           "
         >
 
+          {/* Feature 1 */}
 
           <div
             className="
@@ -422,23 +371,24 @@ export default function Home() {
               shadow-sm
             "
           >
+
             <div className="text-3xl">
               🤖
             </div>
 
             <h3 className="mt-4 font-bold">
-              تحلیل هوشمند
+              تحلیل هوشمند پوست
             </h3>
 
             <p className="mt-2 text-gray-600">
-              استفاده از مدل‌های هوش مصنوعی برای بررسی تصویر پوست.
+              استفاده از مدل‌های هوش مصنوعی برای
+              بررسی تصویر پوست و استخراج ویژگی‌های احتمالی.
             </p>
 
           </div>
 
 
-
-
+          {/* Feature 2 */}
 
           <div
             className="
@@ -455,23 +405,19 @@ export default function Home() {
               🎯
             </div>
 
-
             <h3 className="mt-4 font-bold">
-              پیشنهاد شخصی
+              پیشنهاد شخصی محصولات
             </h3>
 
-
             <p className="mt-2 text-gray-600">
-              محصولات متناسب با نیاز پوست شما پیشنهاد می‌شوند.
+              در موارد مناسب، محصولات مرتبط با نوع پوست
+              و نیازهای احتمالی آن پیشنهاد می‌شوند.
             </p>
 
           </div>
 
 
-
-
-
-
+          {/* Feature 3 */}
 
           <div
             className="
@@ -488,34 +434,23 @@ export default function Home() {
               🔒
             </div>
 
-
             <h3 className="mt-4 font-bold">
-              حریم خصوصی
+              توجه به حریم خصوصی
             </h3>
 
-
             <p className="mt-2 text-gray-600">
-              تصاویر برای تحلیل ویژگی‌های پوست پردازش می‌شوند.
+              تصاویر برای تحلیل ویژگی‌های پوست پردازش می‌شوند
+              و نتیجه تحلیل برای ارائه اطلاعات اولیه استفاده می‌شود.
             </p>
-
 
           </div>
 
-
-
         </div>
-
 
       </section>
 
 
-
-
-
-
-
-
-      {/* Brands */}
+      {/* SEO Content */}
 
       <section
         className="
@@ -527,20 +462,91 @@ export default function Home() {
         "
       >
 
-        <h2 className="text-3xl font-extrabold">
-          همکاری با برندها
-        </h2>
+        <div className="mx-auto max-w-3xl">
 
+          <h2
+            className="
+              text-3xl
+              font-extrabold
+              text-gray-900
+            "
+          >
+            تحلیل پوست با هوش مصنوعی چیست؟
+          </h2>
 
-        <p className="mt-4 text-gray-600">
-          برندها می‌توانند محصولات خود را به کاربران مناسب معرفی کنند.
-        </p>
+          <p
+            className="
+              mt-6
+              leading-8
+              text-gray-600
+            "
+          >
+            Surenmah یک سرویس تحلیل پوست با هوش مصنوعی است
+            که با بررسی تصویر پوست، اطلاعات اولیه‌ای درباره
+            نوع پوست و برخی نشانه‌های احتمالی پوستی ارائه می‌کند.
+          </p>
 
+          <p
+            className="
+              mt-4
+              leading-8
+              text-gray-600
+            "
+          >
+            هدف Surenmah کمک به کاربران برای شناخت بهتر ویژگی‌های
+            پوست و دریافت اطلاعات اولیه درباره وضعیت ظاهری پوست است.
+            نتیجه تحلیل هوش مصنوعی تشخیص پزشکی نیست و نمی‌تواند
+            جایگزین معاینه یا نظر متخصص پوست شود.
+          </p>
+
+          <p
+            className="
+              mt-4
+              leading-8
+              text-gray-600
+            "
+          >
+            در صورت مشاهده علائم نگران‌کننده، تغییرات غیرعادی یا
+            مشکلات پوستی مداوم، مراجعه به متخصص پوست توصیه می‌شود.
+          </p>
+
+        </div>
 
       </section>
 
 
+      {/* Brands */}
 
+      <section
+        className="
+          px-6
+          py-16
+          sm:px-10
+          text-center
+        "
+      >
+
+        <h2
+          className="
+            text-3xl
+            font-extrabold
+            text-gray-900
+          "
+        >
+          همکاری با برندها
+        </h2>
+
+        <p
+          className="
+            mt-4
+            text-gray-600
+          "
+        >
+          برندها می‌توانند محصولات خود را به کاربران مناسب
+          معرفی کنند.
+        </p>
+
+      </section>
 
     </main>
   );
