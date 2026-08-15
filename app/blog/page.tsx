@@ -30,7 +30,7 @@ export default function BlogPage() {
               text-3xl
               sm:text-4xl
               font-extrabold
-              text-gray-900
+              text-petrol
             "
           >
             مقالات سلامت و مراقبت از پوست
@@ -42,7 +42,7 @@ export default function BlogPage() {
               max-w-2xl
               mx-auto
               leading-8
-              text-gray-600
+              text-petrol
             "
           >
             اطلاعات ساده و کاربردی درباره بیماری‌های پوستی،
@@ -84,7 +84,7 @@ export default function BlogPage() {
                 className="
                   text-xl
                   font-bold
-                  text-gray-900
+                  text-petrol
                 "
               >
                 {article.title}
@@ -105,7 +105,7 @@ export default function BlogPage() {
                 className="
                   mt-4
                   leading-7
-                  text-gray-600
+                  text-petrol
                 "
               >
                 {article.description}
@@ -164,7 +164,7 @@ export default function BlogPage() {
             className="
               text-2xl
               font-extrabold
-              text-gray-900
+              text-petrol
             "
           >
             درباره پوست خود کنجکاو هستید؟
@@ -173,7 +173,7 @@ export default function BlogPage() {
           <p
             className="
               mt-3
-              text-gray-600
+              text-petrol
             "
           >
             می‌توانید یک تصویر از پوست خود ارسال کنید
@@ -191,7 +191,7 @@ export default function BlogPage() {
               to-pink-400
               px-7
               py-3
-              text-gray-800
+              text-petrol
               font-medium
               shadow-md
               hover:opacity-90

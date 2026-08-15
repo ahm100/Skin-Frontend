@@ -45,7 +45,7 @@ export default function ProductCard({
         className="
           text-xl
           font-extrabold
-          text-gray-900
+          text-petrol
         "
       >
         {name}
@@ -57,7 +57,7 @@ export default function ProductCard({
       <p
         className="
           mt-3
-          text-gray-600
+          text-petrol
         "
       >
         {reason}
@@ -98,7 +98,7 @@ export default function ProductCard({
           <h4
             className="
               font-bold
-              text-gray-800
+              text-petrol
             "
           >
             🛒 فروشگاه‌ها
@@ -149,7 +149,7 @@ export default function ProductCard({
                       <div
                         className="
                           font-bold
-                          text-gray-900
+                          text-petrol
                         "
                       >
 
@@ -185,7 +185,7 @@ export default function ProductCard({
                         className="
                           mt-1
                           text-sm
-                          text-gray-600
+                          text-petrol
                         "
                       >
 

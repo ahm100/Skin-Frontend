@@ -15,7 +15,7 @@ export default function UploadGuide() {
       <h3
         className="
           font-bold
-          text-gray-800
+          text-petrol
         "
       >
         راهنمای گرفتن عکس برای تحلیل بهتر
@@ -25,7 +25,7 @@ export default function UploadGuide() {
         className="
           mt-3
           text-sm
-          text-gray-600
+          text-petrol
           space-y-2
         "
       >

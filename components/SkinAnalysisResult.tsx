@@ -262,7 +262,7 @@ export default function SkinAnalysisResult({
               mt-2
               text-sm
               leading-7
-              text-gray-700
+              text-petrol
             "
           >
             نتایج این بخش توسط هوش مصنوعی
@@ -277,7 +277,7 @@ export default function SkinAnalysisResult({
               mt-1
               text-sm
               leading-7
-              text-gray-700
+              text-petrol
             "
           >
             کیفیت تصویر، نور، زاویه عکس و
@@ -291,7 +291,7 @@ export default function SkinAnalysisResult({
               mt-1
               text-sm
               leading-7
-              text-gray-700
+              text-petrol
             "
           >
             در صورت نگرانی یا مشاهده تغییرات
@@ -319,7 +319,7 @@ export default function SkinAnalysisResult({
             <p
               className="
                 text-sm
-                text-gray-500
+                text-petrol
               "
             >
               نوع پوست تخمینی
@@ -344,7 +344,7 @@ export default function SkinAnalysisResult({
               className="
                 mt-3
                 text-xs
-                text-gray-500
+                text-petrol
               "
             >
               این نتیجه یک تخمین مبتنی بر تصویر است.
@@ -371,7 +371,7 @@ export default function SkinAnalysisResult({
             <p
               className="
                 text-sm
-                text-gray-500
+                text-petrol
               "
             >
               نشانه‌های احتمالی مشاهده شده
@@ -458,7 +458,7 @@ export default function SkinAnalysisResult({
                         className="
                           mt-1
                           text-sm
-                          text-gray-500
+                          text-petrol
                         "
                       >
                         اطمینان تحلیل:

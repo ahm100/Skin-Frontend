@@ -33,7 +33,7 @@ export default function Home() {
             text-4xl
             sm:text-5xl
             font-extrabold
-            text-gray-900
+            text-petrol
           "
         >
           تحلیل پوست با هوش مصنوعی
@@ -46,7 +46,7 @@ export default function Home() {
             text-lg
             sm:text-xl
             leading-8
-            text-gray-600
+            text-petrol
           "
         >
           با استفاده از هوش مصنوعی، تصویر پوست خود را تحلیل کنید،
@@ -96,7 +96,7 @@ export default function Home() {
             mt-6
             max-w-md
             text-xs
-            text-gray-500
+            text-petrol
           "
         >
           ⚠️ این تحلیل تشخیص پزشکی نیست.
@@ -122,7 +122,7 @@ export default function Home() {
             text-center
             text-3xl
             font-extrabold
-            text-gray-900
+            text-petrol
           "
         >
           تحلیل پوست با هوش مصنوعی چگونه کار می‌کند؟
@@ -176,7 +176,7 @@ export default function Home() {
                 mt-5
                 text-xl
                 font-bold
-                text-gray-900
+                text-petrol
               "
             >
               آپلود تصویر پوست
@@ -186,7 +186,7 @@ export default function Home() {
               className="
                 mt-3
                 leading-7
-                text-gray-600
+                text-petrol
               "
             >
               یک تصویر مناسب از پوست خود ارسال کنید تا
@@ -248,7 +248,7 @@ export default function Home() {
                 mt-5
                 text-xl
                 font-bold
-                text-gray-900
+                text-petrol
               "
             >
               تحلیل هوشمند پوست
@@ -258,7 +258,7 @@ export default function Home() {
               className="
                 mt-3
                 leading-7
-                text-gray-600
+                text-petrol
               "
             >
               مدل‌های هوش مصنوعی تصویر پوست را بررسی می‌کنند
@@ -320,7 +320,7 @@ export default function Home() {
                 mt-5
                 text-xl
                 font-bold
-                text-gray-900
+                text-petrol
               "
             >
               پیشنهاد محصولات مناسب
@@ -330,7 +330,7 @@ export default function Home() {
               className="
                 mt-3
                 leading-7
-                text-gray-600
+                text-petrol
               "
             >
               در مواردی که تحلیل برای پیشنهاد محصول مناسب باشد،
@@ -359,7 +359,7 @@ export default function Home() {
           className="
             text-3xl
             font-extrabold
-            text-gray-900
+            text-petrol
           "
         >
           چرا Surenmah؟
@@ -395,7 +395,7 @@ export default function Home() {
               تحلیل هوشمند پوست
             </h3>
 
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-petrol">
               استفاده از مدل‌های هوش مصنوعی برای
               بررسی تصویر پوست و استخراج ویژگی‌های احتمالی.
             </p>
@@ -424,7 +424,7 @@ export default function Home() {
               پیشنهاد شخصی محصولات
             </h3>
 
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-petrol">
               در موارد مناسب، محصولات مرتبط با نوع پوست
               و نیازهای احتمالی آن پیشنهاد می‌شوند.
             </p>
@@ -453,7 +453,7 @@ export default function Home() {
               توجه به حریم خصوصی
             </h3>
 
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 text-petrol">
               تصاویر برای تحلیل ویژگی‌های پوست پردازش می‌شوند
               و نتیجه تحلیل برای ارائه اطلاعات اولیه استفاده می‌شود.
             </p>
@@ -483,7 +483,7 @@ export default function Home() {
             className="
               text-3xl
               font-extrabold
-              text-gray-900
+              text-petrol
             "
           >
             تحلیل پوست با هوش مصنوعی چیست؟
@@ -493,7 +493,7 @@ export default function Home() {
             className="
               mt-6
               leading-8
-              text-gray-600
+              text-petrol
             "
           >
             Surenmah یک سرویس تحلیل پوست با هوش مصنوعی است
@@ -505,7 +505,7 @@ export default function Home() {
             className="
               mt-4
               leading-8
-              text-gray-600
+              text-petrol
             "
           >
             هدف Surenmah کمک به کاربران برای شناخت بهتر ویژگی‌های
@@ -518,7 +518,7 @@ export default function Home() {
             className="
               mt-4
               leading-8
-              text-gray-600
+              text-petrol
             "
           >
             در صورت مشاهده علائم نگران‌کننده، تغییرات غیرعادی یا
@@ -545,7 +545,7 @@ export default function Home() {
           className="
             text-3xl
             font-extrabold
-            text-gray-900
+            text-petrol
           "
         >
           همکاری با برندها
@@ -554,7 +554,7 @@ export default function Home() {
         <p
           className="
             mt-4
-            text-gray-600
+            text-petrol
           "
         >
           برندها می‌توانند محصولات خود را به کاربران مناسب

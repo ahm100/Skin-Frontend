@@ -216,7 +216,7 @@ export default function AnalyzePage() {
           text-3xl
           sm:text-4xl
           font-bold
-          text-gray-900
+          text-petrol
           text-center
         "
       >
@@ -230,7 +230,7 @@ export default function AnalyzePage() {
       <p
         className="
           mt-3
-          text-gray-600
+          text-petrol
           text-center
           max-w-xl
         "
@@ -306,7 +306,7 @@ export default function AnalyzePage() {
           <div
             className="
               font-bold
-              text-gray-800
+              text-petrol
             "
           >
             انتخاب تصویر پوست
@@ -316,7 +316,7 @@ export default function AnalyzePage() {
             className="
               mt-2
               text-sm
-              text-gray-500
+              text-petrol
             "
           >
             JPG، PNG یا WEBP
@@ -364,7 +364,7 @@ export default function AnalyzePage() {
           <p
             className="
               text-sm
-              text-gray-600
+              text-petrol
             "
           >
             فایل انتخاب شده:
@@ -375,7 +375,7 @@ export default function AnalyzePage() {
               mt-1
               text-sm
               font-medium
-              text-gray-800
+              text-petrol
               break-all
             "
           >

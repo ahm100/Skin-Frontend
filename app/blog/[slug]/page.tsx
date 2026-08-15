@@ -80,7 +80,7 @@ export default async function BlogArticlePage({
         <nav
           className="
             text-sm
-            text-gray-500
+            text-petrol
             mb-8
           "
         >
@@ -107,7 +107,7 @@ export default async function BlogArticlePage({
             /
           </span>
 
-          <span className="text-gray-700">
+          <span className="text-petrol">
             {article.title}
           </span>
 
@@ -124,7 +124,7 @@ export default async function BlogArticlePage({
               sm:text-5xl
               font-extrabold
               leading-tight
-              text-gray-900
+              text-petrol
             "
           >
             {article.title}
@@ -162,7 +162,7 @@ export default async function BlogArticlePage({
           <p
             className="
               leading-8
-              text-gray-700
+              text-petrol
             "
           >
             {article.intro}
@@ -188,7 +188,7 @@ export default async function BlogArticlePage({
                     text-2xl
                     sm:text-3xl
                     font-extrabold
-                    text-gray-900
+                    text-petrol
                   "
                 >
                   {index + 1}. {section.title}
@@ -208,7 +208,7 @@ export default async function BlogArticlePage({
                         key={paragraph}
                         className="
                           leading-8
-                          text-gray-700
+                          text-petrol
                         "
                       >
                         {paragraph}
@@ -236,7 +236,7 @@ export default async function BlogArticlePage({
               text-2xl
               sm:text-3xl
               font-extrabold
-              text-gray-900
+              text-petrol
             "
           >
             9. سؤالات متداول
@@ -266,7 +266,7 @@ export default async function BlogArticlePage({
                   className="
                     cursor-pointer
                     font-bold
-                    text-gray-900
+                    text-petrol
                   "
                 >
                   {item.question}
@@ -276,7 +276,7 @@ export default async function BlogArticlePage({
                   className="
                     mt-4
                     leading-8
-                    text-gray-600
+                    text-petrol
                   "
                 >
                   {item.answer}
@@ -338,7 +338,7 @@ export default async function BlogArticlePage({
             className="
               text-2xl
               font-extrabold
-              text-gray-900
+              text-petrol
             "
           >
             درباره وضعیت پوست خود کنجکاو هستید؟
@@ -348,7 +348,7 @@ export default async function BlogArticlePage({
             className="
               mt-3
               leading-7
-              text-gray-600
+              text-petrol
             "
           >
             یک تصویر از پوست خود ارسال کنید و
