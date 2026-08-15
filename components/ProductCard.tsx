@@ -211,18 +211,26 @@ export default function ProductCard({
                       target="_blank"
                       rel="noopener noreferrer"
                       className="
-                        rounded-xl
-                        bg-gradient-to-r
-                        from-violet-500
-                        to-pink-500
-                        px-4
-                        py-2
-                        text-sm
-                        font-bold
-                        text-white
-                        hover:opacity-90
-                        transition
-                      "
+    rounded-xl
+
+    bg-gradient-to-l
+    from-coral
+    via-[#E97861]
+    to-[#F4A896]
+
+    px-4
+    py-2
+
+    text-sm
+    font-bold
+    text-white
+
+    shadow-md
+    shadow-coral/25
+
+    hover:opacity-90
+    transition
+  "
                     >
                       خرید
                     </a>
