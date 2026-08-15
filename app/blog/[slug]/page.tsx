@@ -355,24 +355,31 @@ export default async function BlogArticlePage({
             ارزیابی اولیه هوش مصنوعی سورنمه را ببینید.
           </p>
 
-          <Link
-            href="/analyze"
-            className="
-              inline-flex
-              mt-6
-              rounded-xl
-              bg-gradient-to-r
-              from-violet-500
-              to-pink-400
-              px-8
-              py-3
-              text-gray-800
-              font-medium
-              shadow-md
-              hover:opacity-90
-              transition
-            "
-          >
+         <Link
+  href="/analyze"
+  className="
+    inline-flex
+    mt-6
+    rounded-xl
+
+    bg-gradient-to-l
+    from-coral
+    via-[#E97861]
+    to-[#F4A896]
+
+    px-8
+    py-3
+
+    text-white
+    font-medium
+
+    shadow-md
+    shadow-coral/25
+
+    hover:opacity-90
+    transition
+  "
+>
             شروع تحلیل پوست
           </Link>
 

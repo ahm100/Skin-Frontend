@@ -388,31 +388,37 @@ export default function AnalyzePage() {
       {/* Analyze Button */}
       {/* ========================= */}
 
-      <button
-        type="button"
-        onClick={analyze}
-        disabled={!image || loading}
-        className="
-          mt-4
-          rounded-xl
-          bg-gradient-to-r
-          from-violet-500
-          via-purple-400
-          to-pink-400
-          px-8
-          py-3
-          text-gray-800
-          font-medium
-          shadow-md
-          transition
+     <button
+  type="button"
+  onClick={analyze}
+  disabled={!image || loading}
+  className="
+    mt-4
+    rounded-xl
 
-          disabled:opacity-40
-          disabled:cursor-not-allowed
-          disabled:hover:opacity-40
+    bg-gradient-to-l
+    from-coral
+    via-[#E97861]
+    to-[#F4A896]
 
-          hover:opacity-90
-        "
-      >
+    px-8
+    py-3
+
+    text-white
+    font-medium
+
+    shadow-md
+    shadow-coral/25
+
+    transition
+
+    disabled:opacity-40
+    disabled:cursor-not-allowed
+    disabled:hover:opacity-40
+
+    hover:opacity-90
+  "
+>
         {loading
           ? "در حال تحلیل..."
           : "شروع تحلیل"}

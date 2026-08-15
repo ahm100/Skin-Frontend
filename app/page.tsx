@@ -55,24 +55,39 @@ export default function Home() {
         </p>
 
         <a
-          href="/analyze"
-          className="
-            mt-10
-            rounded-xl
-            bg-gradient-to-r
-            from-violet-500
-            via-purple-400
-            to-pink-400
-            px-10
-            py-4
-            text-lg
-            font-medium
-            text-gray-800
-            shadow-md
-            hover:opacity-90
-            transition
-          "
-        >
+  href="/analyze"
+  className="
+    mt-10
+    inline-flex
+    items-center
+    justify-center
+
+    rounded-xl
+
+    bg-gradient-to-l
+    from-coral
+    via-[#E97861]
+    to-[#F4A896]
+
+    px-10
+    py-4
+
+    text-lg
+    font-bold
+    text-white
+
+    shadow-lg
+    shadow-coral/25
+
+    hover:-translate-y-0.5
+    hover:shadow-xl
+    hover:shadow-coral/30
+
+    transition-all
+    duration-200
+  "
+>
+ 
           شروع تحلیل رایگان
         </a>
 

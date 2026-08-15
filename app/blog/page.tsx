@@ -112,23 +112,30 @@ export default function BlogPage() {
               </p>
 
               <Link
-                href={`/blog/${article.slug}`}
-                className="
-                  inline-flex
-                  mt-5
-                  rounded-xl
-                  bg-gradient-to-r
-                  from-violet-500
-                  to-pink-400
-                  px-5
-                  py-2.5
-                  text-gray-800
-                  font-medium
-                  shadow-sm
-                  hover:opacity-90
-                  transition
-                "
-              >
+  href={`/blog/${article.slug}`}
+  className="
+    inline-flex
+    mt-5
+    rounded-xl
+
+    bg-gradient-to-l
+    from-coral
+    via-[#E97861]
+    to-[#F4A896]
+
+    px-5
+    py-2.5
+
+    text-white
+    font-medium
+
+    shadow-sm
+    shadow-coral/20
+
+    hover:opacity-90
+    transition
+  "
+>
                 مطالعه مقاله
               </Link>
 
