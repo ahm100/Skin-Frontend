@@ -469,255 +469,256 @@ export default function Home() {
           BRANDS / SPONSOR CTA
           ===================================================== */}
 
-      <section
+      {/* =====================================================
+    BRANDS / SPONSOR CTA
+    ===================================================== */}
+
+<section
+  className="
+    px-6
+    py-16
+    sm:px-10
+  "
+>
+  <div
+    className="
+      mx-auto
+      max-w-5xl
+
+      rounded-3xl
+
+      bg-[#F2EAF1]
+
+      px-6
+      py-12
+
+      text-center
+
+      shadow-sm
+    "
+  >
+
+    <span
+      className="
+        inline-flex
+        rounded-full
+
+        bg-coral/10
+
+        px-4
+        py-1.5
+
+        text-sm
+        font-medium
+
+        text-petrol
+      "
+    >
+      همکاری با برندها
+    </span>
+
+
+    <h2
+      className="
+        mt-5
+
+        text-2xl
+        sm:text-3xl
+
+        font-extrabold
+
+        text-petrol
+      "
+    >
+      محصول خود را به مشتری مناسب معرفی کنید
+    </h2>
+
+
+    <p
+      className="
+        mx-auto
+        mt-5
+
+        max-w-2xl
+
+        text-base
+        sm:text-lg
+
+        leading-8
+
+        text-petrol-soft
+      "
+    >
+      در Surenmah، کاربران ابتدا پوست خود را با کمک هوش مصنوعی
+      تحلیل می‌کنند و سپس محصولات مرتبط را مشاهده می‌کنند.
+      برند شما می‌تواند در همین مسیر، محصول خود را به مخاطب
+      مناسب معرفی کند.
+    </p>
+
+
+    {/* VALUE POINTS */}
+
+    <div
+      className="
+        mx-auto
+        mt-8
+
+        grid
+        max-w-3xl
+
+        gap-4
+
+        sm:grid-cols-3
+      "
+    >
+
+      <div
         className="
-          px-6
-          py-16
-          sm:px-10
+          rounded-2xl
+          bg-white/60
+          p-4
         "
       >
-        <div
+        <div className="text-2xl">
+          🎯
+        </div>
+
+        <h3
           className="
-            mx-auto
-            max-w-5xl
-
-            rounded-3xl
-
-            bg-gradient-to-l
-            from-coral/20
-            via-blush/20
-            to-[#F5E6D3]
-
-            px-6
-            py-12
-
-            text-center
-
-            shadow-sm
+            mt-2
+            font-bold
+            text-petrol
           "
         >
+          مخاطب هدفمند
+        </h3>
 
-          <span
-            className="
-              inline-flex
-              rounded-full
-              bg-coral/10
-
-              px-4
-              py-1.5
-
-              text-sm
-              font-medium
-
-              text-petrol
-            "
-          >
-            همکاری با برندها
-          </span>
+        <p
+          className="
+            mt-1
+            text-sm
+            leading-6
+            text-petrol-soft
+          "
+        >
+          محصول شما در کنار نیاز مرتبط کاربر دیده می‌شود.
+        </p>
+      </div>
 
 
-          <h2
-            className="
-              mt-5
-
-              text-2xl
-              sm:text-3xl
-
-              font-extrabold
-
-              text-petrol
-            "
-          >
-            محصول شما را به مشتری مناسب معرفی کنید
-          </h2>
-
-
-          <p
-            className="
-              mx-auto
-              mt-5
-
-              max-w-2xl
-
-              text-base
-              sm:text-lg
-
-              leading-8
-
-              text-petrol-soft
-            "
-          >
-            در Surenmah، کاربران ابتدا پوست خود را با کمک هوش مصنوعی
-            تحلیل می‌کنند و سپس محصولات مرتبط را مشاهده می‌کنند.
-            برند شما می‌تواند در همین مسیر، محصول خود را به مخاطب
-            مناسب معرفی کند.
-          </p>
-
-
-          {/* VALUE POINTS */}
-
-          <div
-            className="
-              mx-auto
-              mt-8
-
-              grid
-              max-w-3xl
-
-              gap-4
-
-              sm:grid-cols-3
-            "
-          >
-
-            <div
-              className="
-                rounded-2xl
-                bg-white/60
-                p-4
-              "
-            >
-              <div className="text-2xl">
-                🎯
-              </div>
-
-              <h3
-                className="
-                  mt-2
-                  font-bold
-                  text-petrol
-                "
-              >
-                مخاطب هدفمند
-              </h3>
-
-              <p
-                className="
-                  mt-1
-                  text-sm
-                  leading-6
-                  text-petrol-soft
-                "
-              >
-                محصول شما در کنار نیاز مرتبط کاربر دیده می‌شود.
-              </p>
-            </div>
-
-
-            <div
-              className="
-                rounded-2xl
-                bg-white/60
-                p-4
-              "
-            >
-              <div className="text-2xl">
-                🤖
-              </div>
-
-              <h3
-                className="
-                  mt-2
-                  font-bold
-                  text-petrol
-                "
-              >
-                تجربه مبتنی بر AI
-              </h3>
-
-              <p
-                className="
-                  mt-1
-                  text-sm
-                  leading-6
-                  text-petrol-soft
-                "
-              >
-                محصول در مسیر تحلیل و انتخاب آگاهانه کاربر قرار می‌گیرد.
-              </p>
-            </div>
-
-
-            <div
-              className="
-                rounded-2xl
-                bg-white/60
-                p-4
-              "
-            >
-              <div className="text-2xl">
-                🛒
-              </div>
-
-              <h3
-                className="
-                  mt-2
-                  font-bold
-                  text-petrol
-                "
-              >
-                هدایت مستقیم برای خرید
-              </h3>
-
-              <p
-                className="
-                  mt-1
-                  text-sm
-                  leading-6
-                  text-petrol-soft
-                "
-              >
-                کاربر برای خرید مستقیماً به سایت شما هدایت می‌شود.
-              </p>
-            </div>
-
-          </div>
-
-
-          {/* CTA */}
-
-          <a
-            href="/sponsor"
-            className="
-              mt-9
-
-              inline-flex
-              items-center
-              justify-center
-
-              rounded-xl
-
-              bg-gradient-to-l
-              from-coral
-              via-[#E97861]
-              to-[#F4A896]
-
-              px-8
-              py-3.5
-
-              text-base
-              sm:text-lg
-
-              font-bold
-              text-white
-
-              shadow-lg
-              shadow-coral/25
-
-              hover:-translate-y-0.5
-              hover:shadow-xl
-              hover:shadow-coral/30
-
-              transition-all
-              duration-200
-            "
-          >
-            فرصت‌های همکاری با Surenmah
-          </a>
-
+      <div
+        className="
+          rounded-2xl
+          bg-white/60
+          p-4
+        "
+      >
+        <div className="text-2xl">
+          🤖
         </div>
-      </section>
 
+        <h3
+          className="
+            mt-2
+            font-bold
+            text-petrol
+          "
+        >
+          تجربه مبتنی بر AI
+        </h3>
+
+        <p
+          className="
+            mt-1
+            text-sm
+            leading-6
+            text-petrol-soft
+          "
+        >
+          محصول در مسیر تحلیل و انتخاب آگاهانه کاربر قرار می‌گیرد.
+        </p>
+      </div>
+
+
+      <div
+        className="
+          rounded-2xl
+          bg-white/60
+          p-4
+        "
+      >
+        <div className="text-2xl">
+          🛒
+        </div>
+
+        <h3
+          className="
+            mt-2
+            font-bold
+            text-petrol
+          "
+        >
+          هدایت مستقیم برای خرید
+        </h3>
+
+        <p
+          className="
+            mt-1
+            text-sm
+            leading-6
+            text-petrol-soft
+          "
+        >
+          کاربر برای خرید مستقیماً به سایت شما هدایت می‌شود.
+        </p>
+      </div>
+
+    </div>
+
+
+    {/* CTA */}
+
+    <a
+      href="/sponsor"
+      className="
+        mt-9
+
+        inline-flex
+        items-center
+        justify-center
+
+        rounded-xl
+
+        bg-gradient-to-l
+        from-coral
+        via-[#E97861]
+        to-[#F4A896]
+
+        px-8
+        py-3.5
+
+        text-base
+        sm:text-lg
+
+        font-bold
+        text-white
+
+        shadow-lg
+        shadow-coral/25
+
+        hover:-translate-y-0.5
+        hover:shadow-xl
+        hover:shadow-coral/30
+
+        transition-all
+        duration-200
+      "
+    >
+      فرصت‌های همکاری با Surenmah
+    </a>
+
+  </div>
+</section>
 
       {/* SEO Content */}
 
