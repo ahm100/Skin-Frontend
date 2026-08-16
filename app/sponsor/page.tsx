@@ -32,7 +32,6 @@ export default function SponsorPage() {
             همکاری با برندهای مراقبت پوست
           </span>
 
-
           <h1
             className="
               mt-6
@@ -44,7 +43,6 @@ export default function SponsorPage() {
           >
             محصول شما را به مشتری مناسب معرفی می‌کنیم
           </h1>
-
 
           <p
             className="
@@ -60,7 +58,6 @@ export default function SponsorPage() {
             به کاربران کمک می‌کند محصولات مناسب خود را پیدا کنند.
             برند شما می‌تواند دقیقاً در همین لحظه دیده شود.
           </p>
-
 
           <Link
             href="#contact"
@@ -79,8 +76,8 @@ export default function SponsorPage() {
               text-white
               shadow-lg
               shadow-coral/25
-              hover:-translate-y-0.5
               transition
+              hover:-translate-y-0.5
             "
           >
             شروع همکاری با Surenmah
@@ -88,7 +85,6 @@ export default function SponsorPage() {
 
         </div>
       </section>
-
 
 
       {/* WHY */}
@@ -107,7 +103,6 @@ export default function SponsorPage() {
             چرا Surenmah برای برندها ارزشمند است؟
           </h2>
 
-
           <div
             className="
               mt-10
@@ -119,18 +114,18 @@ export default function SponsorPage() {
 
             {[
               {
-                title:"مخاطب واقعی",
-                text:"محصول شما به کاربری نمایش داده می‌شود که در حال پیدا کردن راهکار برای نیاز پوستی خود است."
+                title: "مخاطب واقعی",
+                text: "محصول شما به کاربری نمایش داده می‌شود که در حال پیدا کردن راهکار برای نیاز پوستی خود است.",
               },
               {
-                title:"قدرت هوش مصنوعی",
-                text:"کاربر ابتدا پوست خود را تحلیل می‌کند و سپس پیشنهادهای مرتبط دریافت می‌کند."
+                title: "قدرت هوش مصنوعی",
+                text: "کاربر ابتدا پوست خود را تحلیل می‌کند و سپس پیشنهادهای مرتبط دریافت می‌کند.",
               },
               {
-                title:"انتقال مستقیم مشتری",
-                text:"با کلیک روی خرید، کاربر مستقیماً به وب‌سایت یا فروشگاه شما هدایت می‌شود."
-              }
-            ].map(item => (
+                title: "انتقال مستقیم مشتری",
+                text: "با کلیک روی خرید، کاربر مستقیماً به وب‌سایت یا فروشگاه شما هدایت می‌شود.",
+              },
+            ].map((item) => (
 
               <div
                 key={item.title}
@@ -153,7 +148,6 @@ export default function SponsorPage() {
                   {item.title}
                 </h3>
 
-
                 <p
                   className="
                     mt-3
@@ -175,8 +169,6 @@ export default function SponsorPage() {
       </section>
 
 
-
-
       {/* JOURNEY */}
 
       <section
@@ -189,7 +181,6 @@ export default function SponsorPage() {
 
         <div className="mx-auto max-w-5xl">
 
-
           <h2
             className="
               text-center
@@ -199,8 +190,6 @@ export default function SponsorPage() {
           >
             تجربه کاربر چگونه است؟
           </h2>
-
-
 
           <div
             className="
@@ -215,8 +204,8 @@ export default function SponsorPage() {
               "کاربر تصویر پوست خود را ارسال می‌کند",
               "هوش مصنوعی وضعیت پوست را تحلیل می‌کند",
               "محصولات مناسب نمایش داده می‌شوند",
-              "کاربر برای خرید وارد سایت شما می‌شود"
-            ].map((x,i)=>(
+              "کاربر برای خرید وارد سایت شما می‌شود",
+            ].map((x, i) => (
 
               <div
                 key={x}
@@ -240,13 +229,12 @@ export default function SponsorPage() {
                     justify-center
                     rounded-full
                     bg-coral
-                    text-white
                     font-bold
+                    text-white
                   "
                 >
-                  {i+1}
+                  {i + 1}
                 </div>
-
 
                 <p
                   className="
@@ -264,12 +252,9 @@ export default function SponsorPage() {
 
           </div>
 
-
         </div>
 
       </section>
-
-
 
 
       {/* BRAND VALUE */}
@@ -299,7 +284,6 @@ export default function SponsorPage() {
             محصول شما فقط تبلیغ نمی‌شود؛ پیشنهاد داده می‌شود
           </h2>
 
-
           <p
             className="
               mt-5
@@ -312,12 +296,9 @@ export default function SponsorPage() {
             دیده می‌شود.
           </p>
 
-
         </div>
 
       </section>
-
-
 
 
       {/* CONTACT */}
@@ -349,79 +330,185 @@ export default function SponsorPage() {
           </h2>
 
 
-          <div className="mt-6 space-y-4">
+          {/* TEMPORARILY DISABLED */}
 
-            <input
-              placeholder="نام برند"
+          <div className="mt-6">
+
+            <div
               className="
-                w-full
-                rounded-xl
+                relative
+                overflow-hidden
+                rounded-2xl
                 border
-                border-coral/20
-                px-4
-                py-3
-              "
-            />
-
-
-            <input
-              placeholder="ایمیل"
-              className="
-                w-full
-                rounded-xl
-                border
-                border-coral/20
-                px-4
-                py-3
-              "
-            />
-
-
-            <input
-              placeholder="وب‌سایت برند"
-              className="
-                w-full
-                rounded-xl
-                border
-                border-coral/20
-                px-4
-                py-3
-              "
-            />
-
-
-            <textarea
-              placeholder="توضیح کوتاه درباره همکاری"
-              rows={4}
-              className="
-                w-full
-                rounded-xl
-                border
-                border-coral/20
-                px-4
-                py-3
-              "
-            />
-
-
-            <button
-              className="
-                w-full
-                rounded-xl
-                bg-gradient-to-l
-                from-coral
-                via-[#E97861]
-                to-[#F4A896]
-                py-3
-                font-bold
-                text-white
+                border-gray-200
+                bg-gray-100
+                p-6
               "
             >
-              ارسال درخواست همکاری
-            </button>
+
+              {/* Disabled overlay */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  bg-gray-100/60
+                "
+              />
+
+              <div className="relative space-y-4">
+
+                <input
+                  disabled
+                  placeholder="نام برند"
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    border
+                    border-gray-200
+                    bg-gray-200
+                    px-4
+                    py-3
+                    text-gray-400
+                    placeholder:text-gray-400
+                  "
+                />
+
+                <input
+                  disabled
+                  placeholder="ایمیل"
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    border
+                    border-gray-200
+                    bg-gray-200
+                    px-4
+                    py-3
+                    text-gray-400
+                    placeholder:text-gray-400
+                  "
+                />
+
+                <input
+                  disabled
+                  placeholder="وب‌سایت برند"
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    border
+                    border-gray-200
+                    bg-gray-200
+                    px-4
+                    py-3
+                    text-gray-400
+                    placeholder:text-gray-400
+                  "
+                />
+
+                <textarea
+                  disabled
+                  placeholder="توضیح کوتاه درباره همکاری"
+                  rows={4}
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    border
+                    border-gray-200
+                    bg-gray-200
+                    px-4
+                    py-3
+                    text-gray-400
+                    placeholder:text-gray-400
+                  "
+                />
+
+                <button
+                  disabled
+                  className="
+                    w-full
+                    cursor-not-allowed
+                    rounded-xl
+                    bg-gray-300
+                    py-3
+                    font-bold
+                    text-gray-500
+                  "
+                >
+                  ارسال درخواست همکاری
+                </button>
+
+              </div>
+
+            </div>
+
+
+            {/* Temporary notice */}
+
+            <div
+              className="
+                mt-5
+                rounded-2xl
+                border
+                border-amber-200
+                bg-amber-50
+                p-5
+                text-center
+              "
+            >
+
+              <div className="text-lg font-bold text-gray-700">
+                ارسال فرم موقتاً غیرفعال است
+              </div>
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  leading-7
+                  text-gray-600
+                "
+              >
+                در حال حاضر سرویس دریافت پیام از طریق فرم همکاری
+                موقتاً در دسترس نیست.
+              </p>
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  leading-7
+                  text-gray-600
+                "
+              >
+                لطفاً درخواست همکاری خود را مستقیماً به ایمیل زیر ارسال کنید:
+              </p>
+
+
+              <a
+                href="mailto:ahmad.sadegh@gmail.com"
+                className="
+                  mt-3
+                  inline-block
+                  font-bold
+                  text-coral
+                  underline
+                  underline-offset-4
+                  transition
+                  hover:text-coral/70
+                "
+              >
+                ahmad.sadegh@gmail.com
+              </a>
+
+            </div>
 
           </div>
-
 
         </div>
 
