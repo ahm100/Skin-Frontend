@@ -4,87 +4,86 @@ export default function SponsorPage() {
   return (
     <main className="bg-porcelain text-petrol">
 
+
+
       {/* HERO */}
 
-      <section
-        className="
-          bg-gradient-to-l
-          from-coral/20
-          via-blush/20
-          to-[#F5E6D3]/70
-          px-5
-          py-20
-          text-center
-        "
-      >
-        <div className="mx-auto max-w-5xl">
+<section
+  className="
+    bg-[#F5F6F2]
+    px-5
+    py-20
+    text-center
+  "
+>
+  <div className="mx-auto max-w-5xl">
 
-          <span
-            className="
-              rounded-full
-              bg-coral/10
-              px-4
-              py-2
-              text-sm
-              font-medium
-            "
-          >
-            همکاری با برندهای مراقبت پوست
-          </span>
+    <span
+      className="
+        rounded-full
+        bg-coral/10
+        px-4
+        py-2
+        text-sm
+        font-medium
+      "
+    >
+      همکاری با برندهای مراقبت پوست
+    </span>
 
-          <h1
-            className="
-              mt-6
-              text-4xl
-              font-extrabold
-              leading-tight
-              sm:text-5xl
-            "
-          >
-            محصول شما را به مشتری مناسب معرفی می‌کنیم
-          </h1>
+    <h1
+      className="
+        mt-6
+        text-4xl
+        font-extrabold
+        leading-tight
+        sm:text-5xl
+      "
+    >
+      محصول شما را به مشتری مناسب معرفی می‌کنیم
+    </h1>
 
-          <p
-            className="
-              mx-auto
-              mt-6
-              max-w-3xl
-              text-lg
-              leading-9
-              text-petrol-soft
-            "
-          >
-            Surenmah با استفاده از تحلیل پوست توسط هوش مصنوعی،
-            به کاربران کمک می‌کند محصولات مناسب خود را پیدا کنند.
-            برند شما می‌تواند دقیقاً در همین لحظه دیده شود.
-          </p>
+    <p
+      className="
+        mx-auto
+        mt-6
+        max-w-3xl
+        text-lg
+        leading-9
+        text-petrol-soft
+      "
+    >
+      Surenmah با استفاده از تحلیل پوست توسط هوش مصنوعی،
+      به کاربران کمک می‌کند محصولات مناسب خود را پیدا کنند.
+      برند شما می‌تواند دقیقاً در همین لحظه دیده شود.
+    </p>
 
-          <Link
-            href="#contact"
-            className="
-              mt-10
-              inline-flex
-              rounded-xl
-              bg-gradient-to-l
-              from-coral
-              via-[#E97861]
-              to-[#F4A896]
-              px-10
-              py-4
-              text-lg
-              font-bold
-              text-white
-              shadow-lg
-              shadow-coral/25
-              transition
-              hover:-translate-y-0.5
-            "
-          >
-            شروع همکاری با Surenmah
-          </Link>
+    <Link
+      href="#contact"
+      className="
+        mt-10
+        inline-flex
+        rounded-xl
+        bg-gradient-to-l
+        from-coral
+        via-[#E97861]
+        to-[#F4A896]
+        px-10
+        py-4
+        text-lg
+        font-bold
+        text-white
+        shadow-lg
+        shadow-coral/25
+        hover:-translate-y-0.5
+        transition
+      "
+    >
+      شروع همکاری با Surenmah
+    </Link>
 
-        </div>
-      </section>
+  </div>
+</section>
 
 
       {/* WHY */}
