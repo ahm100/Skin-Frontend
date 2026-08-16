@@ -7,10 +7,11 @@ export default function SponsorPage() {
 
 
       {/* HERO */}
+{/* HERO */}
 
 <section
   className="
-    bg-[#F5F6F2]
+    bg-[#F2EAF1]
     px-5
     py-20
     text-center
@@ -37,6 +38,7 @@ export default function SponsorPage() {
         text-4xl
         font-extrabold
         leading-tight
+        text-petrol
         sm:text-5xl
       "
     >
@@ -84,7 +86,6 @@ export default function SponsorPage() {
 
   </div>
 </section>
-
 
       {/* WHY */}
 
