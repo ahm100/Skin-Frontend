@@ -137,10 +137,19 @@ export default function AnalyzePage() {
         size: image.size,
       });
 
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        setImageError("لطفاً ابتدا وارد حساب کاربری شوید.");
+        return;
+      }
       const response = await fetch(
         `${API_BASE}/api/SkinAnalysis/analyze`,
         {
           method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
           body: formData,
         }
       );
@@ -388,11 +397,11 @@ export default function AnalyzePage() {
       {/* Analyze Button */}
       {/* ========================= */}
 
-     <button
-  type="button"
-  onClick={analyze}
-  disabled={!image || loading}
-  className="
+      <button
+        type="button"
+        onClick={analyze}
+        disabled={!image || loading}
+        className="
     mt-4
     rounded-xl
 
@@ -418,7 +427,7 @@ export default function AnalyzePage() {
 
     hover:opacity-90
   "
->
+      >
         {loading
           ? "در حال تحلیل..."
           : "شروع تحلیل"}
@@ -450,5 +459,5 @@ export default function AnalyzePage() {
 
       <Disclaimer />
     </main>
-  );
+  );////
 }
