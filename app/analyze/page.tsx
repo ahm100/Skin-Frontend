@@ -11,6 +11,7 @@ export default function AnalyzePage() {
   const [imageError, setImageError] = useState("");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [saveToHistory, setSaveToHistory] = useState(false);
 
   const resultRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -22,11 +23,8 @@ export default function AnalyzePage() {
   function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
-    console.log("FILE INPUT CHANGED");
 
     const file = e.target.files?.[0];
-
-    console.log("SELECTED FILE:", file);
 
     setImageError("");
     setImage(null);
@@ -96,6 +94,14 @@ export default function AnalyzePage() {
     setImage(file);
   }
 
+   useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    // if (!token) { // dont force anonymous users
+    //   window.location.href = "/login?returnUrl=/analyze";
+    // }
+  }, []);
+
   // =========================
   // Scroll to result
   // =========================
@@ -139,17 +145,22 @@ export default function AnalyzePage() {
 
       const token = localStorage.getItem("token");
 
-      if (!token) {
-        setImageError("لطفاً ابتدا وارد حساب کاربری شوید.");
-        return;
+      // if (!token) {
+      //   setImageError("لطفاً ابتدا وارد حساب کاربری شوید.");
+      //   return;
+      // }
+
+      const headers: HeadersInit = {};
+
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
       }
+
       const response = await fetch(
         `${API_BASE}/api/SkinAnalysis/analyze`,
         {
           method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers,
           body: formData,
         }
       );
@@ -393,6 +404,7 @@ export default function AnalyzePage() {
         </div>
       )}
 
+      
       {/* ========================= */}
       {/* Analyze Button */}
       {/* ========================= */}
