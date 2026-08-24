@@ -55,10 +55,10 @@ export default function RootLayout({
           "
         >
           <div
+            dir="ltr"
             className="
               w-full
-              max-w-6xl
-              mx-auto
+            
 
               px-4
               sm:px-6
@@ -71,21 +71,77 @@ export default function RootLayout({
               items-center
               justify-between
 
-              gap-3
+              gap-2
+              sm:gap-3
+
               min-w-0
             "
           >
+
+            {/* =================================================
+                LOGO - LEFT
+                ================================================= */}
+
+            <Link
+              href="/"
+              dir="ltr"
+              className="
+                flex
+                items-center
+                gap-1
+
+                shrink-0
+                whitespace-nowrap
+
+                text-lg
+                sm:text-2xl
+                md:text-3xl
+
+                font-extrabold
+                tracking-wide
+
+                text-petrol
+
+                hover:text-coral
+
+                transition-colors
+              "
+            >
+              <span
+                className="
+                  inline-block
+
+                  h-2
+                  w-2
+
+                  sm:h-2.5
+                  sm:w-2.5
+
+                  rounded-full
+
+                  bg-coral
+
+                  shrink-0
+                "
+              />
+
+              <span>
+                Surenmah
+              </span>
+            </Link>
+
 
             {/* =================================================
                 RIGHT MENU
                 ================================================= */}
 
             <nav
+              dir="rtl"
               className="
                 flex
                 items-center
 
-                gap-2
+                gap-1
                 sm:gap-4
                 md:gap-6
 
@@ -104,7 +160,7 @@ export default function RootLayout({
                   flex
                   items-center
 
-                  gap-1.5
+                  gap-1
                   sm:gap-2
 
                   whitespace-nowrap
@@ -142,7 +198,7 @@ export default function RootLayout({
                   flex
                   items-center
 
-                  gap-1.5
+                  gap-1
                   sm:gap-2
 
                   whitespace-nowrap
@@ -209,66 +265,12 @@ export default function RootLayout({
                 تحلیل پوست
               </Link>
 
+
+              {/* AUTH */}
+
               <AuthButton />
 
             </nav>
-
-
-            {/* =================================================
-                LOGO
-                ================================================= */}
-
-            <Link
-              href="/"
-              dir="ltr"
-              className="
-                flex
-                items-center
-                gap-1
-
-                shrink-0
-                whitespace-nowrap
-
-                text-lg
-                sm:text-2xl
-                md:text-3xl
-
-                font-extrabold
-                tracking-wide
-
-                text-petrol
-
-                hover:text-coral
-
-                transition-colors
-              "
-            >
-
-              {/* Coral dot */}
-
-              <span
-                className="
-                  inline-block
-
-                  h-2
-                  w-2
-
-                  sm:h-2.5
-                  sm:w-2.5
-
-                  rounded-full
-
-                  bg-coral
-
-                  shrink-0
-                "
-              />
-
-              <span>
-                Surenmah
-              </span>
-
-            </Link>
 
           </div>
         </header>
@@ -319,10 +321,6 @@ export default function RootLayout({
           "
         >
 
-          {/* =================================================
-              FOOTER TITLE
-              ================================================= */}
-
           <h3
             className="
               text-xl
@@ -336,10 +334,6 @@ export default function RootLayout({
             ارتباط با ما
           </h3>
 
-
-          {/* =================================================
-              DESCRIPTION
-              ================================================= */}
 
           <p
             className="
@@ -356,10 +350,6 @@ export default function RootLayout({
             برای همکاری، پیشنهاد یا پشتیبانی با ما در تماس باشید.
           </p>
 
-
-          {/* =================================================
-              EMAIL
-              ================================================= */}
 
           <p
             className="
@@ -393,10 +383,6 @@ export default function RootLayout({
             </a>
           </p>
 
-
-          {/* =================================================
-              CONTACT BUTTONS
-              ================================================= */}
 
           <div
             className="
@@ -481,10 +467,6 @@ export default function RootLayout({
 
           </div>
 
-
-          {/* =================================================
-              COPYRIGHT
-              ================================================= */}
 
           <p
             className="
