@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
 import { Home, BookOpen } from "lucide-react";
+import AuthButton from "@/components/AuthButton";
 
 export const metadata: Metadata = {
   title: "Surenmah | تحلیل پوست با هوش مصنوعی",
@@ -208,6 +209,8 @@ export default function RootLayout({
                 تحلیل پوست
               </Link>
 
+              <AuthButton />
+
             </nav>
 
 
@@ -226,7 +229,7 @@ export default function RootLayout({
                 shrink-0
                 whitespace-nowrap
 
-                text-xl
+                text-lg
                 sm:text-2xl
                 md:text-3xl
 
