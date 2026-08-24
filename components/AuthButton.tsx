@@ -7,6 +7,7 @@ import { API_BASE } from "@/lib/api";
 type User = {
   userId: string;
   email: string;
+  displayName: string | null;
 };
 
 export default function AuthButton() {
@@ -17,6 +18,7 @@ export default function AuthButton() {
     async function loadUser() {
       const token = localStorage.getItem("token");
 
+      // کاربر لاگین نیست
       if (!token) {
         setLoading(false);
         return;
@@ -33,8 +35,8 @@ export default function AuthButton() {
           }
         );
 
+        // Token نامعتبر یا منقضی شده
         if (!response.ok) {
-          // Token invalid / expired
           localStorage.removeItem("token");
           setUser(null);
           return;
@@ -45,8 +47,8 @@ export default function AuthButton() {
         setUser({
           userId: data.userId,
           email: data.email,
+          displayName: data.displayName,
         });
-
       } catch (error) {
         console.error(
           "Failed to load current user:",
@@ -68,31 +70,40 @@ export default function AuthButton() {
     window.location.href = "/";
   }
 
-  // تا زمانی که وضعیت Login مشخص نشده
+  // تا وقتی وضعیت authentication مشخص نشده
   if (loading) {
     return null;
   }
 
-  // کاربر Login نکرده
+  // کاربر لاگین نیست
   if (!user) {
     return (
       <Link
         href="/login"
         className="
           rounded-full
+
           border
           border-coral
+
           px-3
           py-1.5
+
           sm:px-4
           sm:py-2
+
           text-xs
           sm:text-sm
+
           font-medium
+
           text-coral
+
           hover:bg-coral
           hover:text-white
+
           transition
+
           whitespace-nowrap
           shrink-0
         "
@@ -102,24 +113,25 @@ export default function AuthButton() {
     );
   }
 
-  // کاربر Login کرده
+  // کاربر لاگین است
   return (
     <div
       className="
         flex
         items-center
+
         gap-2
         sm:gap-3
+
         shrink-0
       "
     >
-
-      {/* User Email */}
+      {/* نام کاربر */}
 
       <span
         className="
-          max-w-[150px]
-          sm:max-w-[220px]
+          max-w-[120px]
+          sm:max-w-[180px]
 
           truncate
 
@@ -132,19 +144,19 @@ export default function AuthButton() {
 
           whitespace-nowrap
         "
-        title={user.email}
+        title={user.displayName || user.email}
       >
-        {user.email}
+        {user.displayName || "کاربر"}
       </span>
 
-
-      {/* Logout */}
+      {/* خروج */}
 
       <button
         type="button"
         onClick={logout}
         className="
           rounded-full
+
           border
           border-coral
 
@@ -171,7 +183,6 @@ export default function AuthButton() {
       >
         خروج
       </button>
-
     </div>
   );
 }
