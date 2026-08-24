@@ -13,6 +13,7 @@ export default function AnalyzePage() {
   const [loading, setLoading] = useState(false);
   const [saveToHistory, setSaveToHistory] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const resultRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -23,7 +24,6 @@ export default function AnalyzePage() {
   function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
-
     const file = e.target.files?.[0];
 
     setImageError("");
@@ -46,10 +46,7 @@ export default function AnalyzePage() {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-      console.log(
-        "INVALID FILE TYPE:",
-        file.type
-      );
+      console.log("INVALID FILE TYPE:", file.type);
 
       setImageError(
         "فرمت تصویر باید JPG، PNG یا WEBP باشد."
@@ -67,10 +64,7 @@ export default function AnalyzePage() {
     const maxSize = 5 * 1024 * 1024;
 
     if (file.size > maxSize) {
-      console.log(
-        "FILE TOO LARGE:",
-        file.size
-      );
+      console.log("FILE TOO LARGE:", file.size);
 
       setImageError(
         "حجم تصویر نباید بیشتر از 5 مگابایت باشد."
@@ -94,13 +88,14 @@ export default function AnalyzePage() {
     setImage(file);
   }
 
+  // =========================
+  // Authentication
+  // =========================
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     setIsLoggedIn(!!token);
-    // if (!token) { // dont force anonymous users
-    //   window.location.href = "/login?returnUrl=/analyze";
-    // }
   }, []);
 
   // =========================
@@ -137,6 +132,7 @@ export default function AnalyzePage() {
       const formData = new FormData();
 
       formData.append("image", image);
+
       formData.append(
         "saveToHistory",
         saveToHistory.toString()
@@ -149,11 +145,6 @@ export default function AnalyzePage() {
       });
 
       const token = localStorage.getItem("token");
-
-      // if (!token) {
-      //   setImageError("لطفاً ابتدا وارد حساب کاربری شوید.");
-      //   return;
-      // }
 
       const headers: HeadersInit = {};
 
@@ -194,7 +185,6 @@ export default function AnalyzePage() {
 
       setResult(data);
       setSaveToHistory(false);
-      
     } catch (error) {
       console.error(
         "Analyze request failed:",
@@ -411,6 +401,9 @@ export default function AnalyzePage() {
         </div>
       )}
 
+      {/* ========================= */}
+      {/* Save To History */}
+      {/* ========================= */}
 
       {isLoggedIn ? (
         <label
@@ -427,25 +420,48 @@ export default function AnalyzePage() {
           <input
             type="checkbox"
             checked={saveToHistory}
-            onChange={(e) => setSaveToHistory(e.target.checked)}
+            onChange={(e) =>
+              setSaveToHistory(e.target.checked)
+            }
           />
 
           ذخیره این تحلیل در تاریخچه من
         </label>
       ) : (
-        <p
+        <div
           className="
-          mt-4
-          max-w-sm
-          text-center
-          text-sm
-          text-petrol
-        "
+            mt-4
+            max-w-sm
+            text-center
+            text-sm
+            text-petrol
+          "
         >
-          🔒 این تحلیل به‌صورت پیش‌فرض ذخیره نمی‌شود.
-          <br />
-          برای ذخیره نتیجه و تصویر در تاریخچه، وارد حساب کاربری شوید.
-        </p>
+          <p>
+            🔒 این تحلیل به‌صورت پیش‌فرض ذخیره نمی‌شود.
+          </p>
+
+          <p className="mt-1">
+            برای ذخیره نتیجه و تصویر در تاریخچه،
+            وارد حساب کاربری شوید.
+          </p>
+
+          <button
+            type="button"
+            onClick={() => {
+              window.location.href =
+                "/login?returnUrl=/analyze";
+            }}
+            className="
+              mt-2
+              font-medium
+              text-coral
+              hover:underline
+            "
+          >
+            ورود به حساب
+          </button>
+        </div>
       )}
 
       {/* ========================= */}
@@ -457,31 +473,31 @@ export default function AnalyzePage() {
         onClick={analyze}
         disabled={!image || loading}
         className="
-    mt-4
-    rounded-xl
+          mt-4
+          rounded-xl
 
-    bg-gradient-to-l
-    from-coral
-    via-[#E97861]
-    to-[#F4A896]
+          bg-gradient-to-l
+          from-coral
+          via-[#E97861]
+          to-[#F4A896]
 
-    px-8
-    py-3
+          px-8
+          py-3
 
-    text-white
-    font-medium
+          text-white
+          font-medium
 
-    shadow-md
-    shadow-coral/25
+          shadow-md
+          shadow-coral/25
 
-    transition
+          transition
 
-    disabled:opacity-40
-    disabled:cursor-not-allowed
-    disabled:hover:opacity-40
+          disabled:opacity-40
+          disabled:cursor-not-allowed
+          disabled:hover:opacity-40
 
-    hover:opacity-90
-  "
+          hover:opacity-90
+        "
       >
         {loading
           ? "در حال تحلیل..."
@@ -514,5 +530,5 @@ export default function AnalyzePage() {
 
       <Disclaimer />
     </main>
-  );////
+  );
 }
