@@ -97,7 +97,7 @@ export default function AnalyzePage() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-     setIsLoggedIn(!!token);
+    setIsLoggedIn(!!token);
     // if (!token) { // dont force anonymous users
     //   window.location.href = "/login?returnUrl=/analyze";
     // }
@@ -409,6 +409,42 @@ export default function AnalyzePage() {
         </div>
       )}
 
+
+      {isLoggedIn ? (
+        <label
+          className="
+            mt-4
+            flex
+            items-center
+            gap-2
+            text-sm
+            text-petrol
+            cursor-pointer
+          "
+        >
+          <input
+            type="checkbox"
+            checked={saveToHistory}
+            onChange={(e) => setSaveToHistory(e.target.checked)}
+          />
+
+          ذخیره این تحلیل در تاریخچه من
+        </label>
+      ) : (
+        <p
+          className="
+          mt-4
+          max-w-sm
+          text-center
+          text-sm
+          text-petrol
+        "
+        >
+          🔒 این تحلیل به‌صورت پیش‌فرض ذخیره نمی‌شود.
+          <br />
+          برای ذخیره نتیجه و تصویر در تاریخچه، وارد حساب کاربری شوید.
+        </p>
+      )}
 
       {/* ========================= */}
       {/* Analyze Button */}
