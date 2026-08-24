@@ -12,7 +12,7 @@ export default function AnalyzePage() {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [saveToHistory, setSaveToHistory] = useState(false);
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -94,9 +94,10 @@ export default function AnalyzePage() {
     setImage(file);
   }
 
-   useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
 
+     setIsLoggedIn(!!token);
     // if (!token) { // dont force anonymous users
     //   window.location.href = "/login?returnUrl=/analyze";
     // }
@@ -136,6 +137,10 @@ export default function AnalyzePage() {
       const formData = new FormData();
 
       formData.append("image", image);
+      formData.append(
+        "saveToHistory",
+        saveToHistory.toString()
+      );
 
       console.log("Sending image:", {
         name: image.name,
@@ -404,7 +409,7 @@ export default function AnalyzePage() {
         </div>
       )}
 
-      
+
       {/* ========================= */}
       {/* Analyze Button */}
       {/* ========================= */}
