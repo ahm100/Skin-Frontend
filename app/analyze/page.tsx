@@ -193,6 +193,8 @@ export default function AnalyzePage() {
       );
 
       setResult(data);
+      setSaveToHistory(false);
+      
     } catch (error) {
       console.error(
         "Analyze request failed:",
