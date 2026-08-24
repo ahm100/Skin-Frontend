@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { API_BASE } from "@/lib/api";
 
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -48,9 +49,24 @@ export default function LoginPage() {
 
       const data = await response.json();
 
+      // ذخیره JWT
       localStorage.setItem("token", data.token);
 
-      router.push("/");
+      // مقصد قبلی کاربر
+      const returnUrl = searchParams.get("returnUrl");
+
+      // فقط مسیرهای داخلی سایت را قبول می‌کنیم
+      const destination =
+        returnUrl && returnUrl.startsWith("/")
+          ? returnUrl
+          : "/";
+
+      //AuthButton یک Client Component است و وقتی از Login به / می‌رویم، ممکن است خود AuthButton دوباره mount نشود؛ بنابراین useEffect دوباره اجرا نمی‌شود و هنوز user = null مانده.
+      // router.push(destination);
+      // router.refresh();
+      // behtare in:
+      window.location.href = destination;
+
     } catch (error) {
       console.error("Login request failed:", error);
 
@@ -88,9 +104,7 @@ export default function LoginPage() {
             type="password"
             placeholder="رمز عبور"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             className="
               w-full
               rounded-xl
