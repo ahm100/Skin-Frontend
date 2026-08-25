@@ -11,6 +11,8 @@ export default function AnalyzePage() {
   const [imageError, setImageError] = useState("");
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const [saveToHistory, setSaveToHistory] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const resultRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -22,11 +24,7 @@ export default function AnalyzePage() {
   function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
-    console.log("FILE INPUT CHANGED");
-
     const file = e.target.files?.[0];
-
-    console.log("SELECTED FILE:", file);
 
     setImageError("");
     setImage(null);
@@ -48,10 +46,7 @@ export default function AnalyzePage() {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-      console.log(
-        "INVALID FILE TYPE:",
-        file.type
-      );
+      console.log("INVALID FILE TYPE:", file.type);
 
       setImageError(
         "فرمت تصویر باید JPG، PNG یا WEBP باشد."
@@ -69,10 +64,7 @@ export default function AnalyzePage() {
     const maxSize = 5 * 1024 * 1024;
 
     if (file.size > maxSize) {
-      console.log(
-        "FILE TOO LARGE:",
-        file.size
-      );
+      console.log("FILE TOO LARGE:", file.size);
 
       setImageError(
         "حجم تصویر نباید بیشتر از 5 مگابایت باشد."
@@ -95,6 +87,16 @@ export default function AnalyzePage() {
 
     setImage(file);
   }
+
+  // =========================
+  // Authentication
+  // =========================
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    setIsLoggedIn(!!token);
+  }, []);
 
   // =========================
   // Scroll to result
@@ -131,16 +133,30 @@ export default function AnalyzePage() {
 
       formData.append("image", image);
 
+      formData.append(
+        "saveToHistory",
+        saveToHistory.toString()
+      );
+
       console.log("Sending image:", {
         name: image.name,
         type: image.type,
         size: image.size,
       });
 
+      const token = localStorage.getItem("token");
+
+      const headers: HeadersInit = {};
+
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+
       const response = await fetch(
         `${API_BASE}/api/SkinAnalysis/analyze`,
         {
           method: "POST",
+          headers,
           body: formData,
         }
       );
@@ -168,6 +184,7 @@ export default function AnalyzePage() {
       );
 
       setResult(data);
+      setSaveToHistory(false);
     } catch (error) {
       console.error(
         "Analyze request failed:",
@@ -385,40 +402,103 @@ export default function AnalyzePage() {
       )}
 
       {/* ========================= */}
+      {/* Save To History */}
+      {/* ========================= */}
+
+      {isLoggedIn ? (
+        <label
+          className="
+            mt-4
+            flex
+            items-center
+            gap-2
+            text-sm
+            text-petrol
+            cursor-pointer
+          "
+        >
+          <input
+            type="checkbox"
+            checked={saveToHistory}
+            onChange={(e) =>
+              setSaveToHistory(e.target.checked)
+            }
+          />
+
+          ذخیره این تحلیل در تاریخچه من
+        </label>
+      ) : (
+        <div
+          className="
+            mt-4
+            max-w-sm
+            text-center
+            text-sm
+            text-petrol
+          "
+        >
+          <p>
+            🔒 این تحلیل به‌صورت پیش‌فرض ذخیره نمی‌شود.
+          </p>
+
+          <p className="mt-1">
+            برای ذخیره نتیجه و تصویر در تاریخچه،
+            وارد حساب کاربری شوید.
+          </p>
+
+          <button
+            type="button"
+            onClick={() => {
+              window.location.href =
+                "/login?returnUrl=/analyze";
+            }}
+            className="
+              mt-2
+              font-medium
+              text-coral
+              hover:underline
+            "
+          >
+            ورود به حساب
+          </button>
+        </div>
+      )}
+
+      {/* ========================= */}
       {/* Analyze Button */}
       {/* ========================= */}
 
-     <button
-  type="button"
-  onClick={analyze}
-  disabled={!image || loading}
-  className="
-    mt-4
-    rounded-xl
+      <button
+        type="button"
+        onClick={analyze}
+        disabled={!image || loading}
+        className="
+          mt-4
+          rounded-xl
 
-    bg-gradient-to-l
-    from-coral
-    via-[#E97861]
-    to-[#F4A896]
+          bg-gradient-to-l
+          from-coral
+          via-[#E97861]
+          to-[#F4A896]
 
-    px-8
-    py-3
+          px-8
+          py-3
 
-    text-white
-    font-medium
+          text-white
+          font-medium
 
-    shadow-md
-    shadow-coral/25
+          shadow-md
+          shadow-coral/25
 
-    transition
+          transition
 
-    disabled:opacity-40
-    disabled:cursor-not-allowed
-    disabled:hover:opacity-40
+          disabled:opacity-40
+          disabled:cursor-not-allowed
+          disabled:hover:opacity-40
 
-    hover:opacity-90
-  "
->
+          hover:opacity-90
+        "
+      >
         {loading
           ? "در حال تحلیل..."
           : "شروع تحلیل"}
