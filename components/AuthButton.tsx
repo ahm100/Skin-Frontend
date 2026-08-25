@@ -75,45 +75,98 @@ export default function AuthButton() {
     return null;
   }
 
+  // =========================
   // کاربر لاگین نیست
+  // =========================
+
   if (!user) {
     return (
-      <Link
-        href="/login"
+      <div
         className="
-          rounded-full
+          flex
+          items-center
 
-          border
-          border-coral
+          gap-2
+          sm:gap-3
 
-          px-3
-          py-1.5
-
-          sm:px-4
-          sm:py-2
-
-          text-xs
-          sm:text-sm
-
-          font-medium
-
-          text-coral
-
-          hover:bg-coral
-          hover:text-white
-
-          transition
-
-          whitespace-nowrap
           shrink-0
         "
       >
-        ورود
-      </Link>
+        {/* ثبت‌نام */}
+
+        <Link
+          href="/register"
+          className="
+            rounded-full
+
+            border
+            border-coral
+
+            px-3
+            py-1.5
+
+            sm:px-4
+            sm:py-2
+
+            text-xs
+            sm:text-sm
+
+            font-medium
+
+            text-coral
+
+            hover:bg-coral
+            hover:text-white
+
+            transition
+
+            whitespace-nowrap
+            shrink-0
+          "
+        >
+          ثبت‌نام
+        </Link>
+
+        {/* ورود */}
+
+        <Link
+          href="/login"
+          className="
+            rounded-full
+
+            bg-coral
+
+            px-3
+            py-1.5
+
+            sm:px-4
+            sm:py-2
+
+            text-xs
+            sm:text-sm
+
+            font-medium
+
+            text-white
+
+            hover:opacity-90
+
+            transition
+
+            whitespace-nowrap
+            shrink-0
+          "
+        >
+          ورود
+        </Link>
+      </div>
     );
   }
 
+  // =========================
   // کاربر لاگین است
+  // =========================
+
   return (
     <div
       className="
@@ -144,7 +197,10 @@ export default function AuthButton() {
 
           whitespace-nowrap
         "
-        title={user.displayName || user.email}
+        title={
+          user.displayName ||
+          user.email
+        }
       >
         {user.displayName || "کاربر"}
       </span>
