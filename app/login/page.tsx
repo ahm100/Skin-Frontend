@@ -1,17 +1,43 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { API_BASE } from "@/lib/api";
 
 export default function LoginPage() {
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // =========================
+  // Return URL
+  // =========================
+
+  const returnUrl = searchParams.get("returnUrl");
+
+  const destination =
+    returnUrl && returnUrl.startsWith("/")
+      ? returnUrl
+      : "/";
+
+  // =========================
+  // Already Logged In
+  // =========================
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      window.location.href = destination;
+    }
+  }, [destination]);
+
+  // =========================
+  // Login
+  // =========================
 
   async function login() {
     setError("");
@@ -28,9 +54,11 @@ export default function LoginPage() {
         `${API_BASE}/api/Auth/login`,
         {
           method: "POST",
+
           headers: {
             "Content-Type": "application/json",
           },
+
           body: JSON.stringify({
             email,
             password,
@@ -39,58 +67,99 @@ export default function LoginPage() {
       );
 
       if (!response.ok) {
-        const error = await response.text();
+        const errorText = await response.text();
 
-        console.error("Login error:", error);
+        console.error(
+          "Login error:",
+          errorText
+        );
 
-        setError("ایمیل یا رمز عبور اشتباه است.");
+        setError(
+          "ایمیل یا رمز عبور اشتباه است."
+        );
+
         return;
       }
 
       const data = await response.json();
 
-      // ذخیره JWT
-      localStorage.setItem("token", data.token);
+      // =========================
+      // Save JWT
+      // =========================
 
-      // مقصد قبلی کاربر
-      const returnUrl = searchParams.get("returnUrl");
+      localStorage.setItem(
+        "token",
+        data.token
+      );
 
-      // فقط مسیرهای داخلی سایت را قبول می‌کنیم
-      const destination =
-        returnUrl && returnUrl.startsWith("/")
-          ? returnUrl
-          : "/";
+      // =========================
+      // Redirect
+      // =========================
+      //
+      // We intentionally use
+      // window.location.href instead of
+      // router.push().
+      //
+      // This causes a full page reload,
+      // so AuthButton mounts again,
+      // reads the new token and calls
+      // /api/Auth/me.
+      //
 
-      //AuthButton یک Client Component است و وقتی از Login به / می‌رویم، ممکن است خود AuthButton دوباره mount نشود؛ بنابراین useEffect دوباره اجرا نمی‌شود و هنوز user = null مانده.
-      // router.push(destination);
-      // router.refresh();
-      // behtare in:
       window.location.href = destination;
 
     } catch (error) {
-      console.error("Login request failed:", error);
+      console.error(
+        "Login request failed:",
+        error
+      );
 
-      setError("ارتباط با سرور برقرار نشد.");
+      setError(
+        "ارتباط با سرور برقرار نشد."
+      );
     } finally {
       setLoading(false);
     }
   }
 
+  // =========================
+  // UI
+  // =========================
+
   return (
-    <main className="min-h-screen flex items-center justify-center p-6">
+    <main
+      className="
+        min-h-screen
+        flex
+        items-center
+        justify-center
+        p-6
+      "
+    >
       <div className="w-full max-w-md">
 
-        <h1 className="text-3xl font-bold text-petrol text-center">
+        <h1
+          className="
+            text-3xl
+            font-bold
+            text-petrol
+            text-center
+          "
+        >
           ورود
         </h1>
 
         <div className="mt-8 space-y-4">
 
+          {/* EMAIL */}
+
           <input
             type="email"
             placeholder="ایمیل"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) =>
+              setEmail(e.target.value)
+            }
             className="
               w-full
               rounded-xl
@@ -99,12 +168,16 @@ export default function LoginPage() {
               p-3
             "
           />
+
+          {/* PASSWORD */}
 
           <input
             type="password"
             placeholder="رمز عبور"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) =>
+              setPassword(e.target.value)
+            }
             className="
               w-full
               rounded-xl
@@ -114,11 +187,21 @@ export default function LoginPage() {
             "
           />
 
+          {/* ERROR */}
+
           {error && (
-            <p className="text-sm text-red-600 text-center">
+            <p
+              className="
+                text-sm
+                text-red-600
+                text-center
+              "
+            >
               {error}
             </p>
           )}
+
+          {/* LOGIN BUTTON */}
 
           <button
             type="button"
@@ -127,14 +210,18 @@ export default function LoginPage() {
             className="
               w-full
               rounded-xl
+
               bg-gradient-to-l
               from-coral
               via-[#E97861]
               to-[#F4A896]
+
               px-8
               py-3
+
               text-white
               font-medium
+
               disabled:opacity-40
             "
           >
