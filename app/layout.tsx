@@ -83,52 +83,47 @@ export default function RootLayout({
                 ================================================= */}
 
             <Link
-              href="/"
-              dir="ltr"
-              className="
-              flex
-              items-center
-              gap-1
+  href="/"
+  dir="ltr"
+  className="
+    flex
+    items-center
+    gap-1
 
-              shrink-0
-              whitespace-nowrap
+    shrink-0
+    whitespace-nowrap
 
-              text-lg
-              sm:text-2xl
-              md:text-3xl
+    text-lg
+    sm:text-2xl
+    md:text-3xl
 
-              font-extrabold
-              tracking-wide
+    font-extrabold
+    tracking-wide
 
-              text-petrol
+    text-petrol
 
-              hover:text-coral
+    hover:text-coral
 
-              transition-colors
-            "
-            >
-              <span
-                className="
-              inline-block
+    transition-colors
+  "
+>
+  {/* Logo - hidden on mobile */}
+  <span className="hidden sm:inline-block">
+    <span
+      className="
+        inline-block
+        h-2.5
+        w-2.5
+        rounded-full
+        bg-coral
+        shrink-0
+        mr-1
+      "
+    />
 
-              h-2
-              w-2
-
-              sm:h-2.5
-              sm:w-2.5
-
-              rounded-full
-
-              bg-coral
-
-              shrink-0
-            "
-              />
-
-              <span className="hidden sm:inline">
-                Surenmah
-              </span>
-            </Link>
+    Surenmah
+  </span>
+</Link>
 
             {/* =================================================
                 RIGHT MENU
