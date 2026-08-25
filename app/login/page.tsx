@@ -1,10 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import {
+  Suspense,
+  useEffect,
+  useState,
+} from "react";
 import { useSearchParams } from "next/navigation";
 import { API_BASE } from "@/lib/api";
 
-export default function LoginPage() {
+function LoginForm() {
   const searchParams = useSearchParams();
 
   const [email, setEmail] = useState("");
@@ -13,27 +17,46 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
 
   // =========================
-  // Return URL
+  // Destination
   // =========================
 
-  const returnUrl = searchParams.get("returnUrl");
+  function getDestination() {
+    const returnUrl =
+      searchParams.get("returnUrl");
 
-  const destination =
-    returnUrl && returnUrl.startsWith("/")
-      ? returnUrl
-      : "/";
+    // Only allow internal routes.
+    // Prevent values such as //evil-site.com
+    if (
+      returnUrl &&
+      returnUrl.startsWith("/") &&
+      !returnUrl.startsWith("//")
+    ) {
+      return returnUrl;
+    }
+
+    return "/";
+  }
 
   // =========================
   // Already Logged In
   // =========================
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token =
+      localStorage.getItem("token");
 
-    if (token) {
-      window.location.href = destination;
+    if (!token) {
+      return;
     }
-  }, [destination]);
+
+    const destination =
+      getDestination();
+
+    // Full browser navigation is intentional.
+    // This makes AuthButton reload its authentication state.
+    window.location.href =
+      destination;
+  }, [searchParams]);
 
   // =========================
   // Login
@@ -43,7 +66,10 @@ export default function LoginPage() {
     setError("");
 
     if (!email || !password) {
-      setError("ایمیل و رمز عبور را وارد کنید.");
+      setError(
+        "ایمیل و رمز عبور را وارد کنید."
+      );
+
       return;
     }
 
@@ -56,7 +82,8 @@ export default function LoginPage() {
           method: "POST",
 
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type":
+              "application/json",
           },
 
           body: JSON.stringify({
@@ -67,10 +94,12 @@ export default function LoginPage() {
       );
 
       if (!response.ok) {
-        const errorText = await response.text();
+        const errorText =
+          await response.text();
 
         console.error(
           "Login error:",
+          response.status,
           errorText
         );
 
@@ -81,7 +110,8 @@ export default function LoginPage() {
         return;
       }
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
       // =========================
       // Save JWT
@@ -95,18 +125,15 @@ export default function LoginPage() {
       // =========================
       // Redirect
       // =========================
-      //
-      // We intentionally use
-      // window.location.href instead of
-      // router.push().
-      //
-      // This causes a full page reload,
-      // so AuthButton mounts again,
-      // reads the new token and calls
-      // /api/Auth/me.
-      //
 
-      window.location.href = destination;
+      const destination =
+        getDestination();
+
+      // Full navigation intentionally used
+      // so Header/AuthButton reloads and
+      // immediately recognizes the user.
+      window.location.href =
+        destination;
 
     } catch (error) {
       console.error(
@@ -136,8 +163,12 @@ export default function LoginPage() {
         p-6
       "
     >
-      <div className="w-full max-w-md">
-
+      <div
+        className="
+          w-full
+          max-w-md
+        "
+      >
         <h1
           className="
             text-3xl
@@ -149,9 +180,13 @@ export default function LoginPage() {
           ورود
         </h1>
 
-        <div className="mt-8 space-y-4">
-
-          {/* EMAIL */}
+        <div
+          className="
+            mt-8
+            space-y-4
+          "
+        >
+          {/* Email */}
 
           <input
             type="email"
@@ -166,10 +201,12 @@ export default function LoginPage() {
               border
               border-gray-300
               p-3
+              outline-none
+              focus:border-coral
             "
           />
 
-          {/* PASSWORD */}
+          {/* Password */}
 
           <input
             type="password"
@@ -178,16 +215,23 @@ export default function LoginPage() {
             onChange={(e) =>
               setPassword(e.target.value)
             }
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                login();
+              }
+            }}
             className="
               w-full
               rounded-xl
               border
               border-gray-300
               p-3
+              outline-none
+              focus:border-coral
             "
           />
 
-          {/* ERROR */}
+          {/* Error */}
 
           {error && (
             <p
@@ -201,7 +245,7 @@ export default function LoginPage() {
             </p>
           )}
 
-          {/* LOGIN BUTTON */}
+          {/* Login */}
 
           <button
             type="button"
@@ -223,15 +267,47 @@ export default function LoginPage() {
               font-medium
 
               disabled:opacity-40
+              disabled:cursor-not-allowed
+
+              hover:opacity-90
+              transition
             "
           >
             {loading
               ? "در حال ورود..."
               : "ورود"}
           </button>
-
         </div>
       </div>
     </main>
+  );
+}
+
+
+// =====================================================
+// Login Page
+// =====================================================
+
+export default function LoginPage() {
+  return (
+    <Suspense
+      fallback={
+        <main
+          className="
+            min-h-screen
+            flex
+            items-center
+            justify-center
+            p-6
+          "
+        >
+          <p className="text-petrol">
+            در حال بارگذاری...
+          </p>
+        </main>
+      }
+    >
+      <LoginForm />
+    </Suspense>
   );
 }
