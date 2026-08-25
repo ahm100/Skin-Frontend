@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { Home, BookOpen } from "lucide-react";
+import { Home, BookOpen, Sparkles } from "lucide-react";
 import AuthButton from "@/components/AuthButton";
 
 export const metadata: Metadata = {
@@ -86,50 +86,49 @@ export default function RootLayout({
               href="/"
               dir="ltr"
               className="
-                flex
-                items-center
-                gap-1
+              flex
+              items-center
+              gap-1
 
-                shrink-0
-                whitespace-nowrap
+              shrink-0
+              whitespace-nowrap
 
-                text-lg
-                sm:text-2xl
-                md:text-3xl
+              text-lg
+              sm:text-2xl
+              md:text-3xl
 
-                font-extrabold
-                tracking-wide
+              font-extrabold
+              tracking-wide
 
-                text-petrol
+              text-petrol
 
-                hover:text-coral
+              hover:text-coral
 
-                transition-colors
-              "
+              transition-colors
+            "
             >
               <span
                 className="
-                  inline-block
+              inline-block
 
-                  h-2
-                  w-2
+              h-2
+              w-2
 
-                  sm:h-2.5
-                  sm:w-2.5
+              sm:h-2.5
+              sm:w-2.5
 
-                  rounded-full
+              rounded-full
 
-                  bg-coral
+              bg-coral
 
-                  shrink-0
-                "
+              shrink-0
+            "
               />
 
-              <span>
+              <span className="hidden sm:inline">
                 Surenmah
               </span>
             </Link>
-
 
             {/* =================================================
                 RIGHT MENU
@@ -227,6 +226,42 @@ export default function RootLayout({
                 </span>
               </Link>
 
+              {/* SKIN JOURNEY */}
+
+              <Link
+                href="/journey"
+                className="
+    flex
+    items-center
+
+    gap-1
+    sm:gap-2
+
+    whitespace-nowrap
+    shrink-0
+
+    text-sm
+    sm:text-base
+
+    font-medium
+
+    text-petrol
+
+    hover:text-coral
+
+    transition-colors
+  "
+              >
+                <Sparkles
+                  size={18}
+                  strokeWidth={1.8}
+                  className="sm:w-5 sm:h-5"
+                />
+
+                <span>
+                  سفر پوست
+                </span>
+              </Link>
 
               {/* ANALYZE */}
 
