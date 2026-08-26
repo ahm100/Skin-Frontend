@@ -13,7 +13,9 @@ export default function Home() {
   return (
     <main className="min-h-screen">
 
-      {/* Hero */}
+      {/* =====================================================
+          HERO
+          ===================================================== */}
 
       <section
         className="
@@ -28,7 +30,6 @@ export default function Home() {
           text-center
         "
       >
-
         <h1
           className="
             text-4xl
@@ -55,6 +56,20 @@ export default function Home() {
           و بر اساس نتیجه تحلیل، پیشنهادهای مناسب دریافت کنید.
         </p>
 
+        <p
+          className="
+            mt-4
+            max-w-2xl
+            text-base
+            sm:text-lg
+            font-medium
+            leading-8
+            text-petrol
+          "
+        >
+          تحلیل کنید، نتیجه را ذخیره کنید و مسیر پوست خود را دنبال کنید.
+        </p>
+
         <a
           href="/analyze"
           className="
@@ -62,28 +77,21 @@ export default function Home() {
             inline-flex
             items-center
             justify-center
-
             rounded-xl
-
             bg-gradient-to-l
             from-coral
             via-[#E97861]
             to-[#F4A896]
-
             px-10
             py-4
-
             text-lg
             font-bold
             text-white
-
             shadow-lg
             shadow-coral/25
-
             hover:-translate-y-0.5
             hover:shadow-xl
             hover:shadow-coral/30
-
             transition-all
             duration-200
           "
@@ -102,11 +110,12 @@ export default function Home() {
           ⚠️ این تحلیل تشخیص پزشکی نیست.
           نتایج توسط هوش مصنوعی تخمین زده می‌شوند.
         </p>
-
       </section>
 
 
-      {/* How it works */}
+      {/* =====================================================
+          HOW IT WORKS
+          ===================================================== */}
 
       <section
         className="
@@ -116,7 +125,6 @@ export default function Home() {
           sm:px-10
         "
       >
-
         <h2
           className="
             text-center
@@ -155,7 +163,6 @@ export default function Home() {
               max-w-sm
             "
           >
-
             <div
               className="
                 flex
@@ -192,7 +199,6 @@ export default function Home() {
               یک تصویر مناسب از پوست خود ارسال کنید تا
               فرآیند تحلیل پوست آغاز شود.
             </p>
-
           </div>
 
 
@@ -227,7 +233,6 @@ export default function Home() {
               max-w-sm
             "
           >
-
             <div
               className="
                 flex
@@ -264,7 +269,6 @@ export default function Home() {
               مدل‌های هوش مصنوعی تصویر پوست را بررسی می‌کنند
               و ویژگی‌ها و نشانه‌های احتمالی را استخراج می‌کنند.
             </p>
-
           </div>
 
 
@@ -299,7 +303,6 @@ export default function Home() {
               max-w-sm
             "
           >
-
             <div
               className="
                 flex
@@ -336,15 +339,276 @@ export default function Home() {
               در مواردی که تحلیل برای پیشنهاد محصول مناسب باشد،
               محصولات مرتبط بر اساس نتیجه تحلیل پیشنهاد می‌شوند.
             </p>
-
           </div>
 
         </div>
-
       </section>
 
 
-      {/* Why Surenmah */}
+      {/* =====================================================
+          SKIN JOURNEY
+          ===================================================== */}
+
+      <section
+        className="
+          px-6
+          py-16
+          sm:px-10
+        "
+      >
+        <div
+          className="
+            mx-auto
+            max-w-5xl
+            overflow-hidden
+            rounded-3xl
+            border
+            border-coral/10
+            bg-gradient-to-l
+            from-[#F2EAF1]
+            via-white
+            to-[#F5E6D3]/60
+            px-6
+            py-12
+            sm:px-10
+            sm:py-14
+            shadow-sm
+          "
+        >
+
+          {/* Badge */}
+
+          <div className="text-center">
+            <span
+              className="
+                inline-flex
+                items-center
+                rounded-full
+                bg-coral/10
+                px-4
+                py-1.5
+                text-sm
+                font-semibold
+                text-coral
+              "
+            >
+              ✨ قابلیت جدید Surenmah
+            </span>
+          </div>
+
+
+          {/* Title */}
+
+          <h2
+            className="
+              mt-5
+              text-center
+              text-3xl
+              sm:text-4xl
+              font-extrabold
+              text-petrol
+            "
+          >
+            سفر پوست شما از همین‌جا شروع می‌شود
+          </h2>
+
+
+          {/* Description */}
+
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-2xl
+              text-center
+              text-base
+              sm:text-lg
+              leading-8
+              text-petrol-soft
+            "
+          >
+            هر بار که پوست خود را تحلیل می‌کنید، تصویر و نتیجه
+            تحلیل شما در تاریخچه پوست ذخیره می‌شود.
+            در بخش «سفر پوست» می‌توانید تحلیل‌های قبلی خود را
+            در طول زمان مشاهده و مرور کنید.
+          </p>
+
+
+          {/* Features */}
+
+          <div
+            className="
+              mx-auto
+              mt-10
+              grid
+              max-w-4xl
+              gap-4
+              sm:grid-cols-3
+            "
+          >
+
+            {/* Feature 1 */}
+
+            <div
+              className="
+                rounded-2xl
+                bg-white/80
+                border
+                border-gray-100
+                p-5
+                text-center
+                shadow-sm
+              "
+            >
+              <div className="text-3xl">
+                📸
+              </div>
+
+              <h3
+                className="
+                  mt-3
+                  font-bold
+                  text-petrol
+                "
+              >
+                ثبت تحلیل‌های پوست
+              </h3>
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  leading-6
+                  text-petrol-soft
+                "
+              >
+                تحلیل‌های شما برای مرور دوباره در تاریخچه ذخیره می‌شوند.
+              </p>
+            </div>
+
+
+            {/* Feature 2 */}
+
+            <div
+              className="
+                rounded-2xl
+                bg-white/80
+                border
+                border-gray-100
+                p-5
+                text-center
+                shadow-sm
+              "
+            >
+              <div className="text-3xl">
+                🗓️
+              </div>
+
+              <h3
+                className="
+                  mt-3
+                  font-bold
+                  text-petrol
+                "
+              >
+                مشاهده تاریخچه
+              </h3>
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  leading-6
+                  text-petrol-soft
+                "
+              >
+                تحلیل‌های قبلی خود را در طول زمان مشاهده کنید.
+              </p>
+            </div>
+
+
+            {/* Feature 3 */}
+
+            <div
+              className="
+                rounded-2xl
+                bg-white/80
+                border
+                border-gray-100
+                p-5
+                text-center
+                shadow-sm
+              "
+            >
+              <div className="text-3xl">
+                🌱
+              </div>
+
+              <h3
+                className="
+                  mt-3
+                  font-bold
+                  text-petrol
+                "
+              >
+                دنبال کردن مسیر پوست
+              </h3>
+
+              <p
+                className="
+                  mt-2
+                  text-sm
+                  leading-6
+                  text-petrol-soft
+                "
+              >
+                یک نمای کلی از تحلیل‌های پوست خود در طول زمان داشته باشید.
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* CTA */}
+
+          <div className="mt-10 text-center">
+            <a
+              href="/journey"
+              className="
+                inline-flex
+                items-center
+                justify-center
+                rounded-xl
+                bg-gradient-to-l
+                from-coral
+                via-[#E97861]
+                to-[#F4A896]
+                px-8
+                py-3.5
+                text-base
+                sm:text-lg
+                font-bold
+                text-white
+                shadow-lg
+                shadow-coral/25
+                hover:-translate-y-0.5
+                hover:shadow-xl
+                hover:shadow-coral/30
+                transition-all
+                duration-200
+              "
+            >
+              مشاهده سفر پوست
+            </a>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          WHY SURENMAH
+          ===================================================== */}
 
       <section
         className="
@@ -354,7 +618,6 @@ export default function Home() {
           text-center
         "
       >
-
         <h2
           className="
             text-3xl
@@ -386,7 +649,6 @@ export default function Home() {
               shadow-sm
             "
           >
-
             <div className="text-3xl">
               🤖
             </div>
@@ -399,7 +661,6 @@ export default function Home() {
               استفاده از مدل‌های هوش مصنوعی برای
               بررسی تصویر پوست و استخراج ویژگی‌های احتمالی.
             </p>
-
           </div>
 
 
@@ -415,7 +676,6 @@ export default function Home() {
               shadow-sm
             "
           >
-
             <div className="text-3xl">
               🎯
             </div>
@@ -428,7 +688,6 @@ export default function Home() {
               در موارد مناسب، محصولات مرتبط با نوع پوست
               و نیازهای احتمالی آن پیشنهاد می‌شوند.
             </p>
-
           </div>
 
 
@@ -444,7 +703,6 @@ export default function Home() {
               shadow-sm
             "
           >
-
             <div className="text-3xl">
               🔒
             </div>
@@ -457,11 +715,9 @@ export default function Home() {
               تصاویر برای تحلیل ویژگی‌های پوست پردازش می‌شوند
               و نتیجه تحلیل برای ارائه اطلاعات اولیه استفاده می‌شود.
             </p>
-
           </div>
 
         </div>
-
       </section>
 
 
@@ -469,258 +725,235 @@ export default function Home() {
           BRANDS / SPONSOR CTA
           ===================================================== */}
 
+      <section
+        className="
+          px-6
+          py-16
+          sm:px-10
+        "
+      >
+        <div
+          className="
+            mx-auto
+            max-w-5xl
+            rounded-3xl
+            bg-[#F2EAF1]
+            px-6
+            py-12
+            text-center
+            shadow-sm
+          "
+        >
+
+          <span
+            className="
+              inline-flex
+              rounded-full
+              bg-coral/10
+              px-4
+              py-1.5
+              text-sm
+              font-medium
+              text-petrol
+            "
+          >
+            همکاری با برندها
+          </span>
+
+
+          <h2
+            className="
+              mt-5
+              text-2xl
+              sm:text-3xl
+              font-extrabold
+              text-petrol
+            "
+          >
+            محصول خود را به مشتری مناسب معرفی کنید
+          </h2>
+
+
+          <p
+            className="
+              mx-auto
+              mt-5
+              max-w-2xl
+              text-base
+              sm:text-lg
+              leading-8
+              text-petrol-soft
+            "
+          >
+            در Surenmah، کاربران ابتدا پوست خود را با کمک هوش مصنوعی
+            تحلیل می‌کنند و سپس محصولات مرتبط را مشاهده می‌کنند.
+            برند شما می‌تواند در همین مسیر، محصول خود را به مخاطب
+            مناسب معرفی کند.
+          </p>
+
+
+          {/* VALUE POINTS */}
+
+          <div
+            className="
+              mx-auto
+              mt-8
+              grid
+              max-w-3xl
+              gap-4
+              sm:grid-cols-3
+            "
+          >
+
+            {/* Point 1 */}
+
+            <div
+              className="
+                rounded-2xl
+                bg-white/60
+                p-4
+              "
+            >
+              <div className="text-2xl">
+                🎯
+              </div>
+
+              <h3
+                className="
+                  mt-2
+                  font-bold
+                  text-petrol
+                "
+              >
+                مخاطب هدفمند
+              </h3>
+
+              <p
+                className="
+                  mt-1
+                  text-sm
+                  leading-6
+                  text-petrol-soft
+                "
+              >
+                محصول شما در کنار نیاز مرتبط کاربر دیده می‌شود.
+              </p>
+            </div>
+
+
+            {/* Point 2 */}
+
+            <div
+              className="
+                rounded-2xl
+                bg-white/60
+                p-4
+              "
+            >
+              <div className="text-2xl">
+                🤖
+              </div>
+
+              <h3
+                className="
+                  mt-2
+                  font-bold
+                  text-petrol
+                "
+              >
+                تجربه مبتنی بر AI
+              </h3>
+
+              <p
+                className="
+                  mt-1
+                  text-sm
+                  leading-6
+                  text-petrol-soft
+                "
+              >
+                محصول در مسیر تحلیل و انتخاب آگاهانه کاربر قرار می‌گیرد.
+              </p>
+            </div>
+
+
+            {/* Point 3 */}
+
+            <div
+              className="
+                rounded-2xl
+                bg-white/60
+                p-4
+              "
+            >
+              <div className="text-2xl">
+                🛒
+              </div>
+
+              <h3
+                className="
+                  mt-2
+                  font-bold
+                  text-petrol
+                "
+              >
+                هدایت مستقیم برای خرید
+              </h3>
+
+              <p
+                className="
+                  mt-1
+                  text-sm
+                  leading-6
+                  text-petrol-soft
+                "
+              >
+                کاربر برای خرید مستقیماً به سایت شما هدایت می‌شود.
+              </p>
+            </div>
+
+          </div>
+
+
+          {/* CTA */}
+
+          <a
+            href="/sponsor"
+            className="
+              mt-9
+              inline-flex
+              items-center
+              justify-center
+              rounded-xl
+              bg-gradient-to-l
+              from-coral
+              via-[#E97861]
+              to-[#F4A896]
+              px-8
+              py-3.5
+              text-base
+              sm:text-lg
+              font-bold
+              text-white
+              shadow-lg
+              shadow-coral/25
+              hover:-translate-y-0.5
+              hover:shadow-xl
+              hover:shadow-coral/30
+              transition-all
+              duration-200
+            "
+          >
+            فرصت‌های همکاری با Surenmah
+          </a>
+
+        </div>
+      </section>
+
+
       {/* =====================================================
-    BRANDS / SPONSOR CTA
-    ===================================================== */}
-
-<section
-  className="
-    px-6
-    py-16
-    sm:px-10
-  "
->
-  <div
-    className="
-      mx-auto
-      max-w-5xl
-
-      rounded-3xl
-
-      bg-[#F2EAF1]
-
-      px-6
-      py-12
-
-      text-center
-
-      shadow-sm
-    "
-  >
-
-    <span
-      className="
-        inline-flex
-        rounded-full
-
-        bg-coral/10
-
-        px-4
-        py-1.5
-
-        text-sm
-        font-medium
-
-        text-petrol
-      "
-    >
-      همکاری با برندها
-    </span>
-
-
-    <h2
-      className="
-        mt-5
-
-        text-2xl
-        sm:text-3xl
-
-        font-extrabold
-
-        text-petrol
-      "
-    >
-      محصول خود را به مشتری مناسب معرفی کنید
-    </h2>
-
-
-    <p
-      className="
-        mx-auto
-        mt-5
-
-        max-w-2xl
-
-        text-base
-        sm:text-lg
-
-        leading-8
-
-        text-petrol-soft
-      "
-    >
-      در Surenmah، کاربران ابتدا پوست خود را با کمک هوش مصنوعی
-      تحلیل می‌کنند و سپس محصولات مرتبط را مشاهده می‌کنند.
-      برند شما می‌تواند در همین مسیر، محصول خود را به مخاطب
-      مناسب معرفی کند.
-    </p>
-
-
-    {/* VALUE POINTS */}
-
-    <div
-      className="
-        mx-auto
-        mt-8
-
-        grid
-        max-w-3xl
-
-        gap-4
-
-        sm:grid-cols-3
-      "
-    >
-
-      <div
-        className="
-          rounded-2xl
-          bg-white/60
-          p-4
-        "
-      >
-        <div className="text-2xl">
-          🎯
-        </div>
-
-        <h3
-          className="
-            mt-2
-            font-bold
-            text-petrol
-          "
-        >
-          مخاطب هدفمند
-        </h3>
-
-        <p
-          className="
-            mt-1
-            text-sm
-            leading-6
-            text-petrol-soft
-          "
-        >
-          محصول شما در کنار نیاز مرتبط کاربر دیده می‌شود.
-        </p>
-      </div>
-
-
-      <div
-        className="
-          rounded-2xl
-          bg-white/60
-          p-4
-        "
-      >
-        <div className="text-2xl">
-          🤖
-        </div>
-
-        <h3
-          className="
-            mt-2
-            font-bold
-            text-petrol
-          "
-        >
-          تجربه مبتنی بر AI
-        </h3>
-
-        <p
-          className="
-            mt-1
-            text-sm
-            leading-6
-            text-petrol-soft
-          "
-        >
-          محصول در مسیر تحلیل و انتخاب آگاهانه کاربر قرار می‌گیرد.
-        </p>
-      </div>
-
-
-      <div
-        className="
-          rounded-2xl
-          bg-white/60
-          p-4
-        "
-      >
-        <div className="text-2xl">
-          🛒
-        </div>
-
-        <h3
-          className="
-            mt-2
-            font-bold
-            text-petrol
-          "
-        >
-          هدایت مستقیم برای خرید
-        </h3>
-
-        <p
-          className="
-            mt-1
-            text-sm
-            leading-6
-            text-petrol-soft
-          "
-        >
-          کاربر برای خرید مستقیماً به سایت شما هدایت می‌شود.
-        </p>
-      </div>
-
-    </div>
-
-
-    {/* CTA */}
-
-    <a
-      href="/sponsor"
-      className="
-        mt-9
-
-        inline-flex
-        items-center
-        justify-center
-
-        rounded-xl
-
-        bg-gradient-to-l
-        from-coral
-        via-[#E97861]
-        to-[#F4A896]
-
-        px-8
-        py-3.5
-
-        text-base
-        sm:text-lg
-
-        font-bold
-        text-white
-
-        shadow-lg
-        shadow-coral/25
-
-        hover:-translate-y-0.5
-        hover:shadow-xl
-        hover:shadow-coral/30
-
-        transition-all
-        duration-200
-      "
-    >
-      فرصت‌های همکاری با Surenmah
-    </a>
-
-  </div>
-</section>
-
-      {/* SEO Content */}
+          SEO CONTENT
+          ===================================================== */}
 
       <section
         className="
@@ -731,7 +964,6 @@ export default function Home() {
           text-center
         "
       >
-
         <div className="mx-auto max-w-3xl">
 
           <h2
@@ -781,7 +1013,6 @@ export default function Home() {
           </p>
 
         </div>
-
       </section>
 
     </main>
