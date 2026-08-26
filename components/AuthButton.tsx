@@ -81,85 +81,28 @@ export default function AuthButton() {
 
   if (!user) {
     return (
-      <div
+      <Link
+        href="/login"
         className="
-          flex
-          items-center
-
-          gap-2
-          sm:gap-3
-
+          rounded-full
+          bg-coral
+          hover:bg-[#D95C43]
+          px-3
+          py-1.5
+          sm:px-4
+          sm:py-2
+          text-xs
+          sm:text-sm
+          font-bold
+          text-white
+          shadow-sm
+          transition
+          whitespace-nowrap
           shrink-0
         "
       >
-        {/* ثبت‌نام */}
-
-        <Link
-          href="/register"
-          className="
-            rounded-full
-
-            border
-            border-coral
-
-            px-3
-            py-1.5
-
-            sm:px-4
-            sm:py-2
-
-            text-xs
-            sm:text-sm
-
-            font-medium
-
-            text-coral
-
-            hover:bg-coral
-            hover:text-white
-
-            transition
-
-            whitespace-nowrap
-            shrink-0
-          "
-        >
-          ثبت‌نام
-        </Link>
-
-        {/* ورود */}
-
-        <Link
-          href="/login"
-          className="
-            rounded-full
-
-            bg-coral
-
-            px-3
-            py-1.5
-
-            sm:px-4
-            sm:py-2
-
-            text-xs
-            sm:text-sm
-
-            font-medium
-
-            text-white
-
-            hover:opacity-90
-
-            transition
-
-            whitespace-nowrap
-            shrink-0
-          "
-        >
-          ورود
-        </Link>
-      </div>
+        ورود
+      </Link>
     );
   }
 
@@ -168,77 +111,29 @@ export default function AuthButton() {
   // =========================
 
   return (
-    <div
+    <button
+      type="button"
+      onClick={logout}
       className="
-        flex
-        items-center
-
-        gap-2
-        sm:gap-3
-
+        rounded-full
+        border
+        border-coral
+        px-3
+        py-1.5
+        sm:px-4
+        sm:py-2
+        text-xs
+        sm:text-sm
+        font-medium
+        text-coral
+        hover:bg-coral
+        hover:text-white
+        transition
+        whitespace-nowrap
         shrink-0
       "
     >
-      {/* نام کاربر */}
-
-      <span
-        className="
-          max-w-[120px]
-          sm:max-w-[180px]
-
-          truncate
-
-          text-xs
-          sm:text-sm
-
-          font-medium
-
-          text-petrol
-
-          whitespace-nowrap
-        "
-        title={
-          user.displayName ||
-          user.email
-        }
-      >
-        {user.displayName || "کاربر"}
-      </span>
-
-      {/* خروج */}
-
-      <button
-        type="button"
-        onClick={logout}
-        className="
-          rounded-full
-
-          border
-          border-coral
-
-          px-3
-          py-1.5
-
-          sm:px-4
-          sm:py-2
-
-          text-xs
-          sm:text-sm
-
-          font-medium
-
-          text-coral
-
-          hover:bg-coral
-          hover:text-white
-
-          transition
-
-          whitespace-nowrap
-        "
-      >
-        خروج
-      </button>
-    </div>
+      خروج
+    </button>
   );
 }
