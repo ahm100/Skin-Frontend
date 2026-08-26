@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { Home, BookOpen, Sparkles, Menu } from "lucide-react";
+import { Home, BookOpen, Sparkles } from "lucide-react";
 import AuthButton from "@/components/AuthButton";
+import MobileMenu from "@/components/MobileMenu";
 
 export const metadata: Metadata = {
   title: "Surenmah | تحلیل پوست با هوش مصنوعی",
@@ -79,7 +80,7 @@ export default function RootLayout({
                   flex
                   shrink-0
                   items-center
-                  gap-1
+                  gap-2
                   whitespace-nowrap
                   text-lg
                   sm:text-2xl
@@ -90,17 +91,35 @@ export default function RootLayout({
                   transition-colors
                 "
               >
+                {/* Mobile: Home icon */}
+
+                <span className="sm:hidden">
+                  <Home
+                    size={22}
+                    strokeWidth={2}
+                  />
+                </span>
+
+                {/* Desktop: Surenmah */}
+
                 <span
                   className="
-                    inline-block
-                    h-2.5
-                    w-2.5
-                    rounded-full
-                    bg-coral
+                    hidden
+                    sm:inline-flex
+                    items-center
+                    gap-1
                   "
-                />
+                >
+                  <span
+                    className="
+                      inline-block
+                      h-2.5
+                      w-2.5
+                      rounded-full
+                      bg-coral
+                    "
+                  />
 
-                <span className="hidden xs:inline">
                   Surenmah
                 </span>
               </Link>
@@ -119,7 +138,9 @@ export default function RootLayout({
                   lg:gap-5
                 "
               >
-                {/* خانه */}
+                {/* =================================================
+                    HOME
+                    ================================================= */}
 
                 <Link
                   href="/"
@@ -141,10 +162,14 @@ export default function RootLayout({
                     strokeWidth={1.8}
                   />
 
-                  <span>خانه</span>
+                  <span>
+                    خانه
+                  </span>
                 </Link>
 
-                {/* مقالات */}
+                {/* =================================================
+                    BLOG
+                    ================================================= */}
 
                 <Link
                   href="/blog"
@@ -166,11 +191,13 @@ export default function RootLayout({
                     strokeWidth={1.8}
                   />
 
-                  <span>مقالات</span>
+                  <span>
+                    مقالات
+                  </span>
                 </Link>
 
                 {/* =================================================
-                    سفر پوست
+                    SKIN JOURNEY
                     ALWAYS VISIBLE
                     ================================================= */}
 
@@ -198,7 +225,9 @@ export default function RootLayout({
                     strokeWidth={1.8}
                   />
 
-                  <span>سفر پوست</span>
+                  <span>
+                    سفر پوست
+                  </span>
                 </Link>
 
                 {/* =================================================
@@ -240,158 +269,7 @@ export default function RootLayout({
                   MOBILE MENU
                   ================================================= */}
 
-              <div className="md:hidden">
-                <details className="relative">
-                  <summary
-                    className="
-                      flex
-                      h-10
-                      w-10
-                      cursor-pointer
-                      list-none
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-coral
-                      text-white
-                      shadow-md
-                      shadow-coral/20
-                      [&::-webkit-details-marker]:hidden
-                    "
-                  >
-                    <Menu
-                      size={22}
-                      strokeWidth={2}
-                    />
-                  </summary>
-
-                  <div
-                    dir="rtl"
-                    className="
-                      absolute
-                      left-0
-                      top-12
-                      z-50
-                      w-64
-                      overflow-hidden
-                      rounded-2xl
-                      border
-                      border-coral/10
-                      bg-white
-                      shadow-xl
-                    "
-                  >
-                    <div className="p-3">
-                      {/* خانه */}
-
-                      <Link
-                        href="/"
-                        className="
-                          flex
-                          items-center
-                          gap-3
-                          rounded-xl
-                          px-3
-                          py-3
-                          text-petrol
-                          hover:bg-coral/10
-                          transition
-                        "
-                      >
-                        <Home size={19} />
-
-                        <span>خانه</span>
-                      </Link>
-
-                      {/* مقالات */}
-
-                      <Link
-                        href="/blog"
-                        className="
-                          flex
-                          items-center
-                          gap-3
-                          rounded-xl
-                          px-3
-                          py-3
-                          text-petrol
-                          hover:bg-coral/10
-                          transition
-                        "
-                      >
-                        <BookOpen size={19} />
-
-                        <span>مقالات</span>
-                      </Link>
-
-                      {/* =================================================
-                          سفر پوست
-                          ALWAYS VISIBLE
-                          ================================================= */}
-
-                      <Link
-                        href="/journey"
-                        className="
-                          flex
-                          items-center
-                          gap-3
-                          rounded-xl
-                          px-3
-                          py-3
-                          font-semibold
-                          text-petrol
-                          hover:bg-coral/10
-                          hover:text-coral
-                          transition
-                        "
-                      >
-                        <Sparkles size={19} />
-
-                        <span>سفر پوست</span>
-                      </Link>
-
-                      {/* CTA */}
-
-                      <Link
-                        href="/analyze"
-                        className="
-                          mt-2
-                          flex
-                          items-center
-                          justify-center
-                          rounded-xl
-                          bg-coral
-                          px-4
-                          py-3
-                          text-white
-                          font-bold
-                          shadow-md
-                          shadow-coral/20
-                          hover:bg-[#D95C43]
-                          transition
-                        "
-                      >
-                        تحلیل پوست
-                      </Link>
-
-                      {/* =================================================
-                          ACCOUNT
-                          ================================================= */}
-
-                      <div
-                        className="
-                          mt-3
-                          border-t
-                          border-gray-100
-                          pt-3
-                        "
-                      >
-                        <AuthButton mobile />
-                      </div>
-                    </div>
-                  </div>
-                </details>
-              </div>
+              <MobileMenu />
             </div>
           </div>
         </header>
@@ -466,6 +344,7 @@ export default function RootLayout({
             "
           >
             ایمیل:{" "}
+
             <a
               href="mailto:ahmad.sadegh@gmail.com"
               className="
@@ -490,6 +369,8 @@ export default function RootLayout({
               flex-wrap
             "
           >
+            {/* WHATSAPP */}
+
             <a
               href="https://wa.me/989xxxxxxxxx"
               target="_blank"
@@ -513,6 +394,8 @@ export default function RootLayout({
             >
               WhatsApp
             </a>
+
+            {/* BALE */}
 
             <a
               href="#"
