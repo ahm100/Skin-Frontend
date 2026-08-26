@@ -10,11 +10,14 @@ export default function RegisterPage() {
   const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function register() {
     setError("");
+    setSuccess("");
 
     if (!displayName || !email || !password) {
       setError("نام نمایشی، ایمیل و رمز عبور را وارد کنید.");
@@ -59,7 +62,11 @@ export default function RegisterPage() {
         return;
       }
 
-      router.push("/login");
+      setSuccess("ثبت‌نام با موفقیت انجام شد.");
+
+      setTimeout(() => {
+        router.push("/login");
+      }, 1500);
     } catch {
       setError("ارتباط با سرور برقرار نشد.");
     } finally {
@@ -105,10 +112,16 @@ export default function RegisterPage() {
             </p>
           )}
 
+          {success && (
+            <p className="text-sm text-green-600 text-center">
+              {success}
+            </p>
+          )}
+
           <button
             type="button"
             onClick={register}
-            disabled={loading}
+            disabled={loading || !!success}
             className="
               w-full
               rounded-xl
@@ -123,7 +136,11 @@ export default function RegisterPage() {
               disabled:opacity-40
             "
           >
-            {loading ? "در حال ثبت‌ نام..." : "ثبت‌ نام"}
+            {loading
+              ? "در حال ثبت‌ نام..."
+              : success
+                ? "ثبت‌نام انجام شد"
+                : "ثبت‌ نام"}
           </button>
         </div>
       </div>
