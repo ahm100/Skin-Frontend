@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { API_BASE } from "@/lib/api";
 
@@ -156,11 +157,16 @@ function LoginForm() {
   return (
     <main
       className="
-        min-h-screen
+        min-h-[calc(100vh-80px)]
+
         flex
-        items-center
+        items-start
         justify-center
-        p-6
+
+        px-6
+        pt-10
+        sm:pt-14
+        pb-16
       "
     >
       <div
@@ -169,10 +175,15 @@ function LoginForm() {
           max-w-md
         "
       >
+        {/* Title */}
+
         <h1
           className="
             text-3xl
+            sm:text-4xl
+
             font-bold
+
             text-petrol
             text-center
           "
@@ -180,9 +191,13 @@ function LoginForm() {
           ورود
         </h1>
 
+        {/* Form */}
+
         <div
           className="
-            mt-8
+            mt-6
+            sm:mt-8
+
             space-y-4
           "
         >
@@ -198,11 +213,17 @@ function LoginForm() {
             className="
               w-full
               rounded-xl
+
               border
               border-gray-300
+
               p-3
+
               outline-none
+
               focus:border-coral
+
+              transition
             "
           />
 
@@ -223,11 +244,17 @@ function LoginForm() {
             className="
               w-full
               rounded-xl
+
               border
               border-gray-300
+
               p-3
+
               outline-none
+
               focus:border-coral
+
+              transition
             "
           />
 
@@ -270,6 +297,7 @@ function LoginForm() {
               disabled:cursor-not-allowed
 
               hover:opacity-90
+
               transition
             "
           >
@@ -277,6 +305,35 @@ function LoginForm() {
               ? "در حال ورود..."
               : "ورود"}
           </button>
+
+          {/* Register */}
+
+          <div
+            className="
+              pt-1
+
+              text-center
+
+              text-sm
+              text-petrol-soft
+            "
+          >
+            حساب کاربری ندارید؟{" "}
+
+            <Link
+              href="/register"
+              className="
+                font-bold
+                text-coral
+
+                hover:underline
+
+                transition
+              "
+            >
+              ثبت‌نام کنید
+            </Link>
+          </div>
         </div>
       </div>
     </main>
@@ -294,11 +351,15 @@ export default function LoginPage() {
       fallback={
         <main
           className="
-            min-h-screen
+            min-h-[calc(100vh-80px)]
+
             flex
-            items-center
+            items-start
             justify-center
+
             p-6
+            pt-10
+            sm:pt-14
           "
         >
           <p className="text-petrol">

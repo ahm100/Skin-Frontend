@@ -10,7 +10,13 @@ type User = {
   displayName: string | null;
 };
 
-export default function AuthButton() {
+type AuthButtonProps = {
+  mobile?: boolean;
+};
+
+export default function AuthButton({
+  mobile = false,
+}: AuthButtonProps) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -18,7 +24,6 @@ export default function AuthButton() {
     async function loadUser() {
       const token = localStorage.getItem("token");
 
-      // کاربر لاگین نیست
       if (!token) {
         setLoading(false);
         return;
@@ -35,7 +40,6 @@ export default function AuthButton() {
           }
         );
 
-        // Token نامعتبر یا منقضی شده
         if (!response.ok) {
           localStorage.removeItem("token");
           setUser(null);
@@ -64,76 +68,209 @@ export default function AuthButton() {
 
   function logout() {
     localStorage.removeItem("token");
-
     setUser(null);
-
     window.location.href = "/";
   }
 
-  // تا وقتی وضعیت authentication مشخص نشده
   if (loading) {
     return null;
   }
 
-  // =========================
-  // کاربر لاگین نیست
-  // =========================
+  // =====================================================
+  // MOBILE
+  // =====================================================
 
-  if (!user) {
+  if (mobile) {
+    if (!user) {
+      return (
+        <div className="space-y-2">
+          <Link
+            href="/login"
+            className="
+              flex
+              w-full
+              items-center
+              justify-center
+              rounded-xl
+              bg-coral
+              px-4
+              py-3
+              text-white
+              font-semibold
+              hover:bg-[#D95C43]
+              transition
+            "
+          >
+            ورود
+          </Link>
+
+          <Link
+            href="/register"
+            className="
+              flex
+              w-full
+              items-center
+              justify-center
+              rounded-xl
+              border
+              border-coral
+              px-4
+              py-3
+              text-coral
+              font-semibold
+              hover:bg-coral
+              hover:text-white
+              transition
+            "
+          >
+            ثبت‌نام
+          </Link>
+        </div>
+      );
+    }
+
     return (
-      <Link
-        href="/login"
-        className="
-          rounded-full
-          bg-coral
-          hover:bg-[#D95C43]
-          px-3
-          py-1.5
-          sm:px-4
-          sm:py-2
-          text-xs
-          sm:text-sm
-          font-bold
-          text-white
-          shadow-sm
-          transition
-          whitespace-nowrap
-          shrink-0
-        "
-      >
-        ورود
-      </Link>
+      <div className="space-y-2">
+        <div
+          className="
+            rounded-xl
+            bg-porcelain
+            px-4
+            py-3
+            text-center
+            text-sm
+            font-medium
+            text-petrol
+          "
+        >
+          {user.displayName || "کاربر"}
+        </div>
+
+        <button
+          type="button"
+          onClick={logout}
+          className="
+            flex
+            w-full
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-coral
+            px-4
+            py-3
+            text-coral
+            font-semibold
+            hover:bg-coral
+            hover:text-white
+            transition
+          "
+        >
+          خروج
+        </button>
+      </div>
     );
   }
 
-  // =========================
-  // کاربر لاگین است
-  // =========================
+  // =====================================================
+  // DESKTOP
+  // =====================================================
+
+  if (!user) {
+    return (
+      <div
+        className="
+          flex
+          items-center
+          gap-2
+        "
+      >
+        <Link
+          href="/login"
+          className="
+            rounded-full
+            border
+            border-coral
+            px-3
+            py-2
+            text-sm
+            font-medium
+            text-coral
+            hover:bg-coral
+            hover:text-white
+            transition
+            whitespace-nowrap
+          "
+        >
+          ورود
+        </Link>
+
+        <Link
+          href="/register"
+          className="
+            rounded-full
+            bg-coral
+            px-3
+            py-2
+            text-sm
+            font-medium
+            text-white
+            hover:bg-[#D95C43]
+            transition
+            whitespace-nowrap
+          "
+        >
+          ثبت‌نام
+        </Link>
+      </div>
+    );
+  }
 
   return (
-    <button
-      type="button"
-      onClick={logout}
+    <div
       className="
-        rounded-full
-        border
-        border-coral
-        px-3
-        py-1.5
-        sm:px-4
-        sm:py-2
-        text-xs
-        sm:text-sm
-        font-medium
-        text-coral
-        hover:bg-coral
-        hover:text-white
-        transition
-        whitespace-nowrap
-        shrink-0
+        flex
+        items-center
+        gap-3
       "
     >
-      خروج
-    </button>
+      <span
+        className="
+          max-w-[140px]
+          truncate
+          whitespace-nowrap
+          text-sm
+          font-medium
+          text-petrol
+        "
+        title={
+          user.displayName ||
+          user.email
+        }
+      >
+        {user.displayName || "کاربر"}
+      </span>
+
+      <button
+        type="button"
+        onClick={logout}
+        className="
+          rounded-full
+          border
+          border-coral
+          px-3
+          py-2
+          text-sm
+          font-medium
+          text-coral
+          hover:bg-coral
+          hover:text-white
+          transition
+          whitespace-nowrap
+        "
+      >
+        خروج
+      </button>
+    </div>
   );
 }
