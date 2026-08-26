@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "./globals.css";
-import { Home, BookOpen, Sparkles } from "lucide-react";
+import { Home, BookOpen, Sparkles, Menu } from "lucide-react";
 import AuthButton from "@/components/AuthButton";
 
 export const metadata: Metadata = {
@@ -24,7 +24,6 @@ export default function RootLayout({
           overflow-x-hidden
           flex
           flex-col
-
           bg-porcelain
           text-petrol
         "
@@ -39,246 +38,360 @@ export default function RootLayout({
             top-0
             z-50
             w-full
-
             border-b
             border-coral/10
-
             bg-gradient-to-l
             from-coral/20
             via-blush/20
             to-[#F5E6D3]/70
-
             backdrop-blur-xl
-
             shadow-sm
             shadow-coral/10
           "
         >
           <div
             className="
+              mx-auto
               w-full
-
+              max-w-7xl
               px-4
               sm:px-6
               lg:px-8
-
-              py-3
-              sm:py-4
-
-              flex
-              items-center
-              justify-between
-
-              gap-3
             "
           >
-            {/* =================================================
-                LOGO
-                ================================================= */}
-
-            <Link
-              href="/"
-              dir="ltr"
+            <div
               className="
                 flex
+                h-16
                 items-center
-                gap-1
-
-                shrink-0
-                whitespace-nowrap
-
-                text-lg
-                sm:text-2xl
-                md:text-3xl
-
-                font-extrabold
-                tracking-wide
-
-                text-petrol
-
-                hover:text-coral
-
-                transition-colors
+                justify-between
+                gap-3
               "
             >
-              <span
-                className="
-                  inline-block
-                  h-2.5
-                  w-2.5
-
-                  rounded-full
-
-                  bg-coral
-
-                  shrink-0
-
-                  mr-1
-                "
-              />
-
-              <span>Surenmah</span>
-            </Link>
-
-            {/* =================================================
-                DESKTOP NAVIGATION
-                ================================================= */}
-
-            <nav
-              dir="rtl"
-              className="
-                hidden
-                md:flex
-
-                items-center
-
-                gap-4
-                lg:gap-6
-              "
-            >
-              {/* HOME */}
+              {/* =================================================
+                  LOGO
+                  ================================================= */}
 
               <Link
                 href="/"
+                dir="ltr"
                 className="
                   flex
+                  shrink-0
                   items-center
-                  gap-2
-
+                  gap-1
                   whitespace-nowrap
-
-                  text-sm
-                  lg:text-base
-
-                  font-medium
-
+                  text-lg
+                  sm:text-2xl
+                  font-extrabold
+                  tracking-wide
                   text-petrol
-
                   hover:text-coral
-
                   transition-colors
                 "
               >
-                <Home
-                  size={20}
-                  strokeWidth={1.8}
+                <span
+                  className="
+                    inline-block
+                    h-2.5
+                    w-2.5
+                    rounded-full
+                    bg-coral
+                  "
                 />
 
-                <span>خانه</span>
+                <span className="hidden xs:inline">
+                  Surenmah
+                </span>
               </Link>
 
-              {/* BLOG */}
+              {/* =================================================
+                  DESKTOP NAVIGATION
+                  ================================================= */}
 
-              <Link
-                href="/blog"
+              <nav
+                dir="rtl"
                 className="
-                  flex
+                  hidden
+                  md:flex
                   items-center
-                  gap-2
-
-                  whitespace-nowrap
-
-                  text-sm
-                  lg:text-base
-
-                  font-medium
-
-                  text-petrol
-
-                  hover:text-coral
-
-                  transition-colors
+                  gap-3
+                  lg:gap-5
                 "
               >
-                <BookOpen
-                  size={20}
-                  strokeWidth={1.8}
-                />
+                {/* خانه */}
 
-                <span>مقالات</span>
-              </Link>
+                <Link
+                  href="/"
+                  className="
+                    flex
+                    items-center
+                    gap-1.5
+                    whitespace-nowrap
+                    text-sm
+                    lg:text-base
+                    font-medium
+                    text-petrol
+                    hover:text-coral
+                    transition-colors
+                  "
+                >
+                  <Home
+                    size={19}
+                    strokeWidth={1.8}
+                  />
 
-              {/* SKIN JOURNEY */}
+                  <span>خانه</span>
+                </Link>
 
-              <Link
-                href="/journey"
-                className="
-                  flex
-                  items-center
-                  gap-2
+                {/* مقالات */}
 
-                  whitespace-nowrap
+                <Link
+                  href="/blog"
+                  className="
+                    flex
+                    items-center
+                    gap-1.5
+                    whitespace-nowrap
+                    text-sm
+                    lg:text-base
+                    font-medium
+                    text-petrol
+                    hover:text-coral
+                    transition-colors
+                  "
+                >
+                  <BookOpen
+                    size={19}
+                    strokeWidth={1.8}
+                  />
 
-                  rounded-full
+                  <span>مقالات</span>
+                </Link>
 
-                  px-3
-                  py-2
+                {/* =================================================
+                    سفر پوست
+                    ALWAYS VISIBLE
+                    ================================================= */}
 
-                  bg-coral/10
+                <Link
+                  href="/journey"
+                  className="
+                    flex
+                    items-center
+                    gap-1.5
+                    whitespace-nowrap
+                    rounded-full
+                    px-2
+                    py-1.5
+                    text-sm
+                    lg:text-base
+                    font-semibold
+                    text-petrol
+                    hover:bg-coral/10
+                    hover:text-coral
+                    transition
+                  "
+                >
+                  <Sparkles
+                    size={19}
+                    strokeWidth={1.8}
+                  />
 
-                  text-coral
+                  <span>سفر پوست</span>
+                </Link>
 
-                  font-bold
+                {/* =================================================
+                    CTA
+                    ================================================= */}
 
-                  hover:bg-coral/20
+                <Link
+                  href="/analyze"
+                  className="
+                    rounded-full
+                    bg-coral
+                    px-4
+                    py-2
+                    text-sm
+                    lg:px-5
+                    lg:py-2.5
+                    lg:text-base
+                    text-white
+                    font-bold
+                    shadow-md
+                    shadow-coral/25
+                    hover:bg-[#D95C43]
+                    hover:-translate-y-0.5
+                    transition
+                    whitespace-nowrap
+                  "
+                >
+                  تحلیل پوست
+                </Link>
 
-                  transition
-                "
-              >
-                <Sparkles
-                  size={20}
-                  strokeWidth={2}
-                />
+                {/* =================================================
+                    ACCOUNT
+                    ================================================= */}
 
-                <span>سفر پوست</span>
-              </Link>
+                <AuthButton />
+              </nav>
 
-              {/* ANALYZE */}
+              {/* =================================================
+                  MOBILE MENU
+                  ================================================= */}
 
-              <Link
-                href="/analyze"
-                className="
-                  rounded-full
+              <div className="md:hidden">
+                <details className="relative">
+                  <summary
+                    className="
+                      flex
+                      h-10
+                      w-10
+                      cursor-pointer
+                      list-none
+                      items-center
+                      justify-center
+                      rounded-full
+                      bg-coral
+                      text-white
+                      shadow-md
+                      shadow-coral/20
+                      [&::-webkit-details-marker]:hidden
+                    "
+                  >
+                    <Menu
+                      size={22}
+                      strokeWidth={2}
+                    />
+                  </summary>
 
-                  bg-coral
-                  hover:bg-[#D95C43]
+                  <div
+                    dir="rtl"
+                    className="
+                      absolute
+                      left-0
+                      top-12
+                      z-50
+                      w-64
+                      overflow-hidden
+                      rounded-2xl
+                      border
+                      border-coral/10
+                      bg-white
+                      shadow-xl
+                    "
+                  >
+                    <div className="p-3">
+                      {/* خانه */}
 
-                  px-4
-                  lg:px-5
+                      <Link
+                        href="/"
+                        className="
+                          flex
+                          items-center
+                          gap-3
+                          rounded-xl
+                          px-3
+                          py-3
+                          text-petrol
+                          hover:bg-coral/10
+                          transition
+                        "
+                      >
+                        <Home size={19} />
 
-                  py-2
-                  lg:py-2.5
+                        <span>خانه</span>
+                      </Link>
 
-                  text-sm
-                  lg:text-base
+                      {/* مقالات */}
 
-                  text-white
-                  font-bold
+                      <Link
+                        href="/blog"
+                        className="
+                          flex
+                          items-center
+                          gap-3
+                          rounded-xl
+                          px-3
+                          py-3
+                          text-petrol
+                          hover:bg-coral/10
+                          transition
+                        "
+                      >
+                        <BookOpen size={19} />
 
-                  shadow-md
-                  shadow-coral/25
+                        <span>مقالات</span>
+                      </Link>
 
-                  hover:-translate-y-0.5
+                      {/* =================================================
+                          سفر پوست
+                          ALWAYS VISIBLE
+                          ================================================= */}
 
-                  transition
+                      <Link
+                        href="/journey"
+                        className="
+                          flex
+                          items-center
+                          gap-3
+                          rounded-xl
+                          px-3
+                          py-3
+                          font-semibold
+                          text-petrol
+                          hover:bg-coral/10
+                          hover:text-coral
+                          transition
+                        "
+                      >
+                        <Sparkles size={19} />
 
-                  whitespace-nowrap
-                "
-              >
-                تحلیل پوست
-              </Link>
+                        <span>سفر پوست</span>
+                      </Link>
 
-              {/* AUTH */}
+                      {/* CTA */}
 
-              <AuthButton />
-            </nav>
+                      <Link
+                        href="/analyze"
+                        className="
+                          mt-2
+                          flex
+                          items-center
+                          justify-center
+                          rounded-xl
+                          bg-coral
+                          px-4
+                          py-3
+                          text-white
+                          font-bold
+                          shadow-md
+                          shadow-coral/20
+                          hover:bg-[#D95C43]
+                          transition
+                        "
+                      >
+                        تحلیل پوست
+                      </Link>
 
-            {/* =================================================
-                MOBILE AUTH / MENU
-                ================================================= */}
+                      {/* =================================================
+                          ACCOUNT
+                          ================================================= */}
 
-            <div className="md:hidden">
-              <AuthButton mobile />
+                      <div
+                        className="
+                          mt-3
+                          border-t
+                          border-gray-100
+                          pt-3
+                        "
+                      >
+                        <AuthButton mobile />
+                      </div>
+                    </div>
+                  </div>
+                </details>
+              </div>
             </div>
           </div>
         </header>
@@ -292,7 +405,6 @@ export default function RootLayout({
             flex-1
             w-full
             min-w-0
-
             bg-porcelain
           "
         >
@@ -307,22 +419,16 @@ export default function RootLayout({
           className="
             mt-10
             w-full
-
             bg-gradient-to-l
             from-coral/30
             via-blush/30
             to-[#F5E6D3]
-
             text-petrol
-
             p-6
             sm:p-8
-
             text-center
-
             border-t
             border-coral/15
-
             shadow-inner
             shadow-coral/10
           "
@@ -331,9 +437,7 @@ export default function RootLayout({
             className="
               text-xl
               sm:text-2xl
-
               font-extrabold
-
               text-petrol
             "
           >
@@ -343,12 +447,9 @@ export default function RootLayout({
           <p
             className="
               mt-3
-
               text-sm
               sm:text-base
-
               text-petrol-soft
-
               leading-7
             "
           >
@@ -358,27 +459,20 @@ export default function RootLayout({
           <p
             className="
               mt-3
-
               text-sm
               sm:text-base
-
               text-petrol-soft
-
               break-all
             "
           >
             ایمیل:{" "}
-
             <a
               href="mailto:ahmad.sadegh@gmail.com"
               className="
                 font-medium
                 underline
-
                 text-petrol
-
                 hover:text-coral
-
                 transition-colors
               "
             >
@@ -389,76 +483,53 @@ export default function RootLayout({
           <div
             className="
               mt-5
-
               flex
               justify-center
-
               gap-3
               sm:gap-4
-
               flex-wrap
             "
           >
-            {/* WHATSAPP */}
-
             <a
               href="https://wa.me/989xxxxxxxxx"
               target="_blank"
               rel="noopener noreferrer"
               className="
                 rounded-xl
-
                 bg-petrol
                 hover:bg-petrol-soft
-
                 px-4
                 sm:px-5
-
                 py-2
-
                 text-sm
                 sm:text-base
-
                 text-white
                 font-medium
-
                 shadow-md
                 shadow-petrol/15
-
                 hover:-translate-y-0.5
-
                 transition
               "
             >
               WhatsApp
             </a>
 
-            {/* BALE */}
-
             <a
               href="#"
               className="
                 rounded-xl
-
                 bg-coral
                 hover:bg-[#D95C43]
-
                 px-4
                 sm:px-5
-
                 py-2
-
                 text-sm
                 sm:text-base
-
                 text-white
                 font-medium
-
                 shadow-md
                 shadow-coral/15
-
                 hover:-translate-y-0.5
-
                 transition
               "
             >
@@ -469,16 +540,12 @@ export default function RootLayout({
           <p
             className="
               mt-6
-
               text-xs
               sm:text-sm
-
               text-petrol-soft
             "
           >
-            © {new Date().getFullYear()} Surenmah.
-            {" "}
-            All rights reserved.
+            © {new Date().getFullYear()} Surenmah. All rights reserved.
           </p>
         </footer>
       </body>
