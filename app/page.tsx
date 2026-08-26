@@ -20,96 +20,186 @@ export default function Home() {
       <section
         className="
           bg-[#F2EAF1]
-          py-20
           px-6
+          py-14
           sm:px-10
-          flex
-          flex-col
-          items-center
-          justify-center
-          text-center
+          sm:py-20
         "
       >
-        <h1
+        <div
           className="
-            text-4xl
-            sm:text-5xl
-            font-extrabold
-            text-petrol
-          "
-        >
-          تحلیل پوست با هوش مصنوعی
-        </h1>
-
-        <p
-          className="
-            mt-6
-            max-w-2xl
-            text-lg
-            sm:text-xl
-            leading-8
-            text-petrol
-          "
-        >
-          با استفاده از هوش مصنوعی، تصویر پوست خود را تحلیل کنید،
-          نوع پوست و نشانه‌های احتمالی مشکلات پوستی را بررسی کنید
-          و بر اساس نتیجه تحلیل، پیشنهادهای مناسب دریافت کنید.
-        </p>
-
-        <p
-          className="
-            mt-4
-            max-w-2xl
-            text-base
-            sm:text-lg
-            font-medium
-            leading-8
-            text-petrol
-          "
-        >
-          تحلیل کنید، نتیجه را ذخیره کنید و مسیر پوست خود را دنبال کنید.
-        </p>
-
-        <a
-          href="/analyze"
-          className="
-            mt-10
-            inline-flex
+            mx-auto
+            grid
+            max-w-6xl
             items-center
-            justify-center
-            rounded-xl
-            bg-gradient-to-l
-            from-coral
-            via-[#E97861]
-            to-[#F4A896]
-            px-10
-            py-4
-            text-lg
-            font-bold
-            text-white
-            shadow-lg
-            shadow-coral/25
-            hover:-translate-y-0.5
-            hover:shadow-xl
-            hover:shadow-coral/30
-            transition-all
-            duration-200
+            gap-10
+            lg:grid-cols-2
+            lg:gap-16
           "
         >
-          شروع تحلیل رایگان
-        </a>
 
-        <p
-          className="
-            mt-6
-            max-w-md
-            text-xs
-            text-petrol
-          "
-        >
-          ⚠️ این تحلیل تشخیص پزشکی نیست.
-          نتایج توسط هوش مصنوعی تخمین زده می‌شوند.
-        </p>
+          {/* =================================================
+              TEXT
+              ================================================= */}
+
+          <div
+            className="
+              text-center
+              lg:text-right
+            "
+          >
+            <h1
+              className="
+                text-4xl
+                sm:text-5xl
+                font-extrabold
+                leading-tight
+                text-petrol
+              "
+            >
+              تحلیل پوست با هوش مصنوعی
+            </h1>
+
+            <p
+              className="
+                mt-6
+                max-w-2xl
+                mx-auto
+                lg:mx-0
+                text-lg
+                sm:text-xl
+                leading-8
+                text-petrol
+              "
+            >
+              با استفاده از هوش مصنوعی، تصویر پوست خود را تحلیل کنید،
+              نوع پوست و نشانه‌های احتمالی مشکلات پوستی را بررسی کنید
+              و بر اساس نتیجه تحلیل، پیشنهادهای مناسب دریافت کنید.
+            </p>
+
+            <a
+              href="/analyze"
+              className="
+                mt-10
+                inline-flex
+                items-center
+                justify-center
+                rounded-xl
+                bg-gradient-to-l
+                from-coral
+                via-[#E97861]
+                to-[#F4A896]
+                px-10
+                py-4
+                text-lg
+                font-bold
+                text-white
+                shadow-lg
+                shadow-coral/25
+                hover:-translate-y-0.5
+                hover:shadow-xl
+                hover:shadow-coral/30
+                transition-all
+                duration-200
+              "
+            >
+              شروع تحلیل رایگان
+            </a>
+
+            <p
+              className="
+                mt-6
+                max-w-md
+                mx-auto
+                lg:mx-0
+                text-xs
+                leading-6
+                text-petrol
+              "
+            >
+              ⚠️ این تحلیل تشخیص پزشکی نیست.
+              نتایج توسط هوش مصنوعی تخمین زده می‌شوند.
+            </p>
+          </div>
+
+
+          {/* =================================================
+              HERO IMAGE
+              ================================================= */}
+
+          <div
+            className="
+              relative
+              order-first
+              lg:order-last
+            "
+          >
+            <div
+              className="
+                relative
+                mx-auto
+                max-w-md
+                overflow-hidden
+                rounded-[2rem]
+                shadow-xl
+                shadow-coral/10
+              "
+            >
+              <img
+                src="/images/hero-skin.jpg"
+                alt="تحلیل پوست با هوش مصنوعی در Surenmah"
+                className="
+                  h-[360px]
+                  w-full
+                  object-cover
+                  sm:h-[460px]
+                "
+              />
+
+              {/* Soft overlay */}
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-petrol/20
+                  via-transparent
+                  to-white/10
+                "
+              />
+
+              {/* Small badge */}
+
+              <div
+                className="
+                  absolute
+                  bottom-5
+                  right-5
+                  left-5
+                  rounded-2xl
+                  bg-white/90
+                  px-4
+                  py-3
+                  text-center
+                  shadow-lg
+                  backdrop-blur-sm
+                "
+              >
+                <p
+                  className="
+                    text-sm
+                    font-semibold
+                    text-petrol
+                  "
+                >
+                  ✨ شناخت بهتر پوست شما با هوش مصنوعی
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </section>
 
 
@@ -150,17 +240,17 @@ export default function Home() {
           <div
             className="
               flex
-              flex-col
-              items-center
-              text-center
-              rounded-3xl
-              bg-white
-              border
-              border-gray-100
-              p-6
-              shadow-sm
               w-full
               max-w-sm
+              flex-col
+              items-center
+              rounded-3xl
+              border
+              border-gray-100
+              bg-white
+              p-6
+              text-center
+              shadow-sm
             "
           >
             <div
@@ -220,17 +310,17 @@ export default function Home() {
           <div
             className="
               flex
-              flex-col
-              items-center
-              text-center
-              rounded-3xl
-              bg-white
-              border
-              border-gray-100
-              p-6
-              shadow-sm
               w-full
               max-w-sm
+              flex-col
+              items-center
+              rounded-3xl
+              border
+              border-gray-100
+              bg-white
+              p-6
+              text-center
+              shadow-sm
             "
           >
             <div
@@ -290,17 +380,17 @@ export default function Home() {
           <div
             className="
               flex
-              flex-col
-              items-center
-              text-center
-              rounded-3xl
-              bg-white
-              border
-              border-gray-100
-              p-6
-              shadow-sm
               w-full
               max-w-sm
+              flex-col
+              items-center
+              rounded-3xl
+              border
+              border-gray-100
+              bg-white
+              p-6
+              text-center
+              shadow-sm
             "
           >
             <div
@@ -376,8 +466,6 @@ export default function Home() {
           "
         >
 
-          {/* Badge */}
-
           <div className="text-center">
             <span
               className="
@@ -396,9 +484,6 @@ export default function Home() {
             </span>
           </div>
 
-
-          {/* Title */}
-
           <h2
             className="
               mt-5
@@ -411,9 +496,6 @@ export default function Home() {
           >
             سفر پوست شما از همین‌جا شروع می‌شود
           </h2>
-
-
-          {/* Description */}
 
           <p
             className="
@@ -433,9 +515,6 @@ export default function Home() {
             در طول زمان مشاهده و مرور کنید.
           </p>
 
-
-          {/* Features */}
-
           <div
             className="
               mx-auto
@@ -452,9 +531,9 @@ export default function Home() {
             <div
               className="
                 rounded-2xl
-                bg-white/80
                 border
                 border-gray-100
+                bg-white/80
                 p-5
                 text-center
                 shadow-sm
@@ -492,9 +571,9 @@ export default function Home() {
             <div
               className="
                 rounded-2xl
-                bg-white/80
                 border
                 border-gray-100
+                bg-white/80
                 p-5
                 text-center
                 shadow-sm
@@ -532,9 +611,9 @@ export default function Home() {
             <div
               className="
                 rounded-2xl
-                bg-white/80
                 border
                 border-gray-100
+                bg-white/80
                 p-5
                 text-center
                 shadow-sm
@@ -642,9 +721,9 @@ export default function Home() {
           <div
             className="
               rounded-3xl
-              bg-white
               border
               border-gray-100
+              bg-white
               p-6
               shadow-sm
             "
@@ -669,9 +748,9 @@ export default function Home() {
           <div
             className="
               rounded-3xl
-              bg-white
               border
               border-gray-100
+              bg-white
               p-6
               shadow-sm
             "
@@ -696,9 +775,9 @@ export default function Home() {
           <div
             className="
               rounded-3xl
-              bg-white
               border
               border-gray-100
+              bg-white
               p-6
               shadow-sm
             "
@@ -760,7 +839,6 @@ export default function Home() {
             همکاری با برندها
           </span>
 
-
           <h2
             className="
               mt-5
@@ -772,7 +850,6 @@ export default function Home() {
           >
             محصول خود را به مشتری مناسب معرفی کنید
           </h2>
-
 
           <p
             className="
@@ -791,7 +868,6 @@ export default function Home() {
             مناسب معرفی کند.
           </p>
 
-
           {/* VALUE POINTS */}
 
           <div
@@ -804,8 +880,6 @@ export default function Home() {
               sm:grid-cols-3
             "
           >
-
-            {/* Point 1 */}
 
             <div
               className="
@@ -841,8 +915,6 @@ export default function Home() {
             </div>
 
 
-            {/* Point 2 */}
-
             <div
               className="
                 rounded-2xl
@@ -876,8 +948,6 @@ export default function Home() {
               </p>
             </div>
 
-
-            {/* Point 3 */}
 
             <div
               className="
