@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function RegisterPage() {
   const router = useRouter();
 
+  const [displayName, setDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,8 +16,8 @@ export default function RegisterPage() {
   async function register() {
     setError("");
 
-    if (!email || !password) {
-      setError("ایمیل و رمز عبور را وارد کنید.");
+    if (!displayName || !email || !password) {
+      setError("نام نمایشی، ایمیل و رمز عبور را وارد کنید.");
       return;
     }
 
@@ -31,6 +32,7 @@ export default function RegisterPage() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+            displayName,
             email,
             password,
           }),
@@ -40,20 +42,26 @@ export default function RegisterPage() {
       if (!response.ok) {
         const data = await response.json().catch(() => null);
 
-        setError(
-          Array.isArray(data)
-            ? data.join(" ")
-            : data || "ثبت‌نام انجام نشد."
-        );
+        if (data?.errors) {
+          const messages = Object.values(data.errors)
+            .flat()
+            .join(" ");
+
+          setError(messages || "ثبت‌نام انجام نشد.");
+        } else {
+          setError(
+            typeof data === "string"
+              ? data
+              : data?.title || "ثبت‌نام انجام نشد."
+          );
+        }
 
         return;
       }
 
       router.push("/login");
     } catch {
-      setError(
-        "ارتباط با سرور برقرار نشد."
-      );
+      setError("ارتباط با سرور برقرار نشد.");
     } finally {
       setLoading(false);
     }
@@ -68,6 +76,14 @@ export default function RegisterPage() {
 
         <div className="mt-8 space-y-4">
           <input
+            type="text"
+            placeholder="نام نمایشی"
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            className="w-full rounded-xl border p-3"
+          />
+
+          <input
             type="email"
             placeholder="ایمیل"
             value={email}
@@ -79,9 +95,7 @@ export default function RegisterPage() {
             type="password"
             placeholder="رمز عبور"
             value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
+            onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-xl border p-3"
           />
 
