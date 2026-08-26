@@ -12,17 +12,27 @@ type User = {
 
 type AuthButtonProps = {
   mobile?: boolean;
+  onNavigate?: () => void;
 };
 
 export default function AuthButton({
   mobile = false,
+  onNavigate,
 }: AuthButtonProps) {
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] =
+    useState<User | null>(null);
+
+  const [loading, setLoading] =
+    useState(true);
 
   useEffect(() => {
     async function loadUser() {
-      const token = localStorage.getItem("token");
+      const token =
+        localStorage.getItem("token");
+
+      // =====================================================
+      // NOT LOGGED IN
+      // =====================================================
 
       if (!token) {
         setLoading(false);
@@ -30,28 +40,40 @@ export default function AuthButton({
       }
 
       try {
-        const response = await fetch(
-          `${API_BASE}/api/Auth/me`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const response =
+          await fetch(
+            `${API_BASE}/api/Auth/me`,
+            {
+              method: "GET",
+              headers: {
+                Authorization:
+                  `Bearer ${token}`,
+              },
+            }
+          );
+
+        // ===================================================
+        // INVALID / EXPIRED TOKEN
+        // ===================================================
 
         if (!response.ok) {
-          localStorage.removeItem("token");
+          localStorage.removeItem(
+            "token"
+          );
+
           setUser(null);
+
           return;
         }
 
-        const data = await response.json();
+        const data =
+          await response.json();
 
         setUser({
           userId: data.userId,
           email: data.email,
-          displayName: data.displayName,
+          displayName:
+            data.displayName,
         });
       } catch (error) {
         console.error(
@@ -66,11 +88,25 @@ export default function AuthButton({
     loadUser();
   }, []);
 
+  // =====================================================
+  // LOGOUT
+  // =====================================================
+
   function logout() {
-    localStorage.removeItem("token");
+    onNavigate?.();
+
+    localStorage.removeItem(
+      "token"
+    );
+
     setUser(null);
+
     window.location.href = "/";
   }
+
+  // =====================================================
+  // AUTH CHECK LOADING
+  // =====================================================
 
   if (loading) {
     return null;
@@ -81,11 +117,20 @@ export default function AuthButton({
   // =====================================================
 
   if (mobile) {
+
+    // -----------------------------------------------------
+    // MOBILE - NOT LOGGED IN
+    // -----------------------------------------------------
+
     if (!user) {
       return (
         <div className="space-y-2">
+
+          {/* LOGIN */}
+
           <Link
             href="/login"
+            onClick={onNavigate}
             className="
               flex
               w-full
@@ -104,8 +149,11 @@ export default function AuthButton({
             ورود
           </Link>
 
+          {/* REGISTER */}
+
           <Link
             href="/register"
+            onClick={onNavigate}
             className="
               flex
               w-full
@@ -125,12 +173,20 @@ export default function AuthButton({
           >
             ثبت‌نام
           </Link>
+
         </div>
       );
     }
 
+    // -----------------------------------------------------
+    // MOBILE - LOGGED IN
+    // -----------------------------------------------------
+
     return (
       <div className="space-y-2">
+
+        {/* USER */}
+
         <div
           className="
             rounded-xl
@@ -143,8 +199,11 @@ export default function AuthButton({
             text-petrol
           "
         >
-          {user.displayName || "کاربر"}
+          {user.displayName ||
+            "کاربر"}
         </div>
+
+        {/* LOGOUT */}
 
         <button
           type="button"
@@ -168,6 +227,7 @@ export default function AuthButton({
         >
           خروج
         </button>
+
       </div>
     );
   }
@@ -175,6 +235,10 @@ export default function AuthButton({
   // =====================================================
   // DESKTOP
   // =====================================================
+
+  // -----------------------------------------------------
+  // DESKTOP - NOT LOGGED IN
+  // -----------------------------------------------------
 
   if (!user) {
     return (
@@ -185,6 +249,8 @@ export default function AuthButton({
           gap-2
         "
       >
+        {/* LOGIN */}
+
         <Link
           href="/login"
           className="
@@ -204,6 +270,8 @@ export default function AuthButton({
         >
           ورود
         </Link>
+
+        {/* REGISTER */}
 
         <Link
           href="/register"
@@ -226,6 +294,10 @@ export default function AuthButton({
     );
   }
 
+  // -----------------------------------------------------
+  // DESKTOP - LOGGED IN
+  // -----------------------------------------------------
+
   return (
     <div
       className="
@@ -234,6 +306,8 @@ export default function AuthButton({
         gap-3
       "
     >
+      {/* USER */}
+
       <span
         className="
           max-w-[140px]
@@ -248,8 +322,11 @@ export default function AuthButton({
           user.email
         }
       >
-        {user.displayName || "کاربر"}
+        {user.displayName ||
+          "کاربر"}
       </span>
+
+      {/* LOGOUT */}
 
       <button
         type="button"
