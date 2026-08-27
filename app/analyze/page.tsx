@@ -17,8 +17,6 @@ import ImageCropper from "@/components/image/ImageCropper";
 
 import { processImage } from "@/lib/image/processImage";
 
-import heic2any from "heic2any";
-
 export default function AnalyzePage() {
   const [image, setImage] = useState<File | null>(
     null
@@ -141,6 +139,17 @@ export default function AnalyzePage() {
           "HEIC/HEIF detected. Converting to JPEG..."
         );
 
+        // IMPORTANT:
+        // Load heic2any only in the browser.
+        // This prevents Next.js build/SSR
+        // from executing heic2any on the server.
+
+        const {
+          default: heic2any,
+        } = await import(
+          "heic2any"
+        );
+
         const conversionResult =
           await heic2any({
             blob: file,
@@ -149,7 +158,9 @@ export default function AnalyzePage() {
           });
 
         const jpegBlob =
-          Array.isArray(conversionResult)
+          Array.isArray(
+            conversionResult
+          )
             ? conversionResult[0]
             : conversionResult;
 
@@ -168,15 +179,20 @@ export default function AnalyzePage() {
         console.log(
           "HEIC converted successfully:",
           {
-            name: processedFile.name,
-            type: processedFile.type,
-            size: processedFile.size,
+            name:
+              processedFile.name,
+
+            type:
+              processedFile.type,
+
+            size:
+              processedFile.size,
           }
         );
       }
 
       // =========================
-      // Create preview
+      // Create Preview
       // =========================
 
       const previewUrl =
@@ -187,9 +203,14 @@ export default function AnalyzePage() {
       console.log(
         "VALID IMAGE:",
         {
-          originalName: file.name,
-          originalType: file.type,
-          originalSize: file.size,
+          originalName:
+            file.name,
+
+          originalType:
+            file.type,
+
+          originalSize:
+            file.size,
 
           processedName:
             processedFile.name,
@@ -202,11 +223,16 @@ export default function AnalyzePage() {
         }
       );
 
-      setImage(processedFile);
-      setImagePreview(previewUrl);
+      setImage(
+        processedFile
+      );
+
+      setImagePreview(
+        previewUrl
+      );
     } catch (error) {
       console.error(
-        "Image conversion failed:",
+        "Image preparation failed:",
         error
       );
 
@@ -240,7 +266,9 @@ export default function AnalyzePage() {
     const token =
       localStorage.getItem("token");
 
-    setIsLoggedIn(!!token);
+    setIsLoggedIn(
+      !!token
+    );
   }, []);
 
   // =========================
@@ -336,7 +364,9 @@ export default function AnalyzePage() {
       // =========================
 
       const token =
-        localStorage.getItem("token");
+        localStorage.getItem(
+          "token"
+        );
 
       const headers: HeadersInit = {};
 
@@ -384,7 +414,10 @@ export default function AnalyzePage() {
       );
 
       setResult(data);
-      setSaveToHistory(false);
+
+      setSaveToHistory(
+        false
+      );
     } catch (error) {
       console.error(
         "Analyze request failed:",
@@ -513,7 +546,9 @@ export default function AnalyzePage() {
 
         <button
           type="button"
-          onClick={openFilePicker}
+          onClick={
+            openFilePicker
+          }
           className="
             w-full
             cursor-pointer
@@ -665,7 +700,9 @@ export default function AnalyzePage() {
         >
           <input
             type="checkbox"
-            checked={saveToHistory}
+            checked={
+              saveToHistory
+            }
             onChange={(e) =>
               setSaveToHistory(
                 e.target.checked
