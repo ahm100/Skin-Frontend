@@ -17,6 +17,8 @@ import ImageCropper from "@/components/image/ImageCropper";
 
 import { processImage } from "@/lib/image/processImage";
 
+import heic2any from "heic2any";
+
 export default function AnalyzePage() {
   const [image, setImage] = useState<File | null>(
     null
@@ -53,7 +55,7 @@ export default function AnalyzePage() {
   // File Upload
   // =========================
 
-  function handleUpload(
+  async function handleUpload(
     e: React.ChangeEvent<HTMLInputElement>
   ) {
     const file = e.target.files?.[0];
@@ -73,23 +75,53 @@ export default function AnalyzePage() {
     }
 
     // =========================
-    // Allowed image types
+    // Detect image type
     // =========================
 
-    const allowedTypes = [
-      "image/jpeg",
-      "image/png",
-      "image/webp",
-    ];
+    const fileName =
+      file.name.toLowerCase();
 
-    if (!allowedTypes.includes(file.type)) {
+    const isJpeg =
+      file.type === "image/jpeg" ||
+      fileName.endsWith(".jpg") ||
+      fileName.endsWith(".jpeg");
+
+    const isPng =
+      file.type === "image/png" ||
+      fileName.endsWith(".png");
+
+    const isWebp =
+      file.type === "image/webp" ||
+      fileName.endsWith(".webp");
+
+    const isHeic =
+      file.type === "image/heic" ||
+      file.type === "image/heif" ||
+      fileName.endsWith(".heic") ||
+      fileName.endsWith(".heif");
+
+    const isValid =
+      isJpeg ||
+      isPng ||
+      isWebp ||
+      isHeic;
+
+    // =========================
+    // Validate file
+    // =========================
+
+    if (!isValid) {
       console.log(
-        "INVALID FILE TYPE:",
-        file.type
+        "INVALID FILE:",
+        {
+          name: file.name,
+          type: file.type,
+          size: file.size,
+        }
       );
 
       setImageError(
-        "فرمت تصویر باید JPG، PNG یا WEBP باشد."
+        "فرمت تصویر باید JPG، PNG، WEBP یا HEIC باشد."
       );
 
       e.target.value = "";
@@ -97,21 +129,93 @@ export default function AnalyzePage() {
       return;
     }
 
-    // =========================
-    // Original file
-    // =========================
+    try {
+      // =========================
+      // HEIC → JPEG
+      // =========================
 
-    console.log("VALID IMAGE:", {
-      name: file.name,
-      type: file.type,
-      size: file.size,
-    });
+      let processedFile = file;
 
-    const previewUrl =
-      URL.createObjectURL(file);
+      if (isHeic) {
+        console.log(
+          "HEIC/HEIF detected. Converting to JPEG..."
+        );
 
-    setImage(file);
-    setImagePreview(previewUrl);
+        const conversionResult =
+          await heic2any({
+            blob: file,
+            toType: "image/jpeg",
+            quality: 0.9,
+          });
+
+        const jpegBlob =
+          Array.isArray(conversionResult)
+            ? conversionResult[0]
+            : conversionResult;
+
+        processedFile = new File(
+          [jpegBlob],
+          `${file.name.replace(
+            /\.(heic|heif)$/i,
+            ""
+          )}.jpg`,
+          {
+            type: "image/jpeg",
+            lastModified: Date.now(),
+          }
+        );
+
+        console.log(
+          "HEIC converted successfully:",
+          {
+            name: processedFile.name,
+            type: processedFile.type,
+            size: processedFile.size,
+          }
+        );
+      }
+
+      // =========================
+      // Create preview
+      // =========================
+
+      const previewUrl =
+        URL.createObjectURL(
+          processedFile
+        );
+
+      console.log(
+        "VALID IMAGE:",
+        {
+          originalName: file.name,
+          originalType: file.type,
+          originalSize: file.size,
+
+          processedName:
+            processedFile.name,
+
+          processedType:
+            processedFile.type,
+
+          processedSize:
+            processedFile.size,
+        }
+      );
+
+      setImage(processedFile);
+      setImagePreview(previewUrl);
+    } catch (error) {
+      console.error(
+        "Image conversion failed:",
+        error
+      );
+
+      setImageError(
+        "امکان آماده‌سازی تصویر وجود نداشت. لطفاً تصویر دیگری انتخاب کنید."
+      );
+
+      e.target.value = "";
+    }
   }
 
   // =========================
@@ -121,7 +225,9 @@ export default function AnalyzePage() {
   useEffect(() => {
     return () => {
       if (imagePreview) {
-        URL.revokeObjectURL(imagePreview);
+        URL.revokeObjectURL(
+          imagePreview
+        );
       }
     };
   }, [imagePreview]);
@@ -190,16 +296,21 @@ export default function AnalyzePage() {
 
       const processedImage =
         await processImage(
-          imagePreview,
+          image,
           croppedAreaPixels
         );
 
       console.log(
         "Processed image:",
         {
-          name: processedImage.name,
-          type: processedImage.type,
-          size: processedImage.size,
+          name:
+            processedImage.name,
+
+          type:
+            processedImage.type,
+
+          size:
+            processedImage.size,
         }
       );
 
@@ -384,9 +495,13 @@ export default function AnalyzePage() {
             .jpeg,
             .png,
             .webp,
+            .heic,
+            .heif,
             image/jpeg,
             image/png,
-            image/webp
+            image/webp,
+            image/heic,
+            image/heif
           "
           onChange={handleUpload}
           className="sr-only"
@@ -439,7 +554,7 @@ export default function AnalyzePage() {
               text-petrol
             "
           >
-            JPG، PNG یا WEBP
+            JPG، PNG، WEBP یا HEIC
           </div>
         </button>
       </div>
