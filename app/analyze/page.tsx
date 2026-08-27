@@ -1,21 +1,53 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+
+import { Area } from "react-easy-crop";
+
 import { API_BASE } from "@/lib/api";
+
 import Disclaimer from "@/components/Disclaimer";
 import UploadGuide from "@/components/UploadGuide";
 import SkinAnalysisResult from "@/components/SkinAnalysisResult";
+import ImageCropper from "@/components/image/ImageCropper";
+
+import { processImage } from "@/lib/image/processImage";
 
 export default function AnalyzePage() {
-  const [image, setImage] = useState<File | null>(null);
-  const [imageError, setImageError] = useState("");
-  const [result, setResult] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
-  const [saveToHistory, setSaveToHistory] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [image, setImage] = useState<File | null>(
+    null
+  );
 
-  const resultRef = useRef<HTMLDivElement>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [imageError, setImageError] =
+    useState("");
+
+  const [result, setResult] =
+    useState<any>(null);
+
+  const [loading, setLoading] =
+    useState(false);
+
+  const [saveToHistory, setSaveToHistory] =
+    useState(false);
+
+  const [isLoggedIn, setIsLoggedIn] =
+    useState(false);
+
+  const [imagePreview, setImagePreview] =
+    useState<string | null>(null);
+
+  const [croppedAreaPixels, setCroppedAreaPixels] =
+    useState<Area | null>(null);
+
+  const resultRef =
+    useRef<HTMLDivElement>(null);
+
+  const fileInputRef =
+    useRef<HTMLInputElement>(null);
 
   // =========================
   // File Upload
@@ -29,9 +61,14 @@ export default function AnalyzePage() {
     setImageError("");
     setImage(null);
     setResult(null);
+    setImagePreview(null);
+    setCroppedAreaPixels(null);
 
     if (!file) {
-      setImageError("تصویری انتخاب نشد.");
+      setImageError(
+        "تصویری انتخاب نشد."
+      );
+
       return;
     }
 
@@ -46,7 +83,10 @@ export default function AnalyzePage() {
     ];
 
     if (!allowedTypes.includes(file.type)) {
-      console.log("INVALID FILE TYPE:", file.type);
+      console.log(
+        "INVALID FILE TYPE:",
+        file.type
+      );
 
       setImageError(
         "فرمت تصویر باید JPG، PNG یا WEBP باشد."
@@ -58,25 +98,7 @@ export default function AnalyzePage() {
     }
 
     // =========================
-    // Max file size
-    // =========================
-
-    const maxSize = 5 * 1024 * 1024;
-
-    if (file.size > maxSize) {
-      console.log("FILE TOO LARGE:", file.size);
-
-      setImageError(
-        "حجم تصویر نباید بیشتر از 5 مگابایت باشد."
-      );
-
-      e.target.value = "";
-
-      return;
-    }
-
-    // =========================
-    // Valid image
+    // Original file
     // =========================
 
     console.log("VALID IMAGE:", {
@@ -85,15 +107,32 @@ export default function AnalyzePage() {
       size: file.size,
     });
 
+    const previewUrl =
+      URL.createObjectURL(file);
+
     setImage(file);
+    setImagePreview(previewUrl);
   }
+
+  // =========================
+  // Cleanup preview URL
+  // =========================
+
+  useEffect(() => {
+    return () => {
+      if (imagePreview) {
+        URL.revokeObjectURL(imagePreview);
+      }
+    };
+  }, [imagePreview]);
 
   // =========================
   // Authentication
   // =========================
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token =
+      localStorage.getItem("token");
 
     setIsLoggedIn(!!token);
   }, []);
@@ -124,45 +163,94 @@ export default function AnalyzePage() {
       return;
     }
 
+    if (!imagePreview) {
+      setImageError(
+        "تصویر برای پردازش آماده نیست."
+      );
+
+      return;
+    }
+
+    if (!croppedAreaPixels) {
+      setImageError(
+        "لطفاً ابتدا محدوده تصویر را مشخص کنید."
+      );
+
+      return;
+    }
+
     setLoading(true);
     setResult(null);
     setImageError("");
 
     try {
-      const formData = new FormData();
+      // =========================
+      // Crop + Resize + Compress
+      // =========================
 
-      formData.append("image", image);
+      const processedImage =
+        await processImage(
+          imagePreview,
+          croppedAreaPixels
+        );
+
+      console.log(
+        "Processed image:",
+        {
+          name: processedImage.name,
+          type: processedImage.type,
+          size: processedImage.size,
+        }
+      );
+
+      // =========================
+      // Form Data
+      // =========================
+
+      const formData =
+        new FormData();
+
+      formData.append(
+        "image",
+        processedImage
+      );
 
       formData.append(
         "saveToHistory",
         saveToHistory.toString()
       );
 
-      console.log("Sending image:", {
-        name: image.name,
-        type: image.type,
-        size: image.size,
-      });
+      // =========================
+      // Authentication
+      // =========================
 
-      const token = localStorage.getItem("token");
+      const token =
+        localStorage.getItem("token");
 
       const headers: HeadersInit = {};
 
       if (token) {
-        headers.Authorization = `Bearer ${token}`;
+        headers.Authorization =
+          `Bearer ${token}`;
       }
 
-      const response = await fetch(
-        `${API_BASE}/api/SkinAnalysis/analyze`,
-        {
-          method: "POST",
-          headers,
-          body: formData,
-        }
-      );
+      // =========================
+      // API
+      // =========================
+
+      const response =
+        await fetch(
+          `${API_BASE}/api/SkinAnalysis/analyze`,
+          {
+            method: "POST",
+            headers,
+            body: formData,
+          }
+        );
 
       if (!response.ok) {
-        const errorText = await response.text();
+        const errorText =
+          await response.text();
 
         console.error(
           "Analyze API Error:",
@@ -176,7 +264,8 @@ export default function AnalyzePage() {
         return;
       }
 
-      const data = await response.json();
+      const data =
+        await response.json();
 
       console.log(
         "Analyze result:",
@@ -191,6 +280,18 @@ export default function AnalyzePage() {
         error
       );
 
+      if (
+        error instanceof Error &&
+        error.message ===
+          "IMAGE_TOO_LARGE"
+      ) {
+        setImageError(
+          "حجم تصویر پس از فشرده‌سازی همچنان بیشتر از 5 مگابایت است. لطفاً تصویر دیگری انتخاب کنید."
+        );
+
+        return;
+      }
+
       setImageError(
         "ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت را بررسی کنید."
       );
@@ -204,7 +305,9 @@ export default function AnalyzePage() {
   // =========================
 
   function openFilePicker() {
-    console.log("OPEN FILE PICKER");
+    console.log(
+      "OPEN FILE PICKER"
+    );
 
     fileInputRef.current?.click();
   }
@@ -360,6 +463,19 @@ export default function AnalyzePage() {
       )}
 
       {/* ========================= */}
+      {/* Crop */}
+      {/* ========================= */}
+
+      {imagePreview && (
+        <ImageCropper
+          image={imagePreview}
+          onCropComplete={
+            setCroppedAreaPixels
+          }
+        />
+      )}
+
+      {/* ========================= */}
       {/* Selected File */}
       {/* ========================= */}
 
@@ -398,6 +514,21 @@ export default function AnalyzePage() {
           >
             {image.name}
           </p>
+
+          <p
+            className="
+              mt-1
+              text-xs
+              text-petrol
+            "
+          >
+            حجم اولیه:{" "}
+            {(
+              image.size /
+              (1024 * 1024)
+            ).toFixed(2)}{" "}
+            MB
+          </p>
         </div>
       )}
 
@@ -421,7 +552,9 @@ export default function AnalyzePage() {
             type="checkbox"
             checked={saveToHistory}
             onChange={(e) =>
-              setSaveToHistory(e.target.checked)
+              setSaveToHistory(
+                e.target.checked
+              )
             }
           />
 
@@ -471,7 +604,12 @@ export default function AnalyzePage() {
       <button
         type="button"
         onClick={analyze}
-        disabled={!image || loading}
+        disabled={
+          !image ||
+          !imagePreview ||
+          !croppedAreaPixels ||
+          loading
+        }
         className="
           mt-4
           rounded-xl
