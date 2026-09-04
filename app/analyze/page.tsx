@@ -7,20 +7,34 @@ import {
 } from "react";
 
 import { Area } from "react-easy-crop";
-
 import { API_BASE } from "@/lib/api";
 
 import Disclaimer from "@/components/Disclaimer";
 import UploadGuide from "@/components/UploadGuide";
 import SkinAnalysisResult from "@/components/SkinAnalysisResult";
 import ImageCropper from "@/components/image/ImageCropper";
-
 import { processImage } from "@/lib/image/processImage";
 
+type SkinQuestion = {
+  key: string;
+  condition: string;
+  question: string;
+  type: string;
+  required: boolean;
+  options: string[];
+};
+
+type SkinQuestionAnswer = {
+  key: string;
+  answer: string;
+};
+
 export default function AnalyzePage() {
-  const [image, setImage] = useState<File | null>(
-    null
-  );
+  const [image, setImage] =
+    useState<File | null>(null);
+
+  const [processedImage, setProcessedImage] =
+    useState<File | null>(null);
 
   const [imageError, setImageError] =
     useState("");
@@ -29,6 +43,9 @@ export default function AnalyzePage() {
     useState<any>(null);
 
   const [loading, setLoading] =
+    useState(false);
+
+  const [refining, setRefining] =
     useState(false);
 
   const [saveToHistory, setSaveToHistory] =
@@ -42,6 +59,16 @@ export default function AnalyzePage() {
 
   const [croppedAreaPixels, setCroppedAreaPixels] =
     useState<Area | null>(null);
+
+  // =========================
+  // Skin Questions
+  // =========================
+
+  const [questions, setQuestions] =
+    useState<SkinQuestion[]>([]);
+
+  const [answers, setAnswers] =
+    useState<SkinQuestionAnswer[]>([]);
 
   const resultRef =
     useRef<HTMLDivElement>(null);
@@ -60,7 +87,10 @@ export default function AnalyzePage() {
 
     setImageError("");
     setImage(null);
+    setProcessedImage(null);
     setResult(null);
+    setQuestions([]);
+    setAnswers([]);
     setImagePreview(null);
     setCroppedAreaPixels(null);
 
@@ -68,7 +98,6 @@ export default function AnalyzePage() {
       setImageError(
         "تصویری انتخاب نشد."
       );
-
       return;
     }
 
@@ -123,7 +152,6 @@ export default function AnalyzePage() {
       );
 
       e.target.value = "";
-
       return;
     }
 
@@ -139,16 +167,9 @@ export default function AnalyzePage() {
           "HEIC/HEIF detected. Converting to JPEG..."
         );
 
-        // IMPORTANT:
-        // Load heic2any only in the browser.
-        // This prevents Next.js build/SSR
-        // from executing heic2any on the server.
-
         const {
           default: heic2any,
-        } = await import(
-          "heic2any"
-        );
+        } = await import("heic2any");
 
         const conversionResult =
           await heic2any({
@@ -158,9 +179,7 @@ export default function AnalyzePage() {
           });
 
         const jpegBlob =
-          Array.isArray(
-            conversionResult
-          )
+          Array.isArray(conversionResult)
             ? conversionResult[0]
             : conversionResult;
 
@@ -179,14 +198,9 @@ export default function AnalyzePage() {
         console.log(
           "HEIC converted successfully:",
           {
-            name:
-              processedFile.name,
-
-            type:
-              processedFile.type,
-
-            size:
-              processedFile.size,
+            name: processedFile.name,
+            type: processedFile.type,
+            size: processedFile.size,
           }
         );
       }
@@ -203,33 +217,18 @@ export default function AnalyzePage() {
       console.log(
         "VALID IMAGE:",
         {
-          originalName:
-            file.name,
-
-          originalType:
-            file.type,
-
-          originalSize:
-            file.size,
-
-          processedName:
-            processedFile.name,
-
-          processedType:
-            processedFile.type,
-
-          processedSize:
-            processedFile.size,
+          originalName: file.name,
+          originalType: file.type,
+          originalSize: file.size,
+          processedName: processedFile.name,
+          processedType: processedFile.type,
+          processedSize: processedFile.size,
         }
       );
 
-      setImage(
-        processedFile
-      );
+      setImage(processedFile);
+      setImagePreview(previewUrl);
 
-      setImagePreview(
-        previewUrl
-      );
     } catch (error) {
       console.error(
         "Image preparation failed:",
@@ -266,9 +265,7 @@ export default function AnalyzePage() {
     const token =
       localStorage.getItem("token");
 
-    setIsLoggedIn(
-      !!token
-    );
+    setIsLoggedIn(!!token);
   }, []);
 
   // =========================
@@ -285,6 +282,41 @@ export default function AnalyzePage() {
   }, [result]);
 
   // =========================
+  // Set Question Answer
+  // =========================
+
+  function setQuestionAnswer(
+    key: string,
+    answer: string
+  ) {
+    setAnswers((current) => {
+      const existingIndex =
+        current.findIndex(
+          (x) => x.key === key
+        );
+
+      if (existingIndex === -1) {
+        return [
+          ...current,
+          {
+            key,
+            answer,
+          },
+        ];
+      }
+
+      const updated = [...current];
+
+      updated[existingIndex] = {
+        key,
+        answer,
+      };
+
+      return updated;
+    });
+  }
+
+  // =========================
   // Analyze
   // =========================
 
@@ -293,7 +325,6 @@ export default function AnalyzePage() {
       setImageError(
         "لطفاً ابتدا یک تصویر انتخاب کنید."
       );
-
       return;
     }
 
@@ -301,7 +332,6 @@ export default function AnalyzePage() {
       setImageError(
         "تصویر برای پردازش آماده نیست."
       );
-
       return;
     }
 
@@ -309,12 +339,14 @@ export default function AnalyzePage() {
       setImageError(
         "لطفاً ابتدا محدوده تصویر را مشخص کنید."
       );
-
       return;
     }
 
     setLoading(true);
     setResult(null);
+    setQuestions([]);
+    setAnswers([]);
+    setProcessedImage(null);
     setImageError("");
 
     try {
@@ -322,7 +354,7 @@ export default function AnalyzePage() {
       // Crop + Resize + Compress
       // =========================
 
-      const processedImage =
+      const finalImage =
         await processImage(
           image,
           croppedAreaPixels
@@ -331,16 +363,15 @@ export default function AnalyzePage() {
       console.log(
         "Processed image:",
         {
-          name:
-            processedImage.name,
-
-          type:
-            processedImage.type,
-
-          size:
-            processedImage.size,
+          name: finalImage.name,
+          type: finalImage.type,
+          size: finalImage.size,
         }
       );
+
+      // Keep the exact processed image
+      // for saving after refine.
+      setProcessedImage(finalImage);
 
       // =========================
       // Form Data
@@ -351,12 +382,14 @@ export default function AnalyzePage() {
 
       formData.append(
         "image",
-        processedImage
+        finalImage
       );
 
+      // IMPORTANT:
+      // Analyze must NOT save history.
       formData.append(
         "saveToHistory",
-        saveToHistory.toString()
+        "false"
       );
 
       // =========================
@@ -415,9 +448,21 @@ export default function AnalyzePage() {
 
       setResult(data);
 
-      setSaveToHistory(
-        false
+      // =========================
+      // Questions
+      // =========================
+
+      setQuestions(
+        Array.isArray(data.questions)
+          ? data.questions
+          : []
       );
+
+      setAnswers([]);
+
+      // DO NOT reset saveToHistory here.
+      // User's choice must survive until refine.
+
     } catch (error) {
       console.error(
         "Analyze request failed:",
@@ -441,6 +486,141 @@ export default function AnalyzePage() {
       );
     } finally {
       setLoading(false);
+    }
+  }
+
+  // =========================
+  // Refine Analysis
+  // =========================
+
+  async function refineAnalysis() {
+    if (!result?.analysis) {
+      setImageError(
+        "اطلاعات تحلیل برای تکمیل نتیجه موجود نیست."
+      );
+
+      return;
+    }
+
+    if (saveToHistory && !processedImage) {
+      setImageError(
+        "تصویر آماده ذخیره نیست. لطفاً دوباره تحلیل را انجام دهید."
+      );
+
+      return;
+    }
+
+    setRefining(true);
+    setImageError("");
+
+    try {
+      // =========================
+      // Form Data
+      // =========================
+
+      const formData =
+        new FormData();
+
+      if (processedImage) {
+        formData.append(
+          "image",
+          processedImage
+        );
+      }
+
+      formData.append(
+        "analysis",
+        JSON.stringify(
+          result.analysis
+        )
+      );
+
+      formData.append(
+        "answers",
+        JSON.stringify(
+          answers
+        )
+      );
+
+      formData.append(
+        "saveToHistory",
+        saveToHistory.toString()
+      );
+
+      // =========================
+      // Authentication
+      // =========================
+
+      const token =
+        localStorage.getItem(
+          "token"
+        );
+
+      const headers: HeadersInit = {};
+
+      if (token) {
+        headers.Authorization =
+          `Bearer ${token}`;
+      }
+
+      // =========================
+      // API
+      // =========================
+
+      const response =
+        await fetch(
+          `${API_BASE}/api/SkinAnalysis/refine`,
+          {
+            method: "POST",
+            headers,
+            body: formData,
+          }
+        );
+
+      if (!response.ok) {
+        const errorText =
+          await response.text();
+
+        console.error(
+          "Refine API Error:",
+          errorText
+        );
+
+        setImageError(
+          "در پردازش پاسخ‌ها مشکلی پیش آمد. لطفاً دوباره تلاش کنید."
+        );
+
+        return;
+      }
+
+      const data =
+        await response.json();
+
+      console.log(
+        "Refine result:",
+        data
+      );
+
+      // =========================
+      // Final Result
+      // =========================
+
+      setResult(data);
+
+      // Questions are no longer needed
+      setQuestions([]);
+
+    } catch (error) {
+      console.error(
+        "Refine request failed:",
+        error
+      );
+
+      setImageError(
+        "ارتباط با سرور برقرار نشد. لطفاً دوباره تلاش کنید."
+      );
+    } finally {
+      setRefining(false);
     }
   }
 
@@ -546,9 +726,7 @@ export default function AnalyzePage() {
 
         <button
           type="button"
-          onClick={
-            openFilePicker
-          }
+          onClick={openFilePicker}
           className="
             w-full
             cursor-pointer
@@ -700,9 +878,7 @@ export default function AnalyzePage() {
         >
           <input
             type="checkbox"
-            checked={
-              saveToHistory
-            }
+            checked={saveToHistory}
             onChange={(e) =>
               setSaveToHistory(
                 e.target.checked
@@ -760,32 +936,26 @@ export default function AnalyzePage() {
           !image ||
           !imagePreview ||
           !croppedAreaPixels ||
-          loading
+          loading ||
+          refining
         }
         className="
           mt-4
           rounded-xl
-
           bg-gradient-to-l
           from-coral
           via-[#E97861]
           to-[#F4A896]
-
           px-8
           py-3
-
           text-white
           font-medium
-
           shadow-md
           shadow-coral/25
-
           transition
-
           disabled:opacity-40
           disabled:cursor-not-allowed
           disabled:hover:opacity-40
-
           hover:opacity-90
         "
       >
@@ -793,6 +963,220 @@ export default function AnalyzePage() {
           ? "در حال تحلیل..."
           : "شروع تحلیل"}
       </button>
+
+      {/* ========================= */}
+      {/* Skin Questions */}
+      {/* ========================= */}
+
+      {questions.length > 0 && (
+        <div
+          className="
+            w-full
+            max-w-2xl
+            mt-10
+            rounded-2xl
+            border
+            border-gray-200
+            bg-white
+            p-5
+            sm:p-7
+          "
+        >
+          <div className="text-center">
+            <h2
+              className="
+                text-xl
+                sm:text-2xl
+                font-bold
+                text-petrol
+              "
+            >
+              چند سؤال کوتاه
+            </h2>
+
+            <p
+              className="
+                mt-2
+                text-sm
+                text-petrol
+              "
+            >
+              برای اینکه نتیجه دقیق‌تر شود، به
+              سؤال‌های زیر پاسخ بده.
+            </p>
+          </div>
+
+          <div
+            className="
+              mt-6
+              space-y-6
+            "
+          >
+            {questions.map((question) => {
+              const selectedAnswer =
+                answers.find(
+                  (x) =>
+                    x.key === question.key
+                )?.answer;
+
+              return (
+                <div
+                  key={question.key}
+                  className="
+                    rounded-xl
+                    bg-gray-50
+                    border
+                    border-gray-200
+                    p-4
+                  "
+                >
+                  <p
+                    className="
+                      font-medium
+                      text-petrol
+                      leading-7
+                    "
+                  >
+                    {question.question}
+                  </p>
+
+                  <div
+                    className="
+                      mt-4
+                      flex
+                      flex-wrap
+                      gap-2
+                    "
+                  >
+                    {/* Yes */}
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setQuestionAnswer(
+                          question.key,
+                          "yes"
+                        )
+                      }
+                      className={`
+                        rounded-lg
+                        px-5
+                        py-2
+                        text-sm
+                        transition
+                        border
+                        ${
+                          selectedAnswer ===
+                          "yes"
+                            ? "bg-coral text-white border-coral"
+                            : "bg-white text-petrol border-gray-300 hover:bg-gray-100"
+                        }
+                      `}
+                    >
+                      بله
+                    </button>
+
+                    {/* No */}
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setQuestionAnswer(
+                          question.key,
+                          "no"
+                        )
+                      }
+                      className={`
+                        rounded-lg
+                        px-5
+                        py-2
+                        text-sm
+                        transition
+                        border
+                        ${
+                          selectedAnswer ===
+                          "no"
+                            ? "bg-coral text-white border-coral"
+                            : "bg-white text-petrol border-gray-300 hover:bg-gray-100"
+                        }
+                      `}
+                    >
+                      خیر
+                    </button>
+
+                    {/* Skip */}
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setQuestionAnswer(
+                          question.key,
+                          "skip"
+                        )
+                      }
+                      className={`
+                        rounded-lg
+                        px-5
+                        py-2
+                        text-sm
+                        transition
+                        border
+                        ${
+                          selectedAnswer ===
+                          "skip"
+                            ? "bg-gray-300 text-petrol border-gray-300"
+                            : "bg-white text-gray-500 border-gray-300 hover:bg-gray-100"
+                        }
+                      `}
+                    >
+                      رد کردن
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ========================= */}
+          {/* Refine Button */}
+          {/* ========================= */}
+
+          <div
+            className="
+              mt-7
+              flex
+              justify-center
+            "
+          >
+            <button
+              type="button"
+              onClick={refineAnalysis}
+              disabled={refining}
+              className="
+                rounded-xl
+                bg-gradient-to-l
+                from-coral
+                via-[#E97861]
+                to-[#F4A896]
+                px-8
+                py-3
+                text-white
+                font-medium
+                shadow-md
+                shadow-coral/25
+                transition
+                disabled:opacity-40
+                disabled:cursor-not-allowed
+                hover:opacity-90
+              "
+            >
+              {refining
+                ? "در حال به‌روزرسانی نتیجه..."
+                : "مشاهده نتیجه نهایی"}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ========================= */}
       {/* Result */}
