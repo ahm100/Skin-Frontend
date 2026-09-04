@@ -454,7 +454,7 @@ export default function SkinAnalysisResult({
 
                       {/* Confidence */}
 
-                      <p
+                      {/* <p
                         className="
                           mt-1
                           text-sm
@@ -466,7 +466,7 @@ export default function SkinAnalysisResult({
                         {confidenceText(
                           item?.confidence
                         )}
-                      </p>
+                      </p> */}
 
 
                       {/* Article */}
