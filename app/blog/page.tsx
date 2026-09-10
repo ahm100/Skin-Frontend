@@ -113,28 +113,21 @@ export default function BlogPage() {
 
               <Link
   href={`/blog/${article.slug}`}
-  className="
-    inline-flex
-    mt-5
-    rounded-xl
-
-    bg-gradient-to-l
-    from-coral
-    via-[#E97861]
-    to-[#F4A896]
-
-    px-5
-    py-2.5
-
-    text-white
-    font-medium
-
-    shadow-sm
-    shadow-coral/20
-
-    hover:opacity-90
-    transition
-  "
+ className="
+  btn-base
+  inline-flex
+  mt-5
+  rounded-xl
+  bg-button-pink
+  px-5
+  py-2.5
+  text-white
+  font-medium
+  shadow-sm
+  shadow-coral/20
+  hover:bg-button-pink-hover
+  transition
+"
 >
                 مطالعه مقاله
               </Link>
@@ -182,21 +175,21 @@ export default function BlogPage() {
 
           <Link
             href="/analyze"
-            className="
-              inline-flex
-              mt-6
-              rounded-xl
-              bg-gradient-to-r
-              from-violet-500
-              to-pink-400
-              px-7
-              py-3
-              text-petrol
-              font-medium
-              shadow-md
-              hover:opacity-90
-              transition
-            "
+          className="
+  btn-base
+  inline-flex
+  mt-6
+  rounded-xl
+  bg-button-pink
+  px-7
+  py-3
+  text-white
+  font-medium
+  shadow-md
+  shadow-coral/25
+  hover:bg-button-pink-hover
+  transition
+"
           >
             شروع تحلیل پوست
           </Link>

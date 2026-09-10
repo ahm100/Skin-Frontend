@@ -475,19 +475,20 @@ export default function SkinAnalysisResult({
                         <Link
                           href={blogUrl}
                           className="
-                            inline-flex
-                            items-center
-                            mt-3
-                            rounded-xl
-                            bg-purple-100
-                            px-4
-                            py-2
-                            text-sm
-                            font-medium
-                            text-purple-800
-                            hover:bg-purple-200
-                            transition
-                          "
+                          btn-base
+                          inline-flex
+                          items-center
+                          mt-3
+                          rounded-xl
+                          bg-button-pink
+                          px-4
+                          py-2
+                          text-sm
+                          font-medium
+                          text-white
+                          hover:bg-button-pink-hover
+                          transition
+                        "
                         >
                           درباره{" "}
                           {conditionTitle}{" "}

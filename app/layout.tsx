@@ -33,23 +33,34 @@ export default function RootLayout({
             HEADER
             ===================================================== */}
 
-        <header
+
+        {/* <header
           className="
-            sticky
-            top-0
-            z-50
-            w-full
-            border-b
-            border-coral/10
-            bg-gradient-to-l
-            from-coral/20
-            via-blush/20
-            to-[#F5E6D3]/70
-            backdrop-blur-xl
-            shadow-sm
-            shadow-coral/10
-          "
-        >
+          sticky
+          top-0
+          z-50
+          w-full
+          border-b
+          border-coral/10
+          bg-[linear-gradient(to_right,_#EACCC7_0%,_#F5E6D3_50%,_#EACCC7_100%)]
+          bg-[#FFF9F7]
+          backdrop-blur-xl
+          shadow-sm
+          shadow-coral/10
+        "> */}
+       <header
+  className="
+    sticky
+    top-0
+    z-50
+    w-full
+    border-b
+    border-coral/15
+    bg-[linear-gradient(to_right,_#FFF4EF_0%,_#F3D7D2_50%,_#FFF4EF_100%)]
+    shadow-sm
+    shadow-coral/10
+  "
+>
           <div
             className="
               mx-auto
@@ -102,26 +113,18 @@ export default function RootLayout({
 
                 {/* Desktop: Surenmah */}
 
-                <span
-                  className="
-                    hidden
-                    sm:inline-flex
-                    items-center
-                    gap-1
-                  "
-                >
-                  <span
-                    className="
-                      inline-block
-                      h-2.5
-                      w-2.5
-                      rounded-full
-                      bg-coral
-                    "
-                  />
+             
 
-                  Surenmah
-                </span>
+<img
+  src="/logo/surenmah-logo.png"
+  alt="Surenmah"
+  className="
+    hidden
+    sm:block
+    h-16
+    w-auto
+  "
+/>
               </Link>
 
               {/* =================================================
@@ -235,28 +238,27 @@ export default function RootLayout({
                     ================================================= */}
 
                 <Link
-                  href="/analyze"
-                  className="
-                    rounded-full
-                    bg-coral
-                    px-4
-                    py-2
-                    text-sm
-                    lg:px-5
-                    lg:py-2.5
-                    lg:text-base
-                    text-white
-                    font-bold
-                    shadow-md
-                    shadow-coral/25
-                    hover:bg-[#D95C43]
-                    hover:-translate-y-0.5
-                    transition
-                    whitespace-nowrap
-                  "
-                >
-                  تحلیل پوست
-                </Link>
+  href="/analyze"
+  className="
+    btn-base
+    rounded-full
+    bg-button-pink
+    px-2
+    py-1.5
+    text-sm
+    lg:px-4
+    lg:py-2
+    lg:text-sm
+    text-white
+    shadow-md
+    shadow-coral/25
+    hover:bg-button-pink-hover
+    hover:-translate-y-0.5
+    whitespace-nowrap
+  "
+>
+  تحلیل پوست
+</Link>
 
                 {/* =================================================
                     ACCOUNT
@@ -376,6 +378,7 @@ export default function RootLayout({
               target="_blank"
               rel="noopener noreferrer"
               className="
+                btn-base
                 rounded-xl
                 bg-petrol
                 hover:bg-petrol-soft
@@ -389,7 +392,6 @@ export default function RootLayout({
                 shadow-md
                 shadow-petrol/15
                 hover:-translate-y-0.5
-                transition
               "
             >
               WhatsApp
@@ -400,9 +402,10 @@ export default function RootLayout({
             <a
               href="#"
               className="
+                btn-base
                 rounded-xl
-                bg-coral
-                hover:bg-[#D95C43]
+                bg-button-pink
+                hover:bg-button-pink-hover
                 px-4
                 sm:px-5
                 py-2
@@ -413,7 +416,6 @@ export default function RootLayout({
                 shadow-md
                 shadow-coral/15
                 hover:-translate-y-0.5
-                transition
               "
             >
               Bale (به‌زودی)

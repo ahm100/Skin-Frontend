@@ -1,29 +1,5 @@
 @import "tailwindcss";
 
-/*
-============================================================
-OLD PALETTE — نگه داشته شده برای برگشت احتمالی
-============================================================
-
-:root {
-  --background: #ffffff;
-  --foreground: #374151;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: "Vazirmatn", sans-serif;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Vazirmatn", sans-serif;
-}
-
-============================================================
-*/
 
 
 /*
@@ -39,6 +15,9 @@ SURENMAH PALETTE
   --blush: #F4A896;
   --coral: #E8674B;
   --mint: #CFE8E1;
+  --button-pink: #B9436A;
+  --button-pink-hover: #CE8199;
+
 }
 
 
@@ -57,6 +36,8 @@ TAILWIND 4 THEME
   --color-blush: var(--blush);
   --color-coral: var(--coral);
   --color-mint: var(--mint);
+  --color-button-pink: var(--button-pink);
+  --color-button-pink-hover: var(--button-pink-hover);
 
   --font-sans: "Vazirmatn", sans-serif;
 }
@@ -92,4 +73,32 @@ body {
   background: var(--porcelain);
   color: var(--petrol);
   font-family: "Vazirmatn", sans-serif;
+}
+
+
+.btn-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: all 200ms;
+}
+
+
+.btn-primary {
+  border-radius: 0.625rem;
+  background: var(--button-pink);
+  border: 1px solid rgb(255 255 255 / 30%);
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgb(217 143 165 / 25%);
+}
+
+
+.btn-primary:hover {
+  background: var(--button-pink-hover);
+  color: var(--petrol);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgb(206 129 153 / 30%);
 }

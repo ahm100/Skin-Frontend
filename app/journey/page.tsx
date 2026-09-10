@@ -183,28 +183,20 @@ export default function JourneyPage() {
               window.location.href =
                 "/analyze";
             }}
-            className="
-              mt-6
-
-              rounded-xl
-
-              bg-gradient-to-l
-              from-coral
-              via-[#E97861]
-              to-[#F4A896]
-
-              px-6
-              py-3
-
-              text-white
-              font-medium
-
-              shadow-md
-              shadow-coral/20
-
-              hover:opacity-90
-              transition
-            "
+           className="
+  btn-base
+  mt-6
+  rounded-xl
+  bg-button-pink
+  px-6
+  py-3
+  text-white
+  font-medium
+  shadow-md
+  shadow-coral/20
+  hover:bg-button-pink-hover
+  transition
+"
           >
             اولین تحلیل پوست من
           </button>

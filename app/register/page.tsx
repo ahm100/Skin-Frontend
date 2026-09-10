@@ -122,19 +122,21 @@ export default function RegisterPage() {
             type="button"
             onClick={register}
             disabled={loading || !!success}
-            className="
-              w-full
-              rounded-xl
-              bg-gradient-to-l
-              from-coral
-              via-[#E97861]
-              to-[#F4A896]
-              px-8
-              py-3
-              text-white
-              font-medium
-              disabled:opacity-40
-            "
+           className="
+  btn-base
+  w-full
+  rounded-xl
+  bg-button-pink
+  px-8
+  py-3
+  text-white
+  font-medium
+  shadow-md
+  shadow-coral/25
+  hover:bg-button-pink-hover
+  disabled:opacity-40
+  transition
+"
           >
             {loading
               ? "در حال ثبت‌ نام..."
