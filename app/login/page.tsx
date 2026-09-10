@@ -279,27 +279,19 @@ function LoginForm() {
             onClick={login}
             disabled={loading}
             className="
-              w-full
-              rounded-xl
-
-              bg-gradient-to-l
-              from-coral
-              via-[#E97861]
-              to-[#F4A896]
-
-              px-8
-              py-3
-
-              text-white
-              font-medium
-
-              disabled:opacity-40
-              disabled:cursor-not-allowed
-
-              hover:opacity-90
-
-              transition
-            "
+            btn-base
+            w-full
+            rounded-xl
+            bg-button-pink
+            px-8
+            py-3
+            text-white
+            font-medium
+            disabled:opacity-40
+            disabled:cursor-not-allowed
+            hover:bg-button-pink-hover
+            transition
+          "
           >
             {loading
               ? "در حال ورود..."
