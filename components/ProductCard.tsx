@@ -203,59 +203,39 @@ export default function ProductCard({
                     </div>
 
 
-
-
-
                     <a
                       href={offer.buyUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="
-    rounded-xl
-
-    bg-gradient-to-l
-    from-coral
-    via-[#E97861]
-    to-[#F4A896]
-
-    px-4
-    py-2
-
-    text-sm
-    font-bold
-    text-white
-
-    shadow-md
-    shadow-coral/25
-
-    hover:opacity-90
-    transition
-  "
+                      btn-base
+                      rounded-xl  
+                      bg-button-pink
+                      px-4
+                      py-2
+                      text-sm
+                      font-bold
+                      text-white
+                      shadow-md
+                      shadow-coral/25
+                      hover:bg-button-pink-hover
+                    "
                     >
                       خرید
                     </a>
 
 
-
                   </div>
-
 
                 )
               )
             }
 
-
-
           </div>
-
 
         </div>
 
       }
-
-
-
-
 
     </div>
 
