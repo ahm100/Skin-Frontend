@@ -34,7 +34,7 @@ export default function RootLayout({
             ===================================================== */}
 
 
-        <header
+        {/* <header
           className="
           sticky
           top-0
@@ -43,10 +43,24 @@ export default function RootLayout({
           border-b
           border-coral/10
           bg-[linear-gradient(to_right,_#EACCC7_0%,_#F5E6D3_50%,_#EACCC7_100%)]
+          bg-[#FFF9F7]
           backdrop-blur-xl
           shadow-sm
           shadow-coral/10
-        ">
+        "> */}
+       <header
+  className="
+    sticky
+    top-0
+    z-50
+    w-full
+    border-b
+    border-coral/15
+    bg-[linear-gradient(to_right,_#FFF4EF_0%,_#F3D7D2_50%,_#FFF4EF_100%)]
+    shadow-sm
+    shadow-coral/10
+  "
+>
           <div
             className="
               mx-auto
@@ -99,26 +113,18 @@ export default function RootLayout({
 
                 {/* Desktop: Surenmah */}
 
-                <span
-                  className="
-                    hidden
-                    sm:inline-flex
-                    items-center
-                    gap-1
-                  "
-                >
-                  <span
-                    className="
-                      inline-block
-                      h-2.5
-                      w-2.5
-                      rounded-full
-                      bg-button-pink
-                    "
-                  />
+             
 
-                  Surenmah
-                </span>
+<img
+  src="/logo/surenmah-logo.png"
+  alt="Surenmah"
+  className="
+    hidden
+    sm:block
+    h-16
+    w-auto
+  "
+/>
               </Link>
 
               {/* =================================================
