@@ -77,35 +77,13 @@ export default function Home() {
               و بر اساس نتیجه تحلیل، پیشنهادهای مناسب دریافت کنید.
             </p>
 
+
             <a
               href="/analyze"
-              className="
-                mt-10
-                inline-flex
-                items-center
-                justify-center
-                rounded-xl
-                bg-gradient-to-l
-                from-coral
-                via-[#E97861]
-                to-[#F4A896]
-                px-10
-                py-4
-                text-lg
-                font-bold
-                text-white
-                shadow-lg
-                shadow-coral/25
-                hover:-translate-y-0.5
-                hover:shadow-xl
-                hover:shadow-coral/30
-                transition-all
-                duration-200
-              "
+             className="btn-primary mt-10"
             >
               شروع تحلیل رایگان
             </a>
-
             <p
               className="
                 mt-6

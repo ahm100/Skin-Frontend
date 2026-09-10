@@ -113,7 +113,7 @@ export default function RootLayout({
                       h-2.5
                       w-2.5
                       rounded-full
-                      bg-coral
+                      bg-button-pink
                     "
                   />
 
@@ -235,7 +235,7 @@ export default function RootLayout({
                   href="/analyze"
                   className="
                     rounded-full
-                    bg-coral
+                    bg-button-pink
                     px-4
                     py-2
                     text-sm
@@ -398,7 +398,7 @@ export default function RootLayout({
               href="#"
               className="
                 rounded-xl
-                bg-coral
+                bg-button-pink
                 hover:bg-[#D95C43]
                 px-4
                 sm:px-5
