@@ -80,7 +80,7 @@ export default function Home() {
 
             <a
               href="/analyze"
-             className="btn-primary mt-10"
+             className="btn-base btn-primary mt-10"
             >
               شروع تحلیل رایگان
             </a>
@@ -631,7 +631,7 @@ export default function Home() {
           <div className="mt-10 text-center">
             <a
               href="/journey"
-              className="btn-primary"
+              className="btn-base btn-primary"
             >
               مشاهده سفر پوست
             </a>
@@ -945,7 +945,7 @@ export default function Home() {
 
           <a
             href="/sponsor"
-           className="btn-primary"
+           className="btn-base btn-primary"
           >
             فرصت‌های همکاری با Surenmah
           </a>
