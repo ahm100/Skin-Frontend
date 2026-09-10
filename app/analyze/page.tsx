@@ -371,6 +371,7 @@ export default function AnalyzePage() {
 
       // Keep the exact processed image
       // for saving after refine.
+
       setProcessedImage(finalImage);
 
       // =========================
@@ -387,6 +388,7 @@ export default function AnalyzePage() {
 
       // IMPORTANT:
       // Analyze must NOT save history.
+
       formData.append(
         "saveToHistory",
         "false"
@@ -484,6 +486,7 @@ export default function AnalyzePage() {
       setImageError(
         "ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت را بررسی کنید."
       );
+
     } finally {
       setLoading(false);
     }
@@ -498,7 +501,6 @@ export default function AnalyzePage() {
       setImageError(
         "اطلاعات تحلیل برای تکمیل نتیجه موجود نیست."
       );
-
       return;
     }
 
@@ -506,7 +508,6 @@ export default function AnalyzePage() {
       setImageError(
         "تصویر آماده ذخیره نیست. لطفاً دوباره تحلیل را انجام دهید."
       );
-
       return;
     }
 
@@ -608,6 +609,7 @@ export default function AnalyzePage() {
       setResult(data);
 
       // Questions are no longer needed
+
       setQuestions([]);
 
     } catch (error) {
@@ -617,8 +619,9 @@ export default function AnalyzePage() {
       );
 
       setImageError(
-        "ارتباط با سرور برقرار نشد. لطفاً دوباره تلاش کنید."
+        "ارتباط با سرور برقرار نشد. لطفاً اتصال اینترنت را بررسی کنید."
       );
+
     } finally {
       setRefining(false);
     }
@@ -728,6 +731,7 @@ export default function AnalyzePage() {
           type="button"
           onClick={openFilePicker}
           className="
+            btn-base
             w-full
             cursor-pointer
             rounded-2xl
@@ -916,7 +920,7 @@ export default function AnalyzePage() {
             className="
               mt-2
               font-medium
-              text-coral
+              text-button-pink
               hover:underline
             "
           >
@@ -940,12 +944,10 @@ export default function AnalyzePage() {
           refining
         }
         className="
+          btn-base
           mt-4
           rounded-xl
-          bg-gradient-to-l
-          from-coral
-          via-[#E97861]
-          to-[#F4A896]
+          bg-button-pink
           px-8
           py-3
           text-white
@@ -956,7 +958,7 @@ export default function AnalyzePage() {
           disabled:opacity-40
           disabled:cursor-not-allowed
           disabled:hover:opacity-40
-          hover:opacity-90
+          hover:bg-button-pink-hover
         "
       >
         {loading
@@ -1059,6 +1061,7 @@ export default function AnalyzePage() {
                         )
                       }
                       className={`
+                        btn-base
                         rounded-lg
                         px-5
                         py-2
@@ -1068,7 +1071,7 @@ export default function AnalyzePage() {
                         ${
                           selectedAnswer ===
                           "yes"
-                            ? "bg-coral text-white border-coral"
+                            ? "bg-button-pink text-white border-button-pink"
                             : "bg-white text-petrol border-gray-300 hover:bg-gray-100"
                         }
                       `}
@@ -1087,6 +1090,7 @@ export default function AnalyzePage() {
                         )
                       }
                       className={`
+                        btn-base
                         rounded-lg
                         px-5
                         py-2
@@ -1096,7 +1100,7 @@ export default function AnalyzePage() {
                         ${
                           selectedAnswer ===
                           "no"
-                            ? "bg-coral text-white border-coral"
+                            ? "bg-button-pink text-white border-button-pink"
                             : "bg-white text-petrol border-gray-300 hover:bg-gray-100"
                         }
                       `}
@@ -1115,6 +1119,7 @@ export default function AnalyzePage() {
                         )
                       }
                       className={`
+                        btn-base
                         rounded-lg
                         px-5
                         py-2
@@ -1153,11 +1158,9 @@ export default function AnalyzePage() {
               onClick={refineAnalysis}
               disabled={refining}
               className="
+                btn-base
                 rounded-xl
-                bg-gradient-to-l
-                from-coral
-                via-[#E97861]
-                to-[#F4A896]
+                bg-button-pink
                 px-8
                 py-3
                 text-white
@@ -1167,7 +1170,7 @@ export default function AnalyzePage() {
                 transition
                 disabled:opacity-40
                 disabled:cursor-not-allowed
-                hover:opacity-90
+                hover:bg-button-pink-hover
               "
             >
               {refining
@@ -1206,3 +1209,4 @@ export default function AnalyzePage() {
     </main>
   );
 }
+
