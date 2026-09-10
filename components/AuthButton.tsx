@@ -146,8 +146,8 @@ if (!user) {
           justify-center
           rounded-xl
           bg-button-pink
-          px-4
-          py-3
+          px-2
+          py-1.5
           text-white
           font-semibold
           hover:bg-button-pink-hover
@@ -171,8 +171,8 @@ if (!user) {
           rounded-xl
           border
           border-button-pink
-          px-4
-          py-3
+          px-2
+          py-1.5
           text-button-pink
           font-semibold
           hover:bg-button-pink
@@ -270,8 +270,8 @@ return ( <div
         rounded-full
         border
         border-button-pink
-        px-3
-        py-2
+        px-2
+        py-1.5
         text-sm
         font-medium
         text-button-pink
@@ -292,8 +292,8 @@ return ( <div
         btn-base
         rounded-full
         bg-button-pink
-        px-3
-        py-2
+        px-2
+        py-1.5
         text-sm
         font-medium
         text-white

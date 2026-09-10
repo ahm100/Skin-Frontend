@@ -238,27 +238,27 @@ export default function RootLayout({
                     ================================================= */}
 
                 <Link
-                  href="/analyze"
-                  className="
-                    btn-base
-                    rounded-full
-                    bg-button-pink
-                    px-4
-                    py-2
-                    text-sm
-                    lg:px-5
-                    lg:py-2.5
-                    lg:text-base
-                    text-white
-                    shadow-md
-                    shadow-coral/25
-                    hover:bg-button-pink-hover
-                    hover:-translate-y-0.5
-                    whitespace-nowrap
-                  "
-                >
-                  تحلیل پوست
-                </Link>
+  href="/analyze"
+  className="
+    btn-base
+    rounded-full
+    bg-button-pink
+    px-2
+    py-1.5
+    text-sm
+    lg:px-4
+    lg:py-2
+    lg:text-sm
+    text-white
+    shadow-md
+    shadow-coral/25
+    hover:bg-button-pink-hover
+    hover:-translate-y-0.5
+    whitespace-nowrap
+  "
+>
+  تحلیل پوست
+</Link>
 
                 {/* =================================================
                     ACCOUNT

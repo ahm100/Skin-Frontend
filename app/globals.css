@@ -84,15 +84,17 @@ body {
   transition: all 200ms;
 }
 
+
 .btn-primary {
-  border-radius: 0.75rem;
+  border-radius: 0.625rem;
   background: var(--button-pink);
   border: 1px solid rgb(255 255 255 / 30%);
-  padding: 1rem 2.5rem;
-  font-size: 1.125rem;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
   color: white;
   box-shadow: 0 10px 15px -3px rgb(217 143 165 / 25%);
 }
+
 
 .btn-primary:hover {
   background: var(--button-pink-hover);
