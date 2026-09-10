@@ -358,27 +358,20 @@ export default async function BlogArticlePage({
          <Link
   href="/analyze"
   className="
-    inline-flex
-    mt-6
-    rounded-xl
-
-    bg-gradient-to-l
-    from-coral
-    via-[#E97861]
-    to-[#F4A896]
-
-    px-8
-    py-3
-
-    text-white
-    font-medium
-
-    shadow-md
-    shadow-coral/25
-
-    hover:opacity-90
-    transition
-  "
+  btn-base
+  inline-flex
+  mt-6
+  rounded-xl
+  bg-button-pink
+  px-8
+  py-3
+  text-white
+  font-medium
+  shadow-md
+  shadow-coral/25
+  hover:bg-button-pink-hover
+  transition
+"
 >
             شروع تحلیل پوست
           </Link>
