@@ -234,6 +234,7 @@ export default function RootLayout({
                 <Link
                   href="/analyze"
                   className="
+                    btn-base
                     rounded-full
                     bg-button-pink
                     px-4
@@ -243,12 +244,10 @@ export default function RootLayout({
                     lg:py-2.5
                     lg:text-base
                     text-white
-                    font-bold
                     shadow-md
                     shadow-coral/25
-                     hover:bg-button-pink-hover
+                    hover:bg-button-pink-hover
                     hover:-translate-y-0.5
-                    transition
                     whitespace-nowrap
                   "
                 >
@@ -373,6 +372,7 @@ export default function RootLayout({
               target="_blank"
               rel="noopener noreferrer"
               className="
+                btn-base
                 rounded-xl
                 bg-petrol
                 hover:bg-petrol-soft
@@ -386,7 +386,6 @@ export default function RootLayout({
                 shadow-md
                 shadow-petrol/15
                 hover:-translate-y-0.5
-                transition
               "
             >
               WhatsApp
@@ -397,9 +396,10 @@ export default function RootLayout({
             <a
               href="#"
               className="
+                btn-base
                 rounded-xl
                 bg-button-pink
-                 hover:bg-button-pink-hover
+                hover:bg-button-pink-hover
                 px-4
                 sm:px-5
                 py-2
@@ -410,7 +410,6 @@ export default function RootLayout({
                 shadow-md
                 shadow-coral/15
                 hover:-translate-y-0.5
-                transition
               "
             >
               Bale (به‌زودی)
