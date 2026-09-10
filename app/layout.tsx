@@ -33,23 +33,20 @@ export default function RootLayout({
             HEADER
             ===================================================== */}
 
+
         <header
           className="
-            sticky
-            top-0
-            z-50
-            w-full
-            border-b
-            border-coral/10
-            bg-gradient-to-l
-            from-coral/20
-            via-blush/20
-            to-[#F5E6D3]/70
-            backdrop-blur-xl
-            shadow-sm
-            shadow-coral/10
-          "
-        >
+          sticky
+          top-0
+          z-50
+          w-full
+          border-b
+          border-coral/10
+          bg-[linear-gradient(to_right,_#EACCC7_0%,_#F5E6D3_50%,_#EACCC7_100%)]
+          backdrop-blur-xl
+          shadow-sm
+          shadow-coral/10
+        ">
           <div
             className="
               mx-auto
