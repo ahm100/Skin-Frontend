@@ -5,349 +5,368 @@ import { useEffect, useState } from "react";
 import { API_BASE } from "@/lib/api";
 
 type User = {
-  userId: string;
-  email: string;
-  displayName: string | null;
+userId: string;
+email: string;
+displayName: string | null;
 };
 
 type AuthButtonProps = {
-  mobile?: boolean;
-  onNavigate?: () => void;
+mobile?: boolean;
+onNavigate?: () => void;
 };
 
 export default function AuthButton({
-  mobile = false,
-  onNavigate,
+mobile = false,
+onNavigate,
 }: AuthButtonProps) {
-  const [user, setUser] =
-    useState<User | null>(null);
+const [user, setUser] =
+useState<User | null>(null);
 
-  const [loading, setLoading] =
-    useState(true);
+const [loading, setLoading] =
+useState(true);
 
-  useEffect(() => {
-    async function loadUser() {
-      const token =
-        localStorage.getItem("token");
+useEffect(() => {
+async function loadUser() {
+const token =
+localStorage.getItem("token");
 
-      // =====================================================
-      // NOT LOGGED IN
-      // =====================================================
 
-      if (!token) {
-        setLoading(false);
-        return;
-      }
+  // =====================================================
+  // NOT LOGGED IN
+  // =====================================================
 
-      try {
-        const response =
-          await fetch(
-            `${API_BASE}/api/Auth/me`,
-            {
-              method: "GET",
-              headers: {
-                Authorization:
-                  `Bearer ${token}`,
-              },
-            }
-          );
+  if (!token) {
+    setLoading(false);
+    return;
+  }
 
-        // ===================================================
-        // INVALID / EXPIRED TOKEN
-        // ===================================================
-
-        if (!response.ok) {
-          localStorage.removeItem(
-            "token"
-          );
-
-          setUser(null);
-
-          return;
+  try {
+    const response =
+      await fetch(
+        `${API_BASE}/api/Auth/me`,
+        {
+          method: "GET",
+          headers: {
+            Authorization:
+              `Bearer ${token}`,
+          },
         }
-
-        const data =
-          await response.json();
-
-        setUser({
-          userId: data.userId,
-          email: data.email,
-          displayName:
-            data.displayName,
-        });
-      } catch (error) {
-        console.error(
-          "Failed to load current user:",
-          error
-        );
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    loadUser();
-  }, []);
-
-  // =====================================================
-  // LOGOUT
-  // =====================================================
-
-  function logout() {
-    onNavigate?.();
-
-    localStorage.removeItem(
-      "token"
-    );
-
-    setUser(null);
-
-    window.location.href = "/";
-  }
-
-  // =====================================================
-  // AUTH CHECK LOADING
-  // =====================================================
-
-  if (loading) {
-    return null;
-  }
-
-  // =====================================================
-  // MOBILE
-  // =====================================================
-
-  if (mobile) {
-
-    // -----------------------------------------------------
-    // MOBILE - NOT LOGGED IN
-    // -----------------------------------------------------
-
-    if (!user) {
-      return (
-        <div className="space-y-2">
-
-          {/* LOGIN */}
-
-          <Link
-            href="/login"
-            onClick={onNavigate}
-            className="
-              flex
-              w-full
-              items-center
-              justify-center
-              rounded-xl
-              bg-coral
-              px-4
-              py-3
-              text-white
-              font-semibold
-              hover:bg-[#D95C43]
-              transition
-            "
-          >
-            ورود
-          </Link>
-
-          {/* REGISTER */}
-
-          <Link
-            href="/register"
-            onClick={onNavigate}
-            className="
-              flex
-              w-full
-              items-center
-              justify-center
-              rounded-xl
-              border
-              border-coral
-              px-4
-              py-3
-              text-coral
-              font-semibold
-              hover:bg-coral
-              hover:text-white
-              transition
-            "
-          >
-            ثبت‌نام
-          </Link>
-
-        </div>
       );
+
+    // ===================================================
+    // INVALID / EXPIRED TOKEN
+    // ===================================================
+
+    if (!response.ok) {
+      localStorage.removeItem(
+        "token"
+      );
+
+      setUser(null);
+
+      return;
     }
 
-    // -----------------------------------------------------
-    // MOBILE - LOGGED IN
-    // -----------------------------------------------------
+    const data =
+      await response.json();
 
-    return (
-      <div className="space-y-2">
-
-        {/* USER */}
-
-        <div
-          className="
-            rounded-xl
-            bg-porcelain
-            px-4
-            py-3
-            text-center
-            text-sm
-            font-medium
-            text-petrol
-          "
-        >
-          {user.displayName ||
-            "کاربر"}
-        </div>
-
-        {/* LOGOUT */}
-
-        <button
-          type="button"
-          onClick={logout}
-          className="
-            flex
-            w-full
-            items-center
-            justify-center
-            rounded-xl
-            border
-            border-coral
-            px-4
-            py-3
-            text-coral
-            font-semibold
-            hover:bg-coral
-            hover:text-white
-            transition
-          "
-        >
-          خروج
-        </button>
-
-      </div>
+    setUser({
+      userId: data.userId,
+      email: data.email,
+      displayName:
+        data.displayName,
+    });
+  } catch (error) {
+    console.error(
+      "Failed to load current user:",
+      error
     );
+  } finally {
+    setLoading(false);
   }
+}
 
-  // =====================================================
-  // DESKTOP
-  // =====================================================
+loadUser();
 
-  // -----------------------------------------------------
-  // DESKTOP - NOT LOGGED IN
-  // -----------------------------------------------------
 
-  if (!user) {
-    return (
-      <div
-        className="
-          flex
-          items-center
-          gap-2
-        "
-      >
-        {/* LOGIN */}
+}, []);
 
-        <Link
-          href="/login"
-          className="
-            rounded-full
-            border
-            border-coral
-            px-3
-            py-2
-            text-sm
-            font-medium
-            text-coral
-            hover:bg-coral
-            hover:text-white
-            transition
-            whitespace-nowrap
-          "
-        >
-          ورود
-        </Link>
+// =====================================================
+// LOGOUT
+// =====================================================
 
-        {/* REGISTER */}
+function logout() {
+onNavigate?.();
 
-        <Link
-          href="/register"
-          className="
-            rounded-full
-            bg-coral
-            px-3
-            py-2
-            text-sm
-            font-medium
-            text-white
-            hover:bg-[#D95C43]
-            transition
-            whitespace-nowrap
-          "
-        >
-          ثبت‌نام
-        </Link>
-      </div>
-    );
-  }
 
-  // -----------------------------------------------------
-  // DESKTOP - LOGGED IN
-  // -----------------------------------------------------
+localStorage.removeItem(
+  "token"
+);
 
+setUser(null);
+
+window.location.href = "/";
+
+
+}
+
+// =====================================================
+// AUTH CHECK LOADING
+// =====================================================
+
+if (loading) {
+return null;
+}
+
+// =====================================================
+// MOBILE
+// =====================================================
+
+if (mobile) {
+
+
+// -----------------------------------------------------
+// MOBILE - NOT LOGGED IN
+// -----------------------------------------------------
+
+if (!user) {
   return (
-    <div
-      className="
-        flex
-        items-center
-        gap-3
-      "
-    >
-      {/* USER */}
+    <div className="space-y-2">
 
-      <span
+      {/* LOGIN */}
+
+      <Link
+        href="/login"
+        onClick={onNavigate}
         className="
-          max-w-[140px]
-          truncate
-          whitespace-nowrap
-          text-sm
-          font-medium
-          text-petrol
+          btn-base
+          flex
+          w-full
+          items-center
+          justify-center
+          rounded-xl
+          bg-button-pink
+          px-4
+          py-3
+          text-white
+          font-semibold
+          hover:bg-button-pink-hover
+          transition
         "
-        title={
-          user.displayName ||
-          user.email
-        }
       >
-        {user.displayName ||
-          "کاربر"}
-      </span>
+        ورود
+      </Link>
 
-      {/* LOGOUT */}
+      {/* REGISTER */}
 
-      <button
-        type="button"
-        onClick={logout}
+      <Link
+        href="/register"
+        onClick={onNavigate}
         className="
-          rounded-full
+          btn-base
+          flex
+          w-full
+          items-center
+          justify-center
+          rounded-xl
           border
-          border-coral
-          px-3
-          py-2
-          text-sm
-          font-medium
-          text-coral
-          hover:bg-coral
+          border-button-pink
+          px-4
+          py-3
+          text-button-pink
+          font-semibold
+          hover:bg-button-pink
           hover:text-white
           transition
-          whitespace-nowrap
         "
       >
-        خروج
-      </button>
+        ثبت‌نام
+      </Link>
+
     </div>
   );
+}
+
+// -----------------------------------------------------
+// MOBILE - LOGGED IN
+// -----------------------------------------------------
+
+return (
+  <div className="space-y-2">
+
+    {/* USER */}
+
+    <div
+      className="
+        rounded-xl
+        bg-porcelain
+        px-4
+        py-3
+        text-center
+        text-sm
+        font-medium
+        text-petrol
+      "
+    >
+      {user.displayName ||
+        "کاربر"}
+    </div>
+
+    {/* LOGOUT */}
+
+    <button
+      type="button"
+      onClick={logout}
+      className="
+        btn-base
+        flex
+        w-full
+        items-center
+        justify-center
+        rounded-xl
+        border
+        border-button-pink
+        px-4
+        py-3
+        text-button-pink
+        font-semibold
+        hover:bg-button-pink
+        hover:text-white
+        transition
+      "
+    >
+      خروج
+    </button>
+
+  </div>
+);
+
+
+}
+
+// =====================================================
+// DESKTOP
+// =====================================================
+
+// -----------------------------------------------------
+// DESKTOP - NOT LOGGED IN
+// -----------------------------------------------------
+
+if (!user) {
+return ( <div
+     className="
+       flex
+       items-center
+       gap-2
+     "
+   >
+{/* LOGIN */}
+
+
+    <Link
+      href="/login"
+      className="
+        btn-base
+        rounded-full
+        border
+        border-button-pink
+        px-3
+        py-2
+        text-sm
+        font-medium
+        text-button-pink
+        hover:bg-button-pink
+        hover:text-white
+        transition
+        whitespace-nowrap
+      "
+    >
+      ورود
+    </Link>
+
+    {/* REGISTER */}
+
+    <Link
+      href="/register"
+      className="
+        btn-base
+        rounded-full
+        bg-button-pink
+        px-3
+        py-2
+        text-sm
+        font-medium
+        text-white
+        hover:bg-button-pink-hover
+        transition
+        whitespace-nowrap
+      "
+    >
+      ثبت‌نام
+    </Link>
+  </div>
+);
+
+
+}
+
+// -----------------------------------------------------
+// DESKTOP - LOGGED IN
+// -----------------------------------------------------
+
+return ( <div
+   className="
+     flex
+     items-center
+     gap-3
+   "
+ >
+{/* USER */}
+
+
+  <span
+    className="
+      max-w-[140px]
+      truncate
+      whitespace-nowrap
+      text-sm
+      font-medium
+      text-petrol
+    "
+    title={
+      user.displayName ||
+      user.email
+    }
+  >
+    {user.displayName ||
+      "کاربر"}
+  </span>
+
+  {/* LOGOUT */}
+
+  <button
+    type="button"
+    onClick={logout}
+    className="
+      btn-base
+      rounded-full
+      border
+      border-button-pink
+      px-3
+      py-2
+      text-sm
+      font-medium
+      text-button-pink
+      hover:bg-button-pink
+      hover:text-white
+      transition
+      whitespace-nowrap
+    "
+  >
+    خروج
+  </button>
+</div>
+
+
+);
 }
