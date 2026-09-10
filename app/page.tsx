@@ -631,29 +631,7 @@ export default function Home() {
           <div className="mt-10 text-center">
             <a
               href="/journey"
-              className="
-                inline-flex
-                items-center
-                justify-center
-                rounded-xl
-                bg-gradient-to-l
-                from-coral
-                via-[#E97861]
-                to-[#F4A896]
-                px-8
-                py-3.5
-                text-base
-                sm:text-lg
-                font-bold
-                text-white
-                shadow-lg
-                shadow-coral/25
-                hover:-translate-y-0.5
-                hover:shadow-xl
-                hover:shadow-coral/30
-                transition-all
-                duration-200
-              "
+              className="btn-primary"
             >
               مشاهده سفر پوست
             </a>
@@ -967,30 +945,7 @@ export default function Home() {
 
           <a
             href="/sponsor"
-            className="
-              mt-9
-              inline-flex
-              items-center
-              justify-center
-              rounded-xl
-              bg-gradient-to-l
-              from-coral
-              via-[#E97861]
-              to-[#F4A896]
-              px-8
-              py-3.5
-              text-base
-              sm:text-lg
-              font-bold
-              text-white
-              shadow-lg
-              shadow-coral/25
-              hover:-translate-y-0.5
-              hover:shadow-xl
-              hover:shadow-coral/30
-              transition-all
-              duration-200
-            "
+           className="btn-primary"
           >
             فرصت‌های همکاری با Surenmah
           </a>
