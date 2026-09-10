@@ -75,19 +75,23 @@ body {
   font-family: "Vazirmatn", sans-serif;
 }
 
-.btn-primary {
+
+.btn-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
+  transition: all 200ms;
+}
+
+.btn-primary {
   border-radius: 0.75rem;
   background: var(--button-pink);
   border: 1px solid rgb(255 255 255 / 30%);
   padding: 1rem 2.5rem;
   font-size: 1.125rem;
-  font-weight: 700;
   color: white;
   box-shadow: 0 10px 15px -3px rgb(217 143 165 / 25%);
-  transition: all 200ms;
 }
 
 .btn-primary:hover {

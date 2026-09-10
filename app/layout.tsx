@@ -246,7 +246,7 @@ export default function RootLayout({
                     font-bold
                     shadow-md
                     shadow-coral/25
-                    hover:bg-[#D95C43]
+                     hover:bg-button-pink-hover
                     hover:-translate-y-0.5
                     transition
                     whitespace-nowrap
@@ -399,7 +399,7 @@ export default function RootLayout({
               className="
                 rounded-xl
                 bg-button-pink
-                hover:bg-[#D95C43]
+                 hover:bg-button-pink-hover
                 px-4
                 sm:px-5
                 py-2
