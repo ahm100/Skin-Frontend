@@ -48,19 +48,18 @@ export default function RootLayout({
           shadow-sm
           shadow-coral/10
         "> */}
-       <header
-  className="
-    sticky
-    top-0
-    z-50
-    w-full
-    border-b
-    border-coral/15
-    bg-[linear-gradient(to_right,_#FFF4EF_0%,_#F3D7D2_50%,_#FFF4EF_100%)]
-    shadow-sm
-    shadow-coral/10
-  "
->
+        <header
+          className="
+          sticky
+          top-0
+          z-50
+          w-full
+          border-b
+          border-coral/15
+          bg-[linear-gradient(to_right,_#FFF4EF_0%,_#F3D7D2_50%,_#FFF4EF_100%)]
+          shadow-sm
+          shadow-coral/10
+        " >
           <div
             className="
               mx-auto
@@ -104,27 +103,24 @@ export default function RootLayout({
               >
                 {/* Mobile: Home icon */}
 
-                <span className="sm:hidden">
+                {/* <span className="sm:hidden">
                   <Home
                     size={22}
                     strokeWidth={2}
                   />
-                </span>
+                </span> */}
 
                 {/* Desktop: Surenmah */}
 
-             
-
-<img
-  src="/logo/surenmah-logo.png"
-  alt="Surenmah"
-  className="
-    hidden
-    sm:block
-    h-16
-    w-auto
-  "
-/>
+                <img
+                  src="/logo/surenmah-logo.png"
+                  alt="Surenmah"
+                  className="                 
+                  block
+                  h-16
+                  w-auto
+                "
+                />
               </Link>
 
               {/* =================================================
@@ -238,8 +234,8 @@ export default function RootLayout({
                     ================================================= */}
 
                 <Link
-  href="/analyze"
-  className="
+                  href="/analyze"
+                  className="
     btn-base
     rounded-full
     bg-button-pink
@@ -256,9 +252,9 @@ export default function RootLayout({
     hover:-translate-y-0.5
     whitespace-nowrap
   "
->
-  تحلیل پوست
-</Link>
+                >
+                  تحلیل پوست
+                </Link>
 
                 {/* =================================================
                     ACCOUNT
