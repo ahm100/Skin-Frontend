@@ -21,6 +21,7 @@ export const conditionBlogMap: Record<string, string> = {
   zoster: "/blog/shingles",
   candidiasis: "/blog/candidiasis",
   actinicKeratosis: "/blog/actinicKeratosis",
+  benignTumors: "/blog/benignTumors",
 };
 
 export function getConditionBlogUrl(
