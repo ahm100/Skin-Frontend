@@ -30,6 +30,8 @@ import { psoriasis } from "./psoriasis";
 import { shingles } from "./shingles";
 import { eczema } from "./eczema";
 import { boil } from "./boil";
+import { candidiasis } from "./candidiasis";
+import { actinicKeratosis } from "./actinic-keratosis";
 
 export const blogArticles: BlogArticle[] = [
   vitiligo,
@@ -46,4 +48,6 @@ export const blogArticles: BlogArticle[] = [
   shingles,
   eczema,
   boil,
+  candidiasis,
+  actinicKeratosis
 ];
