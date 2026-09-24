@@ -21,11 +21,16 @@ const noProductConditions = [
   "skin cancer",
   "cancer",
 
+  "actinic keratosis",
   "bullous",
-  "lichen",
   "drug eruption",
+  "lichen",
+  "lupus",
+  "moles",
+  "benign tumors",
+  "vascular tumors",
+  "vasculitis",
 ];
-
 
 function normalizeCondition(
   label?: string | null
