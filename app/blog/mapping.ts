@@ -20,7 +20,7 @@ export const conditionBlogMap: Record<string, string> = {
   shingles: "/blog/shingles",
   zoster: "/blog/shingles",
   candidiasis: "/blog/candidiasis",
-  actinicKeratosis: "/blog/actinicKeratosis",
+  "actinic keratosis": "/blog/actinic-keratosis",
   benignTumors: "/blog/benignTumors",
 };
 
