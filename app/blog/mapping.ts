@@ -1,4 +1,4 @@
-export const conditionBlogMap: Record<string, string> = {
+const rawConditionBlogMap: Record<string, string> = {
   vitiligo: "/blog/vitiligo",
   acne: "/blog/acne",
   "dry skin": "/blog/dry-skin",
@@ -20,9 +20,18 @@ export const conditionBlogMap: Record<string, string> = {
   shingles: "/blog/shingles",
   zoster: "/blog/shingles",
   candidiasis: "/blog/candidiasis",
-  "actinic keratosis": "/blog/actinic-keratosis",
-  benignTumors: "/blog/benignTumors",
+
+  // Mapping keys are normalized automatically, so casing does not matter.
+  "Actinic Keratosis": "/blog/actinic-keratosis",
 };
+
+export const conditionBlogMap: Record<string, string> =
+  Object.fromEntries(
+    Object.entries(rawConditionBlogMap).map(([key, url]) => [
+      key.trim().toLowerCase(),
+      url,
+    ])
+  );
 
 export function getConditionBlogUrl(
   label?: string | null
@@ -31,9 +40,7 @@ export function getConditionBlogUrl(
     return null;
   }
 
-  const normalized = label
-    .trim()
-    .toLowerCase();
+  const normalized = label.trim().toLowerCase();
 
   return conditionBlogMap[normalized] ?? null;
 }
