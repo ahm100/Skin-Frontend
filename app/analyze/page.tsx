@@ -51,6 +51,9 @@ export default function AnalyzePage() {
   const [saveToHistory, setSaveToHistory] =
     useState(false);
 
+  const [requestedCategory, setRequestedCategory] =
+  useState("all");
+
   const [isLoggedIn, setIsLoggedIn] =
     useState(false);
 
@@ -394,6 +397,10 @@ export default function AnalyzePage() {
         "false"
       );
 
+      formData.append(
+    "requestedCategory",
+    requestedCategory
+      );
       // =========================
       // Authentication
       // =========================
@@ -546,6 +553,11 @@ export default function AnalyzePage() {
       formData.append(
         "saveToHistory",
         saveToHistory.toString()
+      );
+
+      formData.append(
+        "requestedCategory",
+        requestedCategory
       );
 
       // =========================
@@ -928,6 +940,66 @@ export default function AnalyzePage() {
           </button>
         </div>
       )}
+
+
+      {/* ========================= */}
+{/* Requested Product Category */}
+{/* ========================= */}
+
+<div className="mt-5 w-full max-w-md">
+  <label
+    htmlFor="requested-category"
+    className="mb-2 block text-sm font-medium text-petrol"
+  >
+    چه نوع محصولی می‌خواهی؟
+  </label>
+
+  <select
+    id="requested-category"
+    value={requestedCategory}
+    onChange={(e) =>
+      setRequestedCategory(e.target.value)
+    }
+    disabled={loading || refining}
+    className="
+      w-full
+      rounded-xl
+      border
+      border-gray-300
+      bg-white
+      px-4
+      py-3
+      text-sm
+      text-petrol
+      outline-none
+      focus:border-button-pink
+    "
+  >
+    <option value="all">
+      فرقی نمی‌کند
+    </option>
+
+    <option value="cleanser">
+      شوینده
+    </option>
+
+    <option value="moisturizer">
+      مرطوب‌کننده
+    </option>
+
+    <option value="serum">
+      سرم
+    </option>
+
+    <option value="sunscreen">
+      ضد آفتاب
+    </option>
+
+    <option value="treatment">
+      محصول مراقبتی/درمانی
+    </option>
+  </select>
+</div>
 
       {/* ========================= */}
       {/* Analyze Button */}
