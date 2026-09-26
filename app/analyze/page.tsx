@@ -52,7 +52,7 @@ export default function AnalyzePage() {
     useState(false);
 
   const [requestedCategory, setRequestedCategory] =
-  useState("all");
+    useState("");
 
   const [isLoggedIn, setIsLoggedIn] =
     useState(false);
@@ -397,10 +397,13 @@ export default function AnalyzePage() {
         "false"
       );
 
-      formData.append(
-    "requestedCategory",
-    requestedCategory
-      );
+      if (requestedCategory) {
+        formData.append(
+          "requestedCategory",
+          requestedCategory
+        );
+      }
+
       // =========================
       // Authentication
       // =========================
@@ -555,10 +558,12 @@ export default function AnalyzePage() {
         saveToHistory.toString()
       );
 
-      formData.append(
-        "requestedCategory",
-        requestedCategory
-      );
+      if (requestedCategory) {
+        formData.append(
+          "requestedCategory",
+          requestedCategory
+        );
+      }
 
       // =========================
       // Authentication
@@ -877,6 +882,35 @@ export default function AnalyzePage() {
       )}
 
       {/* ========================= */}
+      {/* Requested Product Category */}
+      {/* ========================= */}
+
+      <div className="mt-4 w-full max-w-sm">
+        <label
+          htmlFor="requestedCategory"
+          className="block text-sm font-medium text-petrol"
+        >
+          دسته محصول موردنظر (اختیاری)
+        </label>
+
+        <select
+          id="requestedCategory"
+          value={requestedCategory}
+          onChange={(e) =>
+            setRequestedCategory(e.target.value)
+          }
+          className="mt-2 w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-petrol outline-none focus:border-button-pink"
+        >
+          <option value="">همه دسته‌ها</option>
+          <option value="cleanser">شوینده</option>
+          <option value="moisturizer">مرطوب‌کننده</option>
+          <option value="serum">سرم</option>
+          <option value="sunscreen">ضد آفتاب</option>
+          <option value="treatment">درمان پوستی</option>
+        </select>
+      </div>
+
+      {/* ========================= */}
       {/* Save To History */}
       {/* ========================= */}
 
@@ -940,66 +974,6 @@ export default function AnalyzePage() {
           </button>
         </div>
       )}
-
-
-      {/* ========================= */}
-{/* Requested Product Category */}
-{/* ========================= */}
-
-<div className="mt-5 w-full max-w-md">
-  <label
-    htmlFor="requested-category"
-    className="mb-2 block text-sm font-medium text-petrol"
-  >
-    چه نوع محصولی می‌خواهی؟
-  </label>
-
-  <select
-    id="requested-category"
-    value={requestedCategory}
-    onChange={(e) =>
-      setRequestedCategory(e.target.value)
-    }
-    disabled={loading || refining}
-    className="
-      w-full
-      rounded-xl
-      border
-      border-gray-300
-      bg-white
-      px-4
-      py-3
-      text-sm
-      text-petrol
-      outline-none
-      focus:border-button-pink
-    "
-  >
-    <option value="all">
-      فرقی نمی‌کند
-    </option>
-
-    <option value="cleanser">
-      شوینده
-    </option>
-
-    <option value="moisturizer">
-      مرطوب‌کننده
-    </option>
-
-    <option value="serum">
-      سرم
-    </option>
-
-    <option value="sunscreen">
-      ضد آفتاب
-    </option>
-
-    <option value="treatment">
-      محصول مراقبتی/درمانی
-    </option>
-  </select>
-</div>
 
       {/* ========================= */}
       {/* Analyze Button */}
