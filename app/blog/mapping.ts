@@ -33,9 +33,7 @@ export const conditionBlogMap: Record<string, string> =
     ])
   );
 
-export function getConditionBlogUrl(
-  label?: string | null
-): string | null {
+export function getConditionBlogUrl(label?: string | null): string | null {
   if (!label) {
     return null;
   }
